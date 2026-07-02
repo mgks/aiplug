@@ -1,0 +1,3254 @@
+{
+  "version": 4,
+  "totalProviders": 272,
+  "providers": {
+    "302": {
+      "displayName": "302.AI (alias: 302)",
+      "category": "Aggregator",
+      "popularModels": [
+        "glm-5",
+        "gpt-4o",
+        "claude-sonnet-4"
+      ],
+      "envVar": "302AI_API_KEY",
+      "notes": "OpenCode-supported; unified OpenAI-compatible gateway for 100+ models",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "558686": {
+      "displayName": "Prism API (alias: 558686)",
+      "category": "Gateway",
+      "popularModels": [
+        "gpt-5.5",
+        "gpt-5.4",
+        "claude-sonnet-4",
+        "gemini-2.5-pro"
+      ],
+      "envVar": "PRISM_API_KEY",
+      "notes": "Independent OpenAI-compatible gateway for overseas developers; low-cost GPT-5.5 access and crypto-friendly recharge/voucher options",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "openai": {
+      "displayName": "OpenAI",
+      "category": "Frontier",
+      "popularModels": [
+        "GPT-5.5",
+        "GPT-5.4",
+        "GPT-4.1",
+        "GPT-4o",
+        "o3-mini"
+      ],
+      "envVar": "OPENAI_API_KEY",
+      "notes": "Industry-standard SDK ecosystem",
+      "openaiCompatible": true
+    },
+    "chatgpt": {
+      "displayName": "OpenAI (alias: chatgpt)",
+      "category": "Frontier",
+      "popularModels": [
+        "GPT-5.5",
+        "GPT-5.4",
+        "GPT-4.1",
+        "GPT-4o",
+        "o3-mini"
+      ],
+      "envVar": "OPENAI_API_KEY",
+      "notes": "Industry-standard SDK ecosystem",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "gpt": {
+      "displayName": "OpenAI (alias: gpt)",
+      "category": "Frontier",
+      "popularModels": [
+        "GPT-5.5",
+        "GPT-5.4",
+        "GPT-4.1",
+        "GPT-4o",
+        "o3-mini"
+      ],
+      "envVar": "OPENAI_API_KEY",
+      "notes": "Industry-standard SDK ecosystem",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "anthropic": {
+      "displayName": "Anthropic",
+      "category": "Frontier",
+      "popularModels": [
+        "Claude Opus 4.8",
+        "Claude Sonnet 4.6",
+        "Claude Haiku 4.5"
+      ],
+      "envVar": "ANTHROPIC_API_KEY",
+      "notes": "Native Messages API (not OpenAI-compatible)",
+      "openaiCompatible": false
+    },
+    "claude": {
+      "displayName": "Anthropic (alias: claude)",
+      "category": "Frontier",
+      "popularModels": [
+        "Claude Opus 4.8",
+        "Claude Sonnet 4.6",
+        "Claude Haiku 4.5"
+      ],
+      "envVar": "ANTHROPIC_API_KEY",
+      "notes": "Native Messages API (not OpenAI-compatible)",
+      "openaiCompatible": false,
+      "isAlias": true
+    },
+    "claude-ai": {
+      "displayName": "Anthropic (alias: claude-ai)",
+      "category": "Frontier",
+      "popularModels": [
+        "Claude Opus 4.8",
+        "Claude Sonnet 4.6",
+        "Claude Haiku 4.5"
+      ],
+      "envVar": "ANTHROPIC_API_KEY",
+      "notes": "Native Messages API (not OpenAI-compatible)",
+      "openaiCompatible": false,
+      "isAlias": true
+    },
+    "google-ai-studio": {
+      "displayName": "Google AI Studio",
+      "category": "Frontier",
+      "popularModels": [
+        "Gemini 3.5",
+        "Gemini 3.1",
+        "Gemini 2.5"
+      ],
+      "envVar": "GEMINI_API_KEY",
+      "notes": "Up to 2M context; free tier on Flash variants",
+      "openaiCompatible": true
+    },
+    "gemini": {
+      "displayName": "Google AI Studio (alias: gemini)",
+      "category": "Frontier",
+      "popularModels": [
+        "Gemini 3.5",
+        "Gemini 3.1",
+        "Gemini 2.5"
+      ],
+      "envVar": "GEMINI_API_KEY",
+      "notes": "Up to 2M context; free tier on Flash variants",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "google": {
+      "displayName": "Google AI Studio (alias: google)",
+      "category": "Frontier",
+      "popularModels": [
+        "Gemini 3.5",
+        "Gemini 3.1",
+        "Gemini 2.5"
+      ],
+      "envVar": "GEMINI_API_KEY",
+      "notes": "Up to 2M context; free tier on Flash variants",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "aistudio": {
+      "displayName": "Google AI Studio (alias: aistudio)",
+      "category": "Frontier",
+      "popularModels": [
+        "Gemini 3.5",
+        "Gemini 3.1",
+        "Gemini 2.5"
+      ],
+      "envVar": "GEMINI_API_KEY",
+      "notes": "Up to 2M context; free tier on Flash variants",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "deepseek": {
+      "displayName": "DeepSeek",
+      "category": "Frontier",
+      "popularModels": [
+        "DeepSeek-V4-Pro",
+        "DeepSeek-V4-Flash",
+        "DeepSeek-R1"
+      ],
+      "envVar": "DEEPSEEK_API_KEY",
+      "notes": "OpenAI + Anthropic format; context caching",
+      "openaiCompatible": true
+    },
+    "deep-seek": {
+      "displayName": "DeepSeek (alias: deep-seek)",
+      "category": "Frontier",
+      "popularModels": [
+        "DeepSeek-V4-Pro",
+        "DeepSeek-V4-Flash",
+        "DeepSeek-R1"
+      ],
+      "envVar": "DEEPSEEK_API_KEY",
+      "notes": "OpenAI + Anthropic format; context caching",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "mistral": {
+      "displayName": "Mistral AI",
+      "category": "Frontier",
+      "popularModels": [
+        "Mistral Medium 3.5",
+        "Mistral Small 4",
+        "Ministral 3"
+      ],
+      "envVar": "MISTRAL_API_KEY",
+      "notes": "EU-hosted; generous experiment tier",
+      "openaiCompatible": true
+    },
+    "mistralai": {
+      "displayName": "Mistral AI (alias: mistralai)",
+      "category": "Frontier",
+      "popularModels": [
+        "Mistral Medium 3.5",
+        "Mistral Small 4",
+        "Ministral 3"
+      ],
+      "envVar": "MISTRAL_API_KEY",
+      "notes": "EU-hosted; generous experiment tier",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "xai": {
+      "displayName": "xAI",
+      "category": "Frontier",
+      "popularModels": [
+        "Grok-3",
+        "Grok-2"
+      ],
+      "envVar": "XAI_API_KEY",
+      "notes": "Real-time streaming & agent workflows",
+      "openaiCompatible": true
+    },
+    "grok": {
+      "displayName": "xAI (alias: grok)",
+      "category": "Frontier",
+      "popularModels": [
+        "Grok-3",
+        "Grok-2"
+      ],
+      "envVar": "XAI_API_KEY",
+      "notes": "Real-time streaming & agent workflows",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "x-ai": {
+      "displayName": "xAI (alias: x-ai)",
+      "category": "Frontier",
+      "popularModels": [
+        "Grok-3",
+        "Grok-2"
+      ],
+      "envVar": "XAI_API_KEY",
+      "notes": "Real-time streaming & agent workflows",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "cohere": {
+      "displayName": "Cohere",
+      "category": "Frontier",
+      "popularModels": [
+        "Command R+",
+        "Embed v4",
+        "Rerank 3.5"
+      ],
+      "envVar": "COHERE_API_KEY",
+      "notes": "Enterprise search & RAG",
+      "openaiCompatible": false
+    },
+    "ai21": {
+      "displayName": "AI21 Labs",
+      "category": "Frontier",
+      "popularModels": [
+        "Jamba 1.5 Large",
+        "Jamba 1.5 Mini"
+      ],
+      "envVar": "AI21_API_KEY",
+      "notes": "Long-context hybrid architecture",
+      "openaiCompatible": true
+    },
+    "ai21labs": {
+      "displayName": "AI21 Labs (alias: ai21labs)",
+      "category": "Frontier",
+      "popularModels": [
+        "Jamba 1.5 Large",
+        "Jamba 1.5 Mini"
+      ],
+      "envVar": "AI21_API_KEY",
+      "notes": "Long-context hybrid architecture",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "jamba": {
+      "displayName": "AI21 Labs (alias: jamba)",
+      "category": "Frontier",
+      "popularModels": [
+        "Jamba 1.5 Large",
+        "Jamba 1.5 Mini"
+      ],
+      "envVar": "AI21_API_KEY",
+      "notes": "Long-context hybrid architecture",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "baidu-qianfan": {
+      "displayName": "Baidu Qianfan",
+      "category": "Frontier",
+      "popularModels": [
+        "ERNIE 4.0 Turbo",
+        "ERNIE Speed",
+        "ERNIE Lite"
+      ],
+      "envVar": "QIANFAN_API_KEY",
+      "notes": "Chinese-language optimized",
+      "openaiCompatible": true
+    },
+    "qianfan": {
+      "displayName": "Baidu Qianfan (alias: qianfan)",
+      "category": "Frontier",
+      "popularModels": [
+        "ERNIE 4.0 Turbo",
+        "ERNIE Speed",
+        "ERNIE Lite"
+      ],
+      "envVar": "QIANFAN_API_KEY",
+      "notes": "Chinese-language optimized",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "ernie": {
+      "displayName": "Baidu Qianfan (alias: ernie)",
+      "category": "Frontier",
+      "popularModels": [
+        "ERNIE 4.0 Turbo",
+        "ERNIE Speed",
+        "ERNIE Lite"
+      ],
+      "envVar": "QIANFAN_API_KEY",
+      "notes": "Chinese-language optimized",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "baidu": {
+      "displayName": "Baidu Qianfan (alias: baidu)",
+      "category": "Frontier",
+      "popularModels": [
+        "ERNIE 4.0 Turbo",
+        "ERNIE Speed",
+        "ERNIE Lite"
+      ],
+      "envVar": "QIANFAN_API_KEY",
+      "notes": "Chinese-language optimized",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "stepfun": {
+      "displayName": "StepFun",
+      "category": "Frontier",
+      "popularModels": [
+        "Step 3.5 Flash",
+        "Step-series"
+      ],
+      "envVar": "STEPFUN_API_KEY",
+      "notes": "Multilingual agent pipelines",
+      "openaiCompatible": true
+    },
+    "step": {
+      "displayName": "StepFun (alias: step)",
+      "category": "Frontier",
+      "popularModels": [
+        "Step 3.5 Flash",
+        "Step-series"
+      ],
+      "envVar": "STEPFUN_API_KEY",
+      "notes": "Multilingual agent pipelines",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "zhipu": {
+      "displayName": "Z.ai (Zhipu AI)",
+      "category": "Frontier",
+      "popularModels": [
+        "GLM-5",
+        "GLM-4.7",
+        "GLM-4.7-Flash"
+      ],
+      "envVar": "ZHIPU_API_KEY",
+      "notes": "Strong bilingual CN/EN performance",
+      "openaiCompatible": true
+    },
+    "bigmodel": {
+      "displayName": "Z.ai (Zhipu AI) (alias: bigmodel)",
+      "category": "Frontier",
+      "popularModels": [
+        "GLM-5",
+        "GLM-4.7",
+        "GLM-4.7-Flash"
+      ],
+      "envVar": "ZHIPU_API_KEY",
+      "notes": "Strong bilingual CN/EN performance",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "glm": {
+      "displayName": "Z.ai (Zhipu AI) (alias: glm)",
+      "category": "Frontier",
+      "popularModels": [
+        "GLM-5",
+        "GLM-4.7",
+        "GLM-4.7-Flash"
+      ],
+      "envVar": "ZHIPU_API_KEY",
+      "notes": "Strong bilingual CN/EN performance",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "z-ai": {
+      "displayName": "Z.ai (Zhipu AI) (alias: z-ai)",
+      "category": "Frontier",
+      "popularModels": [
+        "GLM-5",
+        "GLM-4.7",
+        "GLM-4.7-Flash"
+      ],
+      "envVar": "ZHIPU_API_KEY",
+      "notes": "Strong bilingual CN/EN performance",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "z.ai": {
+      "displayName": "Z.ai (Zhipu AI) (alias: z.ai)",
+      "category": "Frontier",
+      "popularModels": [
+        "GLM-5",
+        "GLM-4.7",
+        "GLM-4.7-Flash"
+      ],
+      "envVar": "ZHIPU_API_KEY",
+      "notes": "Strong bilingual CN/EN performance",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "xiaomi": {
+      "displayName": "Xiaomi",
+      "category": "Frontier",
+      "popularModels": [
+        "Mimo-v2-pro"
+      ],
+      "envVar": "",
+      "notes": "On-device & edge deployments",
+      "openaiCompatible": false
+    },
+    "mimo": {
+      "displayName": "Xiaomi (alias: mimo)",
+      "category": "Frontier",
+      "popularModels": [
+        "Mimo-v2-pro"
+      ],
+      "envVar": "",
+      "notes": "On-device & edge deployments",
+      "openaiCompatible": false,
+      "isAlias": true
+    },
+    "reka": {
+      "displayName": "Reka AI",
+      "category": "Frontier",
+      "popularModels": [
+        "Reka Core",
+        "Reka Flash"
+      ],
+      "envVar": "REKA_API_KEY",
+      "notes": "Video, audio & text multimodal",
+      "openaiCompatible": true
+    },
+    "rekaai": {
+      "displayName": "Reka AI (alias: rekaai)",
+      "category": "Frontier",
+      "popularModels": [
+        "Reka Core",
+        "Reka Flash"
+      ],
+      "envVar": "REKA_API_KEY",
+      "notes": "Video, audio & text multimodal",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "inflection": {
+      "displayName": "Inflection",
+      "category": "Frontier",
+      "popularModels": [
+        "Pi-series"
+      ],
+      "envVar": "",
+      "notes": "Conversational assistant focus",
+      "openaiCompatible": false
+    },
+    "pi": {
+      "displayName": "Inflection (alias: pi)",
+      "category": "Frontier",
+      "popularModels": [
+        "Pi-series"
+      ],
+      "envVar": "",
+      "notes": "Conversational assistant focus",
+      "openaiCompatible": false,
+      "isAlias": true
+    },
+    "minimax": {
+      "displayName": "MiniMax",
+      "category": "Frontier",
+      "popularModels": [
+        "MiniMax-M3",
+        "MiniMax-M2.1",
+        "MiniMax-M2"
+      ],
+      "envVar": "MINIMAX_API_KEY",
+      "notes": "OpenAI + Anthropic compatible; agentic",
+      "openaiCompatible": true
+    },
+    "minimax-ai": {
+      "displayName": "MiniMax (alias: minimax-ai)",
+      "category": "Frontier",
+      "popularModels": [
+        "MiniMax-M3",
+        "MiniMax-M2.1",
+        "MiniMax-M2"
+      ],
+      "envVar": "MINIMAX_API_KEY",
+      "notes": "OpenAI + Anthropic compatible; agentic",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "dashscope": {
+      "displayName": "Alibaba DashScope",
+      "category": "Frontier",
+      "popularModels": [
+        "qwen3-max",
+        "Qwen-Plus",
+        "Qwen-Flash"
+      ],
+      "envVar": "DASHSCOPE_API_KEY",
+      "notes": "Alibaba Cloud Model Studio; Qwen family",
+      "openaiCompatible": true
+    },
+    "qwen": {
+      "displayName": "Alibaba DashScope (alias: qwen)",
+      "category": "Frontier",
+      "popularModels": [
+        "qwen3-max",
+        "Qwen-Plus",
+        "Qwen-Flash"
+      ],
+      "envVar": "DASHSCOPE_API_KEY",
+      "notes": "Alibaba Cloud Model Studio; Qwen family",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "alibaba": {
+      "displayName": "Alibaba DashScope (alias: alibaba)",
+      "category": "Frontier",
+      "popularModels": [
+        "qwen3-max",
+        "Qwen-Plus",
+        "Qwen-Flash"
+      ],
+      "envVar": "DASHSCOPE_API_KEY",
+      "notes": "Alibaba Cloud Model Studio; Qwen family",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "aliyun": {
+      "displayName": "Alibaba DashScope (alias: aliyun)",
+      "category": "Frontier",
+      "popularModels": [
+        "qwen3-max",
+        "Qwen-Plus",
+        "Qwen-Flash"
+      ],
+      "envVar": "DASHSCOPE_API_KEY",
+      "notes": "Alibaba Cloud Model Studio; Qwen family",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "upstage": {
+      "displayName": "Upstage",
+      "category": "Frontier",
+      "popularModels": [
+        "Solar Pro 3",
+        "Solar Mini"
+      ],
+      "envVar": "UPSTAGE_API_KEY",
+      "notes": "Korean AI lab; strong document AI",
+      "openaiCompatible": true
+    },
+    "solar": {
+      "displayName": "Upstage (alias: solar)",
+      "category": "Frontier",
+      "popularModels": [
+        "Solar Pro 3",
+        "Solar Mini"
+      ],
+      "envVar": "UPSTAGE_API_KEY",
+      "notes": "Korean AI lab; strong document AI",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "perplexity": {
+      "displayName": "Perplexity",
+      "category": "Frontier",
+      "popularModels": [
+        "Sonar",
+        "Sonar Pro",
+        "Sonar Reasoning"
+      ],
+      "envVar": "PERPLEXITY_API_KEY",
+      "notes": "Search-grounded answers with citations",
+      "openaiCompatible": true
+    },
+    "sonar": {
+      "displayName": "Perplexity (alias: sonar)",
+      "category": "Frontier",
+      "popularModels": [
+        "Sonar",
+        "Sonar Pro",
+        "Sonar Reasoning"
+      ],
+      "envVar": "PERPLEXITY_API_KEY",
+      "notes": "Search-grounded answers with citations",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "voyage": {
+      "displayName": "Voyage AI",
+      "category": "Embeddings",
+      "popularModels": [
+        "voyage-3",
+        "voyage-3-lite",
+        "rerank-2"
+      ],
+      "envVar": "VOYAGE_API_KEY",
+      "notes": "Top-tier retrieval embeddings & rerankers",
+      "openaiCompatible": false
+    },
+    "voyageai": {
+      "displayName": "Voyage AI (alias: voyageai)",
+      "category": "Embeddings",
+      "popularModels": [
+        "voyage-3",
+        "voyage-3-lite",
+        "rerank-2"
+      ],
+      "envVar": "VOYAGE_API_KEY",
+      "notes": "Top-tier retrieval embeddings & rerankers",
+      "openaiCompatible": false,
+      "isAlias": true
+    },
+    "groq": {
+      "displayName": "Groq",
+      "category": "IaaS",
+      "popularModels": [
+        "llama-3.3-70b-versatile",
+        "llama-3.1-8b-instant",
+        "Gemma 2 9B"
+      ],
+      "envVar": "GROQ_API_KEY",
+      "notes": "LPU hardware; extremely fast TTFT",
+      "openaiCompatible": true
+    },
+    "groq-ai": {
+      "displayName": "Groq (alias: groq-ai)",
+      "category": "IaaS",
+      "popularModels": [
+        "llama-3.3-70b-versatile",
+        "llama-3.1-8b-instant",
+        "Gemma 2 9B"
+      ],
+      "envVar": "GROQ_API_KEY",
+      "notes": "LPU hardware; extremely fast TTFT",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "cerebras": {
+      "displayName": "Cerebras",
+      "category": "IaaS",
+      "popularModels": [
+        "Llama 3.3 70B",
+        "GPT-OSS 120B",
+        "Qwen 3 32B"
+      ],
+      "envVar": "CEREBRAS_API_KEY",
+      "notes": "Wafer-scale engine throughput",
+      "openaiCompatible": true
+    },
+    "cerebras-ai": {
+      "displayName": "Cerebras (alias: cerebras-ai)",
+      "category": "IaaS",
+      "popularModels": [
+        "Llama 3.3 70B",
+        "GPT-OSS 120B",
+        "Qwen 3 32B"
+      ],
+      "envVar": "CEREBRAS_API_KEY",
+      "notes": "Wafer-scale engine throughput",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "sambanova": {
+      "displayName": "SambaNova",
+      "category": "IaaS",
+      "popularModels": [
+        "Llama 3.1 405B",
+        "Llama 3.3 70B",
+        "Qwen"
+      ],
+      "envVar": "SAMBANOVA_API_KEY",
+      "notes": "RDU serving for large models",
+      "openaiCompatible": true
+    },
+    "together": {
+      "displayName": "Together AI",
+      "category": "IaaS",
+      "popularModels": [
+        "Llama 3.3",
+        "DeepSeek-V4",
+        "Qwen",
+        "FLUX.1"
+      ],
+      "envVar": "TOGETHER_API_KEY",
+      "notes": "Large catalog + fine-tuning",
+      "openaiCompatible": true
+    },
+    "together-ai": {
+      "displayName": "Together AI (alias: together-ai)",
+      "category": "IaaS",
+      "popularModels": [
+        "Llama 3.3",
+        "DeepSeek-V4",
+        "Qwen",
+        "FLUX.1"
+      ],
+      "envVar": "TOGETHER_API_KEY",
+      "notes": "Large catalog + fine-tuning",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "togetherai": {
+      "displayName": "Together AI (alias: togetherai)",
+      "category": "IaaS",
+      "popularModels": [
+        "Llama 3.3",
+        "DeepSeek-V4",
+        "Qwen",
+        "FLUX.1"
+      ],
+      "envVar": "TOGETHER_API_KEY",
+      "notes": "Large catalog + fine-tuning",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "fireworks": {
+      "displayName": "Fireworks AI",
+      "category": "IaaS",
+      "popularModels": [
+        "Qwen 3.6 Plus",
+        "Kimi K2.6",
+        "Llama 4 Maverick"
+      ],
+      "envVar": "FIREWORKS_API_KEY",
+      "notes": "Serverless low-latency serving",
+      "openaiCompatible": true
+    },
+    "fireworks-ai": {
+      "displayName": "Fireworks AI (alias: fireworks-ai)",
+      "category": "IaaS",
+      "popularModels": [
+        "Qwen 3.6 Plus",
+        "Kimi K2.6",
+        "Llama 4 Maverick"
+      ],
+      "envVar": "FIREWORKS_API_KEY",
+      "notes": "Serverless low-latency serving",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "fireworksai": {
+      "displayName": "Fireworks AI (alias: fireworksai)",
+      "category": "IaaS",
+      "popularModels": [
+        "Qwen 3.6 Plus",
+        "Kimi K2.6",
+        "Llama 4 Maverick"
+      ],
+      "envVar": "FIREWORKS_API_KEY",
+      "notes": "Serverless low-latency serving",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "deepinfra": {
+      "displayName": "DeepInfra",
+      "category": "IaaS",
+      "popularModels": [
+        "Llama 3.3",
+        "Qwen 3",
+        "DeepSeek-V4",
+        "Mistral"
+      ],
+      "envVar": "DEEPINFRA_API_KEY",
+      "notes": "Aggressive open-model pricing",
+      "openaiCompatible": true
+    },
+    "deep-infra": {
+      "displayName": "DeepInfra (alias: deep-infra)",
+      "category": "IaaS",
+      "popularModels": [
+        "Llama 3.3",
+        "Qwen 3",
+        "DeepSeek-V4",
+        "Mistral"
+      ],
+      "envVar": "DEEPINFRA_API_KEY",
+      "notes": "Aggressive open-model pricing",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "nebius": {
+      "displayName": "Nebius AI Studio",
+      "category": "IaaS",
+      "popularModels": [
+        "DeepSeek-R1-0528",
+        "Llama 3.3 70B"
+      ],
+      "envVar": "NEBIUS_API_KEY",
+      "notes": "EU infrastructure; Token Factory",
+      "openaiCompatible": true
+    },
+    "nebius-studio": {
+      "displayName": "Nebius AI Studio (alias: nebius-studio)",
+      "category": "IaaS",
+      "popularModels": [
+        "DeepSeek-R1-0528",
+        "Llama 3.3 70B"
+      ],
+      "envVar": "NEBIUS_API_KEY",
+      "notes": "EU infrastructure; Token Factory",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "nebius-token-factory": {
+      "displayName": "Nebius AI Studio (alias: nebius-token-factory)",
+      "category": "IaaS",
+      "popularModels": [
+        "DeepSeek-R1-0528",
+        "Llama 3.3 70B"
+      ],
+      "envVar": "NEBIUS_API_KEY",
+      "notes": "EU infrastructure; Token Factory",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "token-factory": {
+      "displayName": "Nebius AI Studio (alias: token-factory)",
+      "category": "IaaS",
+      "popularModels": [
+        "DeepSeek-R1-0528",
+        "Llama 3.3 70B"
+      ],
+      "envVar": "NEBIUS_API_KEY",
+      "notes": "EU infrastructure; Token Factory",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "siliconflow": {
+      "displayName": "SiliconFlow",
+      "category": "IaaS",
+      "popularModels": [
+        "DeepSeek-R1-0528",
+        "MiniMax-M2",
+        "Qwen3-VL"
+      ],
+      "envVar": "SILICONFLOW_API_KEY",
+      "notes": "Excellent cost/performance (CN)",
+      "openaiCompatible": true
+    },
+    "siliconcloud": {
+      "displayName": "SiliconFlow (alias: siliconcloud)",
+      "category": "IaaS",
+      "popularModels": [
+        "DeepSeek-R1-0528",
+        "MiniMax-M2",
+        "Qwen3-VL"
+      ],
+      "envVar": "SILICONFLOW_API_KEY",
+      "notes": "Excellent cost/performance (CN)",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "inception": {
+      "displayName": "Inception",
+      "category": "IaaS",
+      "popularModels": [
+        "Mercury-2",
+        "Mercury-Edit-2"
+      ],
+      "envVar": "INCEPTION_API_KEY",
+      "notes": "Diffusion language models (dLLMs)",
+      "openaiCompatible": true
+    },
+    "inceptionlabs": {
+      "displayName": "Inception (alias: inceptionlabs)",
+      "category": "IaaS",
+      "popularModels": [
+        "Mercury-2",
+        "Mercury-Edit-2"
+      ],
+      "envVar": "INCEPTION_API_KEY",
+      "notes": "Diffusion language models (dLLMs)",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "mercury": {
+      "displayName": "Inception (alias: mercury)",
+      "category": "IaaS",
+      "popularModels": [
+        "Mercury-2",
+        "Mercury-Edit-2"
+      ],
+      "envVar": "INCEPTION_API_KEY",
+      "notes": "Diffusion language models (dLLMs)",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "liquid": {
+      "displayName": "Liquid AI",
+      "category": "IaaS",
+      "popularModels": [
+        "LFM2.5 Instruct",
+        "LFM2-24B"
+      ],
+      "envVar": "",
+      "notes": "Hybrid efficient architectures",
+      "openaiCompatible": true
+    },
+    "liquidai": {
+      "displayName": "Liquid AI (alias: liquidai)",
+      "category": "IaaS",
+      "popularModels": [
+        "LFM2.5 Instruct",
+        "LFM2-24B"
+      ],
+      "envVar": "",
+      "notes": "Hybrid efficient architectures",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "lfm": {
+      "displayName": "Liquid AI (alias: lfm)",
+      "category": "IaaS",
+      "popularModels": [
+        "LFM2.5 Instruct",
+        "LFM2-24B"
+      ],
+      "envVar": "",
+      "notes": "Hybrid efficient architectures",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "friendli": {
+      "displayName": "Friendli",
+      "category": "IaaS",
+      "popularModels": [
+        "Llama 3.1 8B",
+        "DeepSeek-R1"
+      ],
+      "envVar": "FRIENDLI_API_KEY",
+      "notes": "Custom checkpoints & private instances",
+      "openaiCompatible": true
+    },
+    "friendliai": {
+      "displayName": "Friendli (alias: friendliai)",
+      "category": "IaaS",
+      "popularModels": [
+        "Llama 3.1 8B",
+        "DeepSeek-R1"
+      ],
+      "envVar": "FRIENDLI_API_KEY",
+      "notes": "Custom checkpoints & private instances",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "inceptron": {
+      "displayName": "Inceptron",
+      "category": "IaaS",
+      "popularModels": [
+        "Open-weight LLMs"
+      ],
+      "envVar": "",
+      "notes": "Self-configured model hosting",
+      "openaiCompatible": true
+    },
+    "infermatic": {
+      "displayName": "Infermatic",
+      "category": "IaaS",
+      "popularModels": [
+        "Rocinante",
+        "Midnight Miqu",
+        "Llama"
+      ],
+      "envVar": "INFERMATIC_API_KEY",
+      "notes": "Flat-rate community checkpoints",
+      "openaiCompatible": true
+    },
+    "totalgpt": {
+      "displayName": "Infermatic (alias: totalgpt)",
+      "category": "IaaS",
+      "popularModels": [
+        "Rocinante",
+        "Midnight Miqu",
+        "Llama"
+      ],
+      "envVar": "INFERMATIC_API_KEY",
+      "notes": "Flat-rate community checkpoints",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "mancer": {
+      "displayName": "Mancer",
+      "category": "IaaS",
+      "popularModels": [
+        "Goliath 120B",
+        "MythoMax",
+        "LumiMaid"
+      ],
+      "envVar": "MANCER_API_KEY",
+      "notes": "Creative / roleplay fine-tunes",
+      "openaiCompatible": true
+    },
+    "morph": {
+      "displayName": "Morph",
+      "category": "IaaS",
+      "popularModels": [
+        "morph-qwen35-397b",
+        "morph-qwen36-27b"
+      ],
+      "envVar": "MORPH_API_KEY",
+      "notes": "Fast code editing & routing",
+      "openaiCompatible": true
+    },
+    "morphllm": {
+      "displayName": "Morph (alias: morphllm)",
+      "category": "IaaS",
+      "popularModels": [
+        "morph-qwen35-397b",
+        "morph-qwen36-27b"
+      ],
+      "envVar": "MORPH_API_KEY",
+      "notes": "Fast code editing & routing",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "aionlabs": {
+      "displayName": "AionLabs",
+      "category": "IaaS",
+      "popularModels": [
+        "Aion 2.0",
+        "Aion-RP"
+      ],
+      "envVar": "AION_API_KEY",
+      "notes": "Creative multi-turn fine-tunes",
+      "openaiCompatible": true
+    },
+    "aion": {
+      "displayName": "AionLabs (alias: aion)",
+      "category": "IaaS",
+      "popularModels": [
+        "Aion 2.0",
+        "Aion-RP"
+      ],
+      "envVar": "AION_API_KEY",
+      "notes": "Creative multi-turn fine-tunes",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "huggingface": {
+      "displayName": "HuggingFace Inference",
+      "category": "IaaS",
+      "popularModels": [
+        "meta-llama/Llama-3.3-70B-Instruct",
+        "Qwen/Qwen2.5-72B-Instruct"
+      ],
+      "envVar": "HUGGINGFACE_API_KEY",
+      "notes": "Huge model catalog; free tier available",
+      "openaiCompatible": true
+    },
+    "hf": {
+      "displayName": "HuggingFace Inference (alias: hf)",
+      "category": "IaaS",
+      "popularModels": [
+        "meta-llama/Llama-3.3-70B-Instruct",
+        "Qwen/Qwen2.5-72B-Instruct"
+      ],
+      "envVar": "HUGGINGFACE_API_KEY",
+      "notes": "Huge model catalog; free tier available",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "hugging face": {
+      "displayName": "HuggingFace Inference (alias: hugging face)",
+      "category": "IaaS",
+      "popularModels": [
+        "meta-llama/Llama-3.3-70B-Instruct",
+        "Qwen/Qwen2.5-72B-Instruct"
+      ],
+      "envVar": "HUGGINGFACE_API_KEY",
+      "notes": "Huge model catalog; free tier available",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "hugging-face": {
+      "displayName": "HuggingFace Inference (alias: hugging-face)",
+      "category": "IaaS",
+      "popularModels": [
+        "meta-llama/Llama-3.3-70B-Instruct",
+        "Qwen/Qwen2.5-72B-Instruct"
+      ],
+      "envVar": "HUGGINGFACE_API_KEY",
+      "notes": "Huge model catalog; free tier available",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "nvidia-nim": {
+      "displayName": "NVIDIA NIM",
+      "category": "IaaS",
+      "popularModels": [
+        "meta/llama-3.3-70b-instruct",
+        "deepseek-ai/deepseek-r1"
+      ],
+      "envVar": "NVIDIA_API_KEY",
+      "notes": "NVIDIA inference microservices",
+      "openaiCompatible": true
+    },
+    "nim": {
+      "displayName": "NVIDIA NIM (alias: nim)",
+      "category": "IaaS",
+      "popularModels": [
+        "meta/llama-3.3-70b-instruct",
+        "deepseek-ai/deepseek-r1"
+      ],
+      "envVar": "NVIDIA_API_KEY",
+      "notes": "NVIDIA inference microservices",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "nvidia": {
+      "displayName": "NVIDIA NIM (alias: nvidia)",
+      "category": "IaaS",
+      "popularModels": [
+        "meta/llama-3.3-70b-instruct",
+        "deepseek-ai/deepseek-r1"
+      ],
+      "envVar": "NVIDIA_API_KEY",
+      "notes": "NVIDIA inference microservices",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "hyperbolic": {
+      "displayName": "Hyperbolic",
+      "category": "IaaS",
+      "popularModels": [
+        "DeepSeek-V3",
+        "Llama 3.3 70B"
+      ],
+      "envVar": "HYPERBOLIC_API_KEY",
+      "notes": "Decentralized GPU compute",
+      "openaiCompatible": true
+    },
+    "lepton": {
+      "displayName": "Lepton AI",
+      "category": "IaaS",
+      "popularModels": [
+        "Llama 3.3 70B"
+      ],
+      "envVar": "LEPTON_API_KEY",
+      "notes": "Fast serverless inference",
+      "openaiCompatible": true
+    },
+    "leptonai": {
+      "displayName": "Lepton AI (alias: leptonai)",
+      "category": "IaaS",
+      "popularModels": [
+        "Llama 3.3 70B"
+      ],
+      "envVar": "LEPTON_API_KEY",
+      "notes": "Fast serverless inference",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "kluster": {
+      "displayName": "Kluster.ai",
+      "category": "IaaS",
+      "popularModels": [
+        "Llama 3.1 405B",
+        "Qwen 2.5 72B"
+      ],
+      "envVar": "KLUSTER_API_KEY",
+      "notes": "Batch inference specialist",
+      "openaiCompatible": true
+    },
+    "klusterai": {
+      "displayName": "Kluster.ai (alias: klusterai)",
+      "category": "IaaS",
+      "popularModels": [
+        "Llama 3.1 405B",
+        "Qwen 2.5 72B"
+      ],
+      "envVar": "KLUSTER_API_KEY",
+      "notes": "Batch inference specialist",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "anyscale": {
+      "displayName": "Anyscale Endpoints",
+      "category": "IaaS",
+      "popularModels": [
+        "Llama 3.3 70B",
+        "Mixtral 8x22B"
+      ],
+      "envVar": "ANYSCALE_API_KEY",
+      "notes": "Ray-based model serving",
+      "openaiCompatible": true
+    },
+    "replicate": {
+      "displayName": "Replicate",
+      "category": "IaaS",
+      "popularModels": [
+        "Open models",
+        "FLUX",
+        "video models"
+      ],
+      "envVar": "REPLICATE_API_TOKEN",
+      "notes": "Pay-per-run; image/audio/video too",
+      "openaiCompatible": false
+    },
+    "inference-net": {
+      "displayName": "Inference.net",
+      "category": "IaaS",
+      "popularModels": [
+        "DeepSeek-R1",
+        "Llama 3.1 70B"
+      ],
+      "envVar": "INFERENCE_NET_API_KEY",
+      "notes": "Decentralized inference network",
+      "openaiCompatible": true
+    },
+    "inference.net": {
+      "displayName": "Inference.net (alias: inference.net)",
+      "category": "IaaS",
+      "popularModels": [
+        "DeepSeek-R1",
+        "Llama 3.1 70B"
+      ],
+      "envVar": "INFERENCE_NET_API_KEY",
+      "notes": "Decentralized inference network",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "arcee": {
+      "displayName": "Arcee AI",
+      "category": "IaaS",
+      "popularModels": [
+        "Trinity-Large",
+        "Caller-Large"
+      ],
+      "envVar": "ARCEE_API_KEY",
+      "notes": "Enterprise fine-tuned models",
+      "openaiCompatible": true
+    },
+    "arceeai": {
+      "displayName": "Arcee AI (alias: arceeai)",
+      "category": "IaaS",
+      "popularModels": [
+        "Trinity-Large",
+        "Caller-Large"
+      ],
+      "envVar": "ARCEE_API_KEY",
+      "notes": "Enterprise fine-tuned models",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "trinity": {
+      "displayName": "Arcee AI (alias: trinity)",
+      "category": "IaaS",
+      "popularModels": [
+        "Trinity-Large",
+        "Caller-Large"
+      ],
+      "envVar": "ARCEE_API_KEY",
+      "notes": "Enterprise fine-tuned models",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "glhf": {
+      "displayName": "Glhf.chat",
+      "category": "IaaS",
+      "popularModels": [
+        "hf:meta-llama/Llama-3.3-70B-Instruct",
+        "hf:Qwen/Qwen2.5-72B-Instruct"
+      ],
+      "envVar": "GLHF_API_KEY",
+      "notes": "vLLM-backed; run any HF model with hf: prefix",
+      "openaiCompatible": true
+    },
+    "glhfchat": {
+      "displayName": "Glhf.chat (alias: glhfchat)",
+      "category": "IaaS",
+      "popularModels": [
+        "hf:meta-llama/Llama-3.3-70B-Instruct",
+        "hf:Qwen/Qwen2.5-72B-Instruct"
+      ],
+      "envVar": "GLHF_API_KEY",
+      "notes": "vLLM-backed; run any HF model with hf: prefix",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "akashml": {
+      "displayName": "AkashML",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Llama 3",
+        "Qwen",
+        "DeepSeek"
+      ],
+      "envVar": "AKASHML_API_KEY",
+      "notes": "Decentralized GPU marketplace",
+      "openaiCompatible": true
+    },
+    "akash": {
+      "displayName": "AkashML (alias: akash)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Llama 3",
+        "Qwen",
+        "DeepSeek"
+      ],
+      "envVar": "AKASHML_API_KEY",
+      "notes": "Decentralized GPU marketplace",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "atlascloud": {
+      "displayName": "AtlasCloud",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "DeepSeek-V3",
+        "Seedance 2.0",
+        "Kling 3.0"
+      ],
+      "envVar": "ATLASCLOUD_API_KEY",
+      "notes": "Language + image + video APIs",
+      "openaiCompatible": true
+    },
+    "atlas": {
+      "displayName": "AtlasCloud (alias: atlas)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "DeepSeek-V3",
+        "Seedance 2.0",
+        "Kling 3.0"
+      ],
+      "envVar": "ATLASCLOUD_API_KEY",
+      "notes": "Language + image + video APIs",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "chutes": {
+      "displayName": "Chutes",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Kimi",
+        "GLM",
+        "Qwen",
+        "MiniMax"
+      ],
+      "envVar": "CHUTES_API_KEY",
+      "notes": "Serverless custom model deploy",
+      "openaiCompatible": true
+    },
+    "chutesai": {
+      "displayName": "Chutes (alias: chutesai)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Kimi",
+        "GLM",
+        "Qwen",
+        "MiniMax"
+      ],
+      "envVar": "CHUTES_API_KEY",
+      "notes": "Serverless custom model deploy",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "cloudflare-workers-ai": {
+      "displayName": "Cloudflare Workers AI",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+        "Gemma 4",
+        "Kimi K2.5"
+      ],
+      "envVar": "CLOUDFLARE_API_TOKEN",
+      "notes": "Edge inference; neuron-second billing; needs account ID",
+      "openaiCompatible": true
+    },
+    "workers-ai": {
+      "displayName": "Cloudflare Workers AI (alias: workers-ai)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+        "Gemma 4",
+        "Kimi K2.5"
+      ],
+      "envVar": "CLOUDFLARE_API_TOKEN",
+      "notes": "Edge inference; neuron-second billing; needs account ID",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "cf-ai": {
+      "displayName": "Cloudflare Workers AI (alias: cf-ai)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+        "Gemma 4",
+        "Kimi K2.5"
+      ],
+      "envVar": "CLOUDFLARE_API_TOKEN",
+      "notes": "Edge inference; neuron-second billing; needs account ID",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "digitalocean": {
+      "displayName": "DigitalOcean",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Llama 3 8B Instruct"
+      ],
+      "envVar": "DIGITALOCEAN_API_KEY",
+      "notes": "Integrates with App Platform",
+      "openaiCompatible": true
+    },
+    "digitalocean-inference": {
+      "displayName": "DigitalOcean (alias: digitalocean-inference)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Llama 3 8B Instruct"
+      ],
+      "envVar": "DIGITALOCEAN_API_KEY",
+      "notes": "Integrates with App Platform",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "do-ai": {
+      "displayName": "DigitalOcean (alias: do-ai)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Llama 3 8B Instruct"
+      ],
+      "envVar": "DIGITALOCEAN_API_KEY",
+      "notes": "Integrates with App Platform",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "gmicloud": {
+      "displayName": "GMICloud",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "GLM-5.1-FP8",
+        "DeepSeek-V3.2"
+      ],
+      "envVar": "GMI_API_KEY",
+      "notes": "Enterprise H100 GPU cloud",
+      "openaiCompatible": true
+    },
+    "gmi": {
+      "displayName": "GMICloud (alias: gmi)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "GLM-5.1-FP8",
+        "DeepSeek-V3.2"
+      ],
+      "envVar": "GMI_API_KEY",
+      "notes": "Enterprise H100 GPU cloud",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "io-net": {
+      "displayName": "io.net",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "GLM-4.5-Air",
+        "GPT-OSS 120B",
+        "Llama 3.3"
+      ],
+      "envVar": "IO_NET_API_KEY",
+      "notes": "DePIN GPU clusters",
+      "openaiCompatible": true
+    },
+    "io.net": {
+      "displayName": "io.net (alias: io.net)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "GLM-4.5-Air",
+        "GPT-OSS 120B",
+        "Llama 3.3"
+      ],
+      "envVar": "IO_NET_API_KEY",
+      "notes": "DePIN GPU clusters",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "ionet": {
+      "displayName": "io.net (alias: ionet)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "GLM-4.5-Air",
+        "GPT-OSS 120B",
+        "Llama 3.3"
+      ],
+      "envVar": "IO_NET_API_KEY",
+      "notes": "DePIN GPU clusters",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "nextbit": {
+      "displayName": "NextBit",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "qwen:3.5-35b",
+        "qwen3:30b",
+        "qwen3:14b"
+      ],
+      "envVar": "NEXTBIT_API_KEY",
+      "notes": "EU data centers (Spain)",
+      "openaiCompatible": true
+    },
+    "nextbit256": {
+      "displayName": "NextBit (alias: nextbit256)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "qwen:3.5-35b",
+        "qwen3:30b",
+        "qwen3:14b"
+      ],
+      "envVar": "NEXTBIT_API_KEY",
+      "notes": "EU data centers (Spain)",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "novita": {
+      "displayName": "Novita",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Kimi K2.5",
+        "Llama",
+        "Qwen"
+      ],
+      "envVar": "NOVITA_API_KEY",
+      "notes": "Model APIs + agent sandboxes",
+      "openaiCompatible": true
+    },
+    "novitaai": {
+      "displayName": "Novita (alias: novitaai)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Kimi K2.5",
+        "Llama",
+        "Qwen"
+      ],
+      "envVar": "NOVITA_API_KEY",
+      "notes": "Model APIs + agent sandboxes",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "parasail": {
+      "displayName": "Parasail",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "DeepSeek-R1",
+        "QwenCoder 32B"
+      ],
+      "envVar": "PARASAIL_API_KEY",
+      "notes": "Serverless + dedicated instances",
+      "openaiCompatible": true
+    },
+    "phala": {
+      "displayName": "Phala",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "unsloth/Qwen2.5-72B-Instruct"
+      ],
+      "envVar": "PHALA_API_KEY",
+      "notes": "TEE confidential execution",
+      "openaiCompatible": true
+    },
+    "phalanetwork": {
+      "displayName": "Phala (alias: phalanetwork)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "unsloth/Qwen2.5-72B-Instruct"
+      ],
+      "envVar": "PHALA_API_KEY",
+      "notes": "TEE confidential execution",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "poolside": {
+      "displayName": "Poolside",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Laguna XS.2",
+        "Laguna M.1"
+      ],
+      "envVar": "POOLSIDE_API_KEY",
+      "notes": "Code generation focus",
+      "openaiCompatible": true
+    },
+    "laguna": {
+      "displayName": "Poolside (alias: laguna)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Laguna XS.2",
+        "Laguna M.1"
+      ],
+      "envVar": "POOLSIDE_API_KEY",
+      "notes": "Code generation focus",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "venice": {
+      "displayName": "Venice",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "llama-3.3-70b",
+        "fluently-xl"
+      ],
+      "envVar": "VENICE_API_KEY",
+      "notes": "Privacy-first; web3 auth",
+      "openaiCompatible": true
+    },
+    "venice-ai": {
+      "displayName": "Venice (alias: venice-ai)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "llama-3.3-70b",
+        "fluently-xl"
+      ],
+      "envVar": "VENICE_API_KEY",
+      "notes": "Privacy-first; web3 auth",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "veniceai": {
+      "displayName": "Venice (alias: veniceai)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "llama-3.3-70b",
+        "fluently-xl"
+      ],
+      "envVar": "VENICE_API_KEY",
+      "notes": "Privacy-first; web3 auth",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "wafer": {
+      "displayName": "Wafer",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Qwen3.5-397B-A17B",
+        "GLM-5.1"
+      ],
+      "envVar": "WAFER_API_KEY",
+      "notes": "Fast serverless; Claude Code compatible",
+      "openaiCompatible": true
+    },
+    "waferai": {
+      "displayName": "Wafer (alias: waferai)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Qwen3.5-397B-A17B",
+        "GLM-5.1"
+      ],
+      "envVar": "WAFER_API_KEY",
+      "notes": "Fast serverless; Claude Code compatible",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "pass.wafer.ai": {
+      "displayName": "Wafer (alias: pass.wafer.ai)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Qwen3.5-397B-A17B",
+        "GLM-5.1"
+      ],
+      "envVar": "WAFER_API_KEY",
+      "notes": "Fast serverless; Claude Code compatible",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "azure-openai": {
+      "displayName": "Azure OpenAI",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "GPT-5",
+        "Claude",
+        "Llama"
+      ],
+      "envVar": "AZURE_OPENAI_API_KEY",
+      "notes": "Enterprise Microsoft integration",
+      "openaiCompatible": true
+    },
+    "azure": {
+      "displayName": "Azure OpenAI (alias: azure)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "GPT-5",
+        "Claude",
+        "Llama"
+      ],
+      "envVar": "AZURE_OPENAI_API_KEY",
+      "notes": "Enterprise Microsoft integration",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "microsoft": {
+      "displayName": "Azure OpenAI (alias: microsoft)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "GPT-5",
+        "Claude",
+        "Llama"
+      ],
+      "envVar": "AZURE_OPENAI_API_KEY",
+      "notes": "Enterprise Microsoft integration",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "vertex-ai": {
+      "displayName": "Google Vertex AI",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Gemini",
+        "Claude",
+        "partner models"
+      ],
+      "envVar": "GOOGLE_APPLICATION_CREDENTIALS",
+      "notes": "VPC, IAM, enterprise procurement",
+      "openaiCompatible": true
+    },
+    "gcp": {
+      "displayName": "Google Vertex AI (alias: gcp)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Gemini",
+        "Claude",
+        "partner models"
+      ],
+      "envVar": "GOOGLE_APPLICATION_CREDENTIALS",
+      "notes": "VPC, IAM, enterprise procurement",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "google-vertex-ai": {
+      "displayName": "Google Vertex AI (alias: google-vertex-ai)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Gemini",
+        "Claude",
+        "partner models"
+      ],
+      "envVar": "GOOGLE_APPLICATION_CREDENTIALS",
+      "notes": "VPC, IAM, enterprise procurement",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "vertex": {
+      "displayName": "Google Vertex AI (alias: vertex)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Gemini",
+        "Claude",
+        "partner models"
+      ],
+      "envVar": "GOOGLE_APPLICATION_CREDENTIALS",
+      "notes": "VPC, IAM, enterprise procurement",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "bedrock": {
+      "displayName": "Amazon Bedrock",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Claude",
+        "Llama",
+        "Titan",
+        "Mistral"
+      ],
+      "envVar": "AWS_ACCESS_KEY_ID",
+      "notes": "AWS-native; IAM & VPC integration",
+      "openaiCompatible": false
+    },
+    "amazon": {
+      "displayName": "Amazon Bedrock (alias: amazon)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Claude",
+        "Llama",
+        "Titan",
+        "Mistral"
+      ],
+      "envVar": "AWS_ACCESS_KEY_ID",
+      "notes": "AWS-native; IAM & VPC integration",
+      "openaiCompatible": false,
+      "isAlias": true
+    },
+    "amazon-bedrock": {
+      "displayName": "Amazon Bedrock (alias: amazon-bedrock)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Claude",
+        "Llama",
+        "Titan",
+        "Mistral"
+      ],
+      "envVar": "AWS_ACCESS_KEY_ID",
+      "notes": "AWS-native; IAM & VPC integration",
+      "openaiCompatible": false,
+      "isAlias": true
+    },
+    "aws": {
+      "displayName": "Amazon Bedrock (alias: aws)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Claude",
+        "Llama",
+        "Titan",
+        "Mistral"
+      ],
+      "envVar": "AWS_ACCESS_KEY_ID",
+      "notes": "AWS-native; IAM & VPC integration",
+      "openaiCompatible": false,
+      "isAlias": true
+    },
+    "baseten": {
+      "displayName": "Baseten",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Llama 3.3",
+        "DeepSeek-R1",
+        "custom"
+      ],
+      "envVar": "BASETEN_API_KEY",
+      "notes": "MLOps with Truss packaging",
+      "openaiCompatible": true
+    },
+    "baseten-ai": {
+      "displayName": "Baseten (alias: baseten-ai)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Llama 3.3",
+        "DeepSeek-R1",
+        "custom"
+      ],
+      "envVar": "BASETEN_API_KEY",
+      "notes": "MLOps with Truss packaging",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "clarifai": {
+      "displayName": "Clarifai",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Multimodal models"
+      ],
+      "envVar": "CLARIFAI_API_KEY",
+      "notes": "Data labeling & classification",
+      "openaiCompatible": false
+    },
+    "scaleway": {
+      "displayName": "Scaleway",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Llama 3.3 70B",
+        "DeepSeek-R1"
+      ],
+      "envVar": "SCALEWAY_API_KEY",
+      "notes": "European cloud; GDPR-compliant",
+      "openaiCompatible": true
+    },
+    "scaleway-generative-apis": {
+      "displayName": "Scaleway (alias: scaleway-generative-apis)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Llama 3.3 70B",
+        "DeepSeek-R1"
+      ],
+      "envVar": "SCALEWAY_API_KEY",
+      "notes": "European cloud; GDPR-compliant",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "ovhcloud": {
+      "displayName": "OVHcloud AI",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Meta-Llama-3_1-70B-Instruct",
+        "Qwen2.5-72B-Instruct"
+      ],
+      "envVar": "OVH_AI_API_KEY",
+      "notes": "EU-hosted open models",
+      "openaiCompatible": true
+    },
+    "ovh": {
+      "displayName": "OVHcloud AI (alias: ovh)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Meta-Llama-3_1-70B-Instruct",
+        "Qwen2.5-72B-Instruct"
+      ],
+      "envVar": "OVH_AI_API_KEY",
+      "notes": "EU-hosted open models",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "ovhcloud-ai-endpoints": {
+      "displayName": "OVHcloud AI (alias: ovhcloud-ai-endpoints)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Meta-Llama-3_1-70B-Instruct",
+        "Qwen2.5-72B-Instruct"
+      ],
+      "envVar": "OVH_AI_API_KEY",
+      "notes": "EU-hosted open models",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "github-models": {
+      "displayName": "GitHub Models",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "gpt-4o",
+        "Meta-Llama-3.1-70B-Instruct"
+      ],
+      "envVar": "GITHUB_TOKEN",
+      "notes": "Free tier with GitHub PAT",
+      "openaiCompatible": true
+    },
+    "github": {
+      "displayName": "GitHub Models (alias: github)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "gpt-4o",
+        "Meta-Llama-3.1-70B-Instruct"
+      ],
+      "envVar": "GITHUB_TOKEN",
+      "notes": "Free tier with GitHub PAT",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "modal": {
+      "displayName": "Modal",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "Any (self-deployed via vLLM)"
+      ],
+      "envVar": "MODAL_TOKEN_ID",
+      "notes": "Serverless GPU; deploy your own models",
+      "openaiCompatible": true
+    },
+    "openrouter": {
+      "displayName": "OpenRouter",
+      "category": "Gateway",
+      "popularModels": [
+        "300+ models from 60+ providers"
+      ],
+      "envVar": "OPENROUTER_API_KEY",
+      "notes": "Auto fallback & provider selection",
+      "openaiCompatible": true
+    },
+    "openrouter-ai": {
+      "displayName": "OpenRouter (alias: openrouter-ai)",
+      "category": "Gateway",
+      "popularModels": [
+        "300+ models from 60+ providers"
+      ],
+      "envVar": "OPENROUTER_API_KEY",
+      "notes": "Auto fallback & provider selection",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "or": {
+      "displayName": "OpenRouter (alias: or)",
+      "category": "Gateway",
+      "popularModels": [
+        "300+ models from 60+ providers"
+      ],
+      "envVar": "OPENROUTER_API_KEY",
+      "notes": "Auto fallback & provider selection",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "opper": {
+      "displayName": "Opper",
+      "category": "Gateway",
+      "popularModels": [
+        "300+ routed models"
+      ],
+      "envVar": "OPPER_API_KEY",
+      "notes": "EU-hosted; PII shielding",
+      "openaiCompatible": true
+    },
+    "opperai": {
+      "displayName": "Opper (alias: opperai)",
+      "category": "Gateway",
+      "popularModels": [
+        "300+ routed models"
+      ],
+      "envVar": "OPPER_API_KEY",
+      "notes": "EU-hosted; PII shielding",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "axiom": {
+      "displayName": "Axiom",
+      "category": "Gateway",
+      "popularModels": [
+        "18+ unified providers"
+      ],
+      "envVar": "AXIOM_API_KEY",
+      "notes": "Kubernetes-native enterprise routing",
+      "openaiCompatible": true
+    },
+    "axiomstudio": {
+      "displayName": "Axiom (alias: axiomstudio)",
+      "category": "Gateway",
+      "popularModels": [
+        "18+ unified providers"
+      ],
+      "envVar": "AXIOM_API_KEY",
+      "notes": "Kubernetes-native enterprise routing",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "switchpoint": {
+      "displayName": "Switchpoint",
+      "category": "Gateway",
+      "popularModels": [
+        "switchpoint/router"
+      ],
+      "envVar": "SWITCHPOINT_API_KEY",
+      "notes": "Request-aware provider selection",
+      "openaiCompatible": true
+    },
+    "ppq": {
+      "displayName": "Switchpoint (alias: ppq)",
+      "category": "Gateway",
+      "popularModels": [
+        "switchpoint/router"
+      ],
+      "envVar": "SWITCHPOINT_API_KEY",
+      "notes": "Request-aware provider selection",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "payperq": {
+      "displayName": "Switchpoint (alias: payperq)",
+      "category": "Gateway",
+      "popularModels": [
+        "switchpoint/router"
+      ],
+      "envVar": "SWITCHPOINT_API_KEY",
+      "notes": "Request-aware provider selection",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "relace": {
+      "displayName": "Relace",
+      "category": "Gateway",
+      "popularModels": [
+        "Relace Apply 3",
+        "Relace Search"
+      ],
+      "envVar": "RELACE_API_KEY",
+      "notes": "Coding APIs; zero data retention default",
+      "openaiCompatible": true
+    },
+    "relaceai": {
+      "displayName": "Relace (alias: relaceai)",
+      "category": "Gateway",
+      "popularModels": [
+        "Relace Apply 3",
+        "Relace Search"
+      ],
+      "envVar": "RELACE_API_KEY",
+      "notes": "Coding APIs; zero data retention default",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "moonshot": {
+      "displayName": "Moonshot AI",
+      "category": "Gateway",
+      "popularModels": [
+        "kimi-k2.7-code",
+        "kimi-k2.6"
+      ],
+      "envVar": "MOONSHOT_API_KEY",
+      "notes": "First-party Kimi gateway",
+      "openaiCompatible": true
+    },
+    "kimi": {
+      "displayName": "Moonshot AI (alias: kimi)",
+      "category": "Gateway",
+      "popularModels": [
+        "kimi-k2.7-code",
+        "kimi-k2.6"
+      ],
+      "envVar": "MOONSHOT_API_KEY",
+      "notes": "First-party Kimi gateway",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "moonshot-ai": {
+      "displayName": "Moonshot AI (alias: moonshot-ai)",
+      "category": "Gateway",
+      "popularModels": [
+        "kimi-k2.7-code",
+        "kimi-k2.6"
+      ],
+      "envVar": "MOONSHOT_API_KEY",
+      "notes": "First-party Kimi gateway",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "moonshotai": {
+      "displayName": "Moonshot AI (alias: moonshotai)",
+      "category": "Gateway",
+      "popularModels": [
+        "kimi-k2.7-code",
+        "kimi-k2.6"
+      ],
+      "envVar": "MOONSHOT_API_KEY",
+      "notes": "First-party Kimi gateway",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "openinference": {
+      "displayName": "OpenInference",
+      "category": "Gateway",
+      "popularModels": [
+        "LLM telemetry"
+      ],
+      "envVar": "",
+      "notes": "Execution graph tracing",
+      "openaiCompatible": false
+    },
+    "wandb": {
+      "displayName": "Weights & Biases",
+      "category": "Gateway",
+      "popularModels": [
+        "Model benchmarking"
+      ],
+      "envVar": "WANDB_API_KEY",
+      "notes": "Experiment tracking",
+      "openaiCompatible": false
+    },
+    "weights-and-biases": {
+      "displayName": "Weights & Biases (alias: weights-and-biases)",
+      "category": "Gateway",
+      "popularModels": [
+        "Model benchmarking"
+      ],
+      "envVar": "WANDB_API_KEY",
+      "notes": "Experiment tracking",
+      "openaiCompatible": false,
+      "isAlias": true
+    },
+    "perceptron": {
+      "displayName": "Perceptron",
+      "category": "Gateway",
+      "popularModels": [
+        "Enterprise routes"
+      ],
+      "envVar": "",
+      "notes": "Custom middleware routing",
+      "openaiCompatible": true
+    },
+    "perceptronai": {
+      "displayName": "Perceptron (alias: perceptronai)",
+      "category": "Gateway",
+      "popularModels": [
+        "Enterprise routes"
+      ],
+      "envVar": "",
+      "notes": "Custom middleware routing",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "portkey": {
+      "displayName": "Portkey",
+      "category": "Gateway",
+      "popularModels": [
+        "250+ models"
+      ],
+      "envVar": "PORTKEY_API_KEY",
+      "notes": "Guardrails, caching, observability",
+      "openaiCompatible": true
+    },
+    "portkeyai": {
+      "displayName": "Portkey (alias: portkeyai)",
+      "category": "Gateway",
+      "popularModels": [
+        "250+ models"
+      ],
+      "envVar": "PORTKEY_API_KEY",
+      "notes": "Guardrails, caching, observability",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "litellm": {
+      "displayName": "LiteLLM",
+      "category": "Gateway",
+      "popularModels": [
+        "100+ providers"
+      ],
+      "envVar": "LITELLM_MASTER_KEY",
+      "notes": "Open-source; self-host or cloud",
+      "openaiCompatible": true
+    },
+    "berriai": {
+      "displayName": "LiteLLM (alias: berriai)",
+      "category": "Gateway",
+      "popularModels": [
+        "100+ providers"
+      ],
+      "envVar": "LITELLM_MASTER_KEY",
+      "notes": "Open-source; self-host or cloud",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "requesty": {
+      "displayName": "Requesty",
+      "category": "Gateway",
+      "popularModels": [
+        "Multi-provider routing"
+      ],
+      "envVar": "REQUESTY_API_KEY",
+      "notes": "Auto-failover between providers",
+      "openaiCompatible": true
+    },
+    "requestyai": {
+      "displayName": "Requesty (alias: requestyai)",
+      "category": "Gateway",
+      "popularModels": [
+        "Multi-provider routing"
+      ],
+      "envVar": "REQUESTY_API_KEY",
+      "notes": "Auto-failover between providers",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "unify": {
+      "displayName": "Unify.ai",
+      "category": "Gateway",
+      "popularModels": [
+        "ML-routed models"
+      ],
+      "envVar": "UNIFY_API_KEY",
+      "notes": "Picks optimal provider per query",
+      "openaiCompatible": true
+    },
+    "unifyai": {
+      "displayName": "Unify.ai (alias: unifyai)",
+      "category": "Gateway",
+      "popularModels": [
+        "ML-routed models"
+      ],
+      "envVar": "UNIFY_API_KEY",
+      "notes": "Picks optimal provider per query",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "helicone": {
+      "displayName": "Helicone",
+      "category": "Gateway",
+      "popularModels": [
+        "100+ models"
+      ],
+      "envVar": "HELICONE_API_KEY",
+      "notes": "Observability-first AI gateway",
+      "openaiCompatible": true
+    },
+    "helicone-ai": {
+      "displayName": "Helicone (alias: helicone-ai)",
+      "category": "Gateway",
+      "popularModels": [
+        "100+ models"
+      ],
+      "envVar": "HELICONE_API_KEY",
+      "notes": "Observability-first AI gateway",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "vercel-ai-gateway": {
+      "displayName": "Vercel AI Gateway",
+      "category": "Gateway",
+      "popularModels": [
+        "All major providers"
+      ],
+      "envVar": "VERCEL_AI_GATEWAY_KEY",
+      "notes": "Bundled with Vercel platform",
+      "openaiCompatible": true
+    },
+    "vercel": {
+      "displayName": "Vercel AI Gateway (alias: vercel)",
+      "category": "Gateway",
+      "popularModels": [
+        "All major providers"
+      ],
+      "envVar": "VERCEL_AI_GATEWAY_KEY",
+      "notes": "Bundled with Vercel platform",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "cloudflare-ai-gateway": {
+      "displayName": "Cloudflare AI Gateway",
+      "category": "Gateway",
+      "popularModels": [
+        "Any upstream provider"
+      ],
+      "envVar": "CLOUDFLARE_API_TOKEN",
+      "notes": "Edge caching; sits in front of APIs",
+      "openaiCompatible": true
+    },
+    "cf-gateway": {
+      "displayName": "Cloudflare AI Gateway (alias: cf-gateway)",
+      "category": "Gateway",
+      "popularModels": [
+        "Any upstream provider"
+      ],
+      "envVar": "CLOUDFLARE_API_TOKEN",
+      "notes": "Edge caching; sits in front of APIs",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "kong-ai-gateway": {
+      "displayName": "Kong AI Gateway",
+      "category": "Gateway",
+      "popularModels": [
+        "Enterprise routing"
+      ],
+      "envVar": "",
+      "notes": "For existing Kong infrastructure",
+      "openaiCompatible": true
+    },
+    "kong": {
+      "displayName": "Kong AI Gateway (alias: kong)",
+      "category": "Gateway",
+      "popularModels": [
+        "Enterprise routing"
+      ],
+      "envVar": "",
+      "notes": "For existing Kong infrastructure",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "aimlapi": {
+      "displayName": "AIMLAPI",
+      "category": "Aggregator",
+      "popularModels": [
+        "gpt-4o",
+        "claude-3-5-sonnet",
+        "gemini"
+      ],
+      "envVar": "AIMLAPI_API_KEY",
+      "notes": "300+ models; free tier available",
+      "openaiCompatible": true
+    },
+    "ai-ml-api": {
+      "displayName": "AIMLAPI (alias: ai-ml-api)",
+      "category": "Aggregator",
+      "popularModels": [
+        "gpt-4o",
+        "claude-3-5-sonnet",
+        "gemini"
+      ],
+      "envVar": "AIMLAPI_API_KEY",
+      "notes": "300+ models; free tier available",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "aiml": {
+      "displayName": "AIMLAPI (alias: aiml)",
+      "category": "Aggregator",
+      "popularModels": [
+        "gpt-4o",
+        "claude-3-5-sonnet",
+        "gemini"
+      ],
+      "envVar": "AIMLAPI_API_KEY",
+      "notes": "300+ models; free tier available",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "eden-ai": {
+      "displayName": "Eden AI",
+      "category": "Aggregator",
+      "popularModels": [
+        "OpenAI",
+        "Google",
+        "Anthropic routes"
+      ],
+      "envVar": "EDENAI_API_KEY",
+      "notes": "Multi-provider under one API",
+      "openaiCompatible": false
+    },
+    "edenai": {
+      "displayName": "Eden AI (alias: edenai)",
+      "category": "Aggregator",
+      "popularModels": [
+        "OpenAI",
+        "Google",
+        "Anthropic routes"
+      ],
+      "envVar": "EDENAI_API_KEY",
+      "notes": "Multi-provider under one API",
+      "openaiCompatible": false,
+      "isAlias": true
+    },
+    "lemondata": {
+      "displayName": "LemonData",
+      "category": "Aggregator",
+      "popularModels": [
+        "gpt-4o",
+        "claude-3.5",
+        "open models"
+      ],
+      "envVar": "LEMONDATA_API_KEY",
+      "notes": "300+ models; $1 free credits",
+      "openaiCompatible": true
+    },
+    "coze": {
+      "displayName": "Coze (ByteDance)",
+      "category": "Aggregator",
+      "popularModels": [
+        "Via bots: GPT-4o",
+        "Gemini",
+        "Claude"
+      ],
+      "envVar": "COZE_API_KEY",
+      "notes": "Bot-builder platform with LLM backends",
+      "openaiCompatible": true
+    },
+    "bytedance": {
+      "displayName": "Coze (ByteDance) (alias: bytedance)",
+      "category": "Aggregator",
+      "popularModels": [
+        "Via bots: GPT-4o",
+        "Gemini",
+        "Claude"
+      ],
+      "envVar": "COZE_API_KEY",
+      "notes": "Bot-builder platform with LLM backends",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "coze.com": {
+      "displayName": "Coze (ByteDance) (alias: coze.com)",
+      "category": "Aggregator",
+      "popularModels": [
+        "Via bots: GPT-4o",
+        "Gemini",
+        "Claude"
+      ],
+      "envVar": "COZE_API_KEY",
+      "notes": "Bot-builder platform with LLM backends",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "nlpcloud": {
+      "displayName": "NLP Cloud",
+      "category": "Specialized",
+      "popularModels": [
+        "finetuned-llama-3-70b",
+        "chatdolphin"
+      ],
+      "envVar": "NLP_CLOUD_API_KEY",
+      "notes": "NER, summarization, chat; custom API format",
+      "openaiCompatible": false
+    },
+    "nlp-cloud": {
+      "displayName": "NLP Cloud (alias: nlp-cloud)",
+      "category": "Specialized",
+      "popularModels": [
+        "finetuned-llama-3-70b",
+        "chatdolphin"
+      ],
+      "envVar": "NLP_CLOUD_API_KEY",
+      "notes": "NER, summarization, chat; custom API format",
+      "openaiCompatible": false,
+      "isAlias": true
+    },
+    "puter": {
+      "displayName": "Puter.js",
+      "category": "Specialized",
+      "popularModels": [
+        "gpt-4o-mini",
+        "claude-3.5-sonnet",
+        "gemini"
+      ],
+      "envVar": "",
+      "notes": "No API key needed; web/Node.js SDK",
+      "openaiCompatible": false
+    },
+    "puterjs": {
+      "displayName": "Puter.js (alias: puterjs)",
+      "category": "Specialized",
+      "popularModels": [
+        "gpt-4o-mini",
+        "claude-3.5-sonnet",
+        "gemini"
+      ],
+      "envVar": "",
+      "notes": "No API key needed; web/Node.js SDK",
+      "openaiCompatible": false,
+      "isAlias": true
+    },
+    "ollama": {
+      "displayName": "Ollama",
+      "category": "Local",
+      "popularModels": [
+        "llama3.3",
+        "qwen2.5",
+        "gemma"
+      ],
+      "envVar": "",
+      "notes": "Easiest local setup; 50+ models",
+      "openaiCompatible": true
+    },
+    "ollama-local": {
+      "displayName": "Ollama (alias: ollama-local)",
+      "category": "Local",
+      "popularModels": [
+        "llama3.3",
+        "qwen2.5",
+        "gemma"
+      ],
+      "envVar": "",
+      "notes": "Easiest local setup; 50+ models",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "lm-studio": {
+      "displayName": "LM Studio",
+      "category": "Local",
+      "popularModels": [
+        "Any GGUF from HuggingFace"
+      ],
+      "envVar": "",
+      "notes": "Best GUI; drag-and-drop models",
+      "openaiCompatible": true
+    },
+    "lmstudio": {
+      "displayName": "LM Studio (alias: lmstudio)",
+      "category": "Local",
+      "popularModels": [
+        "Any GGUF from HuggingFace"
+      ],
+      "envVar": "",
+      "notes": "Best GUI; drag-and-drop models",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "llama-cpp": {
+      "displayName": "llama.cpp",
+      "category": "Local",
+      "popularModels": [
+        "Any GGUF model"
+      ],
+      "envVar": "",
+      "notes": "Foundation for most local tools",
+      "openaiCompatible": true
+    },
+    "ggml": {
+      "displayName": "llama.cpp (alias: ggml)",
+      "category": "Local",
+      "popularModels": [
+        "Any GGUF model"
+      ],
+      "envVar": "",
+      "notes": "Foundation for most local tools",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "llama.cpp": {
+      "displayName": "llama.cpp (alias: llama.cpp)",
+      "category": "Local",
+      "popularModels": [
+        "Any GGUF model"
+      ],
+      "envVar": "",
+      "notes": "Foundation for most local tools",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "llamacpp": {
+      "displayName": "llama.cpp (alias: llamacpp)",
+      "category": "Local",
+      "popularModels": [
+        "Any GGUF model"
+      ],
+      "envVar": "",
+      "notes": "Foundation for most local tools",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "jan": {
+      "displayName": "Jan.ai",
+      "category": "Local",
+      "popularModels": [
+        "Supported local models"
+      ],
+      "envVar": "",
+      "notes": "100% offline desktop app",
+      "openaiCompatible": true
+    },
+    "janai": {
+      "displayName": "Jan.ai (alias: janai)",
+      "category": "Local",
+      "popularModels": [
+        "Supported local models"
+      ],
+      "envVar": "",
+      "notes": "100% offline desktop app",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "vllm": {
+      "displayName": "vLLM",
+      "category": "Local",
+      "popularModels": [
+        "Any compatible checkpoint"
+      ],
+      "envVar": "",
+      "notes": "Production-grade local serving",
+      "openaiCompatible": true
+    },
+    "localai": {
+      "displayName": "LocalAI",
+      "category": "Local",
+      "popularModels": [
+        "OpenAI-compatible local stack"
+      ],
+      "envVar": "",
+      "notes": "Drop-in OpenAI API replacement",
+      "openaiCompatible": true
+    },
+    "302-ai": {
+      "displayName": "302.AI",
+      "category": "Aggregator",
+      "popularModels": [
+        "glm-5",
+        "gpt-4o",
+        "claude-sonnet-4"
+      ],
+      "envVar": "302AI_API_KEY",
+      "notes": "OpenCode-supported; unified OpenAI-compatible gateway for 100+ models",
+      "openaiCompatible": true
+    },
+    "302ai": {
+      "displayName": "302.AI (alias: 302ai)",
+      "category": "Aggregator",
+      "popularModels": [
+        "glm-5",
+        "gpt-4o",
+        "claude-sonnet-4"
+      ],
+      "envVar": "302AI_API_KEY",
+      "notes": "OpenCode-supported; unified OpenAI-compatible gateway for 100+ models",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "atomic-chat": {
+      "displayName": "Atomic Chat",
+      "category": "Local",
+      "popularModels": [
+        "qwen-coder",
+        "deepseek-coder"
+      ],
+      "envVar": "",
+      "notes": "OpenCode-supported; desktop app with local OpenAI-compatible server",
+      "openaiCompatible": true
+    },
+    "atomicchat": {
+      "displayName": "Atomic Chat (alias: atomicchat)",
+      "category": "Local",
+      "popularModels": [
+        "qwen-coder",
+        "deepseek-coder"
+      ],
+      "envVar": "",
+      "notes": "OpenCode-supported; desktop app with local OpenAI-compatible server",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "azure-cognitive-services": {
+      "displayName": "Azure Cognitive Services",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "gpt-4o",
+        "gpt-4.1",
+        "o3-mini"
+      ],
+      "envVar": "AZURE_COGNITIVE_SERVICES_API_KEY",
+      "notes": "OpenCode-supported; separate from Azure OpenAI; set AZURE_COGNITIVE_SERVICES_RESOURCE_NAME",
+      "openaiCompatible": true
+    },
+    "azure-cognitive": {
+      "displayName": "Azure Cognitive Services (alias: azure-cognitive)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "gpt-4o",
+        "gpt-4.1",
+        "o3-mini"
+      ],
+      "envVar": "AZURE_COGNITIVE_SERVICES_API_KEY",
+      "notes": "OpenCode-supported; separate from Azure OpenAI; set AZURE_COGNITIVE_SERVICES_RESOURCE_NAME",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "azure-ai-services": {
+      "displayName": "Azure Cognitive Services (alias: azure-ai-services)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "gpt-4o",
+        "gpt-4.1",
+        "o3-mini"
+      ],
+      "envVar": "AZURE_COGNITIVE_SERVICES_API_KEY",
+      "notes": "OpenCode-supported; separate from Azure OpenAI; set AZURE_COGNITIVE_SERVICES_RESOURCE_NAME",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "cortecs": {
+      "displayName": "Cortecs",
+      "category": "Gateway",
+      "popularModels": [
+        "kimi-k2-instruct",
+        "gpt-5-mini"
+      ],
+      "envVar": "CORTECS_API_KEY",
+      "notes": "OpenCode-supported; EU GDPR-compliant LLM router with speed/cost/balanced routing",
+      "openaiCompatible": true
+    },
+    "cortecs-ai": {
+      "displayName": "Cortecs (alias: cortecs-ai)",
+      "category": "Gateway",
+      "popularModels": [
+        "kimi-k2-instruct",
+        "gpt-5-mini"
+      ],
+      "envVar": "CORTECS_API_KEY",
+      "notes": "OpenCode-supported; EU GDPR-compliant LLM router with speed/cost/balanced routing",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "frogbot": {
+      "displayName": "FrogBot",
+      "category": "Aggregator",
+      "popularModels": [
+        "claude-sonnet-4",
+        "gpt-4o",
+        "gemini-2.5-pro"
+      ],
+      "envVar": "FROGBOT_API_KEY",
+      "notes": "OpenCode-supported; unified AI subscription for chat, embeddings, audio, and images",
+      "openaiCompatible": true
+    },
+    "frogbot-ai": {
+      "displayName": "FrogBot (alias: frogbot-ai)",
+      "category": "Aggregator",
+      "popularModels": [
+        "claude-sonnet-4",
+        "gpt-4o",
+        "gemini-2.5-pro"
+      ],
+      "envVar": "FROGBOT_API_KEY",
+      "notes": "OpenCode-supported; unified AI subscription for chat, embeddings, audio, and images",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "gitlab-duo": {
+      "displayName": "GitLab Duo",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "duo-chat-haiku-4-5",
+        "duo-chat-sonnet-4-5",
+        "duo-chat-opus-4-5"
+      ],
+      "envVar": "GITLAB_TOKEN",
+      "notes": "OpenCode-supported; OAuth or PAT; Premium/Ultimate; set GITLAB_INSTANCE_URL for self-hosted",
+      "openaiCompatible": false
+    },
+    "gitlab": {
+      "displayName": "GitLab Duo (alias: gitlab)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "duo-chat-haiku-4-5",
+        "duo-chat-sonnet-4-5",
+        "duo-chat-opus-4-5"
+      ],
+      "envVar": "GITLAB_TOKEN",
+      "notes": "OpenCode-supported; OAuth or PAT; Premium/Ultimate; set GITLAB_INSTANCE_URL for self-hosted",
+      "openaiCompatible": false,
+      "isAlias": true
+    },
+    "duo-chat": {
+      "displayName": "GitLab Duo (alias: duo-chat)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "duo-chat-haiku-4-5",
+        "duo-chat-sonnet-4-5",
+        "duo-chat-opus-4-5"
+      ],
+      "envVar": "GITLAB_TOKEN",
+      "notes": "OpenCode-supported; OAuth or PAT; Premium/Ultimate; set GITLAB_INSTANCE_URL for self-hosted",
+      "openaiCompatible": false,
+      "isAlias": true
+    },
+    "github-copilot": {
+      "displayName": "GitHub Copilot",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "gpt-4o",
+        "claude-sonnet-4",
+        "o3-mini"
+      ],
+      "envVar": "GITHUB_TOKEN",
+      "notes": "OpenCode-supported; OAuth via /connect; separate from GitHub Models marketplace API",
+      "openaiCompatible": true
+    },
+    "copilot": {
+      "displayName": "GitHub Copilot (alias: copilot)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "gpt-4o",
+        "claude-sonnet-4",
+        "o3-mini"
+      ],
+      "envVar": "GITHUB_TOKEN",
+      "notes": "OpenCode-supported; OAuth via /connect; separate from GitHub Models marketplace API",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "gh-copilot": {
+      "displayName": "GitHub Copilot (alias: gh-copilot)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "gpt-4o",
+        "claude-sonnet-4",
+        "o3-mini"
+      ],
+      "envVar": "GITHUB_TOKEN",
+      "notes": "OpenCode-supported; OAuth via /connect; separate from GitHub Models marketplace API",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "ollama-cloud": {
+      "displayName": "Ollama Cloud",
+      "category": "IaaS",
+      "popularModels": [
+        "gpt-oss:20b-cloud",
+        "gpt-oss:120b"
+      ],
+      "envVar": "OLLAMA_API_KEY",
+      "notes": "OpenCode-supported; remote Ollama host; pull cloud models locally first",
+      "openaiCompatible": false
+    },
+    "ollama.com": {
+      "displayName": "Ollama Cloud (alias: ollama.com)",
+      "category": "IaaS",
+      "popularModels": [
+        "gpt-oss:20b-cloud",
+        "gpt-oss:120b"
+      ],
+      "envVar": "OLLAMA_API_KEY",
+      "notes": "OpenCode-supported; remote Ollama host; pull cloud models locally first",
+      "openaiCompatible": false,
+      "isAlias": true
+    },
+    "opencode-zen": {
+      "displayName": "OpenCode Zen",
+      "category": "Gateway",
+      "popularModels": [
+        "gpt-5.5",
+        "claude-sonnet-4-6",
+        "qwen3-coder-480b"
+      ],
+      "envVar": "OPENCODE_API_KEY",
+      "notes": "OpenCode-curated models verified for coding agents; use opencode/<model-id> prefix",
+      "openaiCompatible": true
+    },
+    "zen": {
+      "displayName": "OpenCode Zen (alias: zen)",
+      "category": "Gateway",
+      "popularModels": [
+        "gpt-5.5",
+        "claude-sonnet-4-6",
+        "qwen3-coder-480b"
+      ],
+      "envVar": "OPENCODE_API_KEY",
+      "notes": "OpenCode-curated models verified for coding agents; use opencode/<model-id> prefix",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "opencode": {
+      "displayName": "OpenCode Zen (alias: opencode)",
+      "category": "Gateway",
+      "popularModels": [
+        "gpt-5.5",
+        "claude-sonnet-4-6",
+        "qwen3-coder-480b"
+      ],
+      "envVar": "OPENCODE_API_KEY",
+      "notes": "OpenCode-curated models verified for coding agents; use opencode/<model-id> prefix",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "opencode-go": {
+      "displayName": "OpenCode Go",
+      "category": "Gateway",
+      "popularModels": [
+        "kimi-k2.7",
+        "glm-5.1",
+        "deepseek-v4-pro",
+        "qwen3.6-plus"
+      ],
+      "envVar": "OPENCODE_API_KEY",
+      "notes": "OpenCode-supported; low-cost subscription for open coding models; use opencode-go/<model-id>",
+      "openaiCompatible": true
+    },
+    "opencode-go-plan": {
+      "displayName": "OpenCode Go (alias: opencode-go-plan)",
+      "category": "Gateway",
+      "popularModels": [
+        "kimi-k2.7",
+        "glm-5.1",
+        "deepseek-v4-pro",
+        "qwen3.6-plus"
+      ],
+      "envVar": "OPENCODE_API_KEY",
+      "notes": "OpenCode-supported; low-cost subscription for open coding models; use opencode-go/<model-id>",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "llm-gateway": {
+      "displayName": "LLM Gateway",
+      "category": "Gateway",
+      "popularModels": [
+        "gpt-4o",
+        "claude-3-5-sonnet",
+        "gemini-2.5-pro",
+        "glm-4.7"
+      ],
+      "envVar": "LLM_GATEWAY_API_KEY",
+      "notes": "OpenCode-supported; unified API with provider/model routing",
+      "openaiCompatible": true
+    },
+    "llmgateway": {
+      "displayName": "LLM Gateway (alias: llmgateway)",
+      "category": "Gateway",
+      "popularModels": [
+        "gpt-4o",
+        "claude-3-5-sonnet",
+        "gemini-2.5-pro",
+        "glm-4.7"
+      ],
+      "envVar": "LLM_GATEWAY_API_KEY",
+      "notes": "OpenCode-supported; unified API with provider/model routing",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "theopenco-llmgateway": {
+      "displayName": "LLM Gateway (alias: theopenco-llmgateway)",
+      "category": "Gateway",
+      "popularModels": [
+        "gpt-4o",
+        "claude-3-5-sonnet",
+        "gemini-2.5-pro",
+        "glm-4.7"
+      ],
+      "envVar": "LLM_GATEWAY_API_KEY",
+      "notes": "OpenCode-supported; unified API with provider/model routing",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "sap-ai-core": {
+      "displayName": "SAP AI Core",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "gpt-4o",
+        "claude-sonnet-4",
+        "gemini-2.5-pro",
+        "llama-3.3-70b"
+      ],
+      "envVar": "AICORE_SERVICE_KEY",
+      "notes": "OpenCode-supported; 40+ models via BTP; service key JSON auth",
+      "openaiCompatible": false
+    },
+    "sap-aicore": {
+      "displayName": "SAP AI Core (alias: sap-aicore)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "gpt-4o",
+        "claude-sonnet-4",
+        "gemini-2.5-pro",
+        "llama-3.3-70b"
+      ],
+      "envVar": "AICORE_SERVICE_KEY",
+      "notes": "OpenCode-supported; 40+ models via BTP; service key JSON auth",
+      "openaiCompatible": false,
+      "isAlias": true
+    },
+    "aicore": {
+      "displayName": "SAP AI Core (alias: aicore)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "gpt-4o",
+        "claude-sonnet-4",
+        "gemini-2.5-pro",
+        "llama-3.3-70b"
+      ],
+      "envVar": "AICORE_SERVICE_KEY",
+      "notes": "OpenCode-supported; 40+ models via BTP; service key JSON auth",
+      "openaiCompatible": false,
+      "isAlias": true
+    },
+    "stackit": {
+      "displayName": "STACKIT AI Model Serving",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "qwen3-vl-235b",
+        "llama-3.3-70b",
+        "mistral-nemo-instruct"
+      ],
+      "envVar": "STACKIT_API_KEY",
+      "notes": "OpenCode-supported; EU sovereign hosting for Llama, Mistral, Qwen",
+      "openaiCompatible": true
+    },
+    "stackit-ai": {
+      "displayName": "STACKIT AI Model Serving (alias: stackit-ai)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "qwen3-vl-235b",
+        "llama-3.3-70b",
+        "mistral-nemo-instruct"
+      ],
+      "envVar": "STACKIT_API_KEY",
+      "notes": "OpenCode-supported; EU sovereign hosting for Llama, Mistral, Qwen",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "stackit-model-serving": {
+      "displayName": "STACKIT AI Model Serving (alias: stackit-model-serving)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "qwen3-vl-235b",
+        "llama-3.3-70b",
+        "mistral-nemo-instruct"
+      ],
+      "envVar": "STACKIT_API_KEY",
+      "notes": "OpenCode-supported; EU sovereign hosting for Llama, Mistral, Qwen",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "snowflake-cortex": {
+      "displayName": "Snowflake Cortex",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "claude-sonnet-4-6",
+        "claude-haiku-4-5",
+        "gpt-5"
+      ],
+      "envVar": "SNOWFLAKE_CORTEX_TOKEN",
+      "notes": "OpenCode-supported; OAuth or PAT; Claude/OpenAI families with tool calling",
+      "openaiCompatible": true
+    },
+    "snowflake": {
+      "displayName": "Snowflake Cortex (alias: snowflake)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "claude-sonnet-4-6",
+        "claude-haiku-4-5",
+        "gpt-5"
+      ],
+      "envVar": "SNOWFLAKE_CORTEX_TOKEN",
+      "notes": "OpenCode-supported; OAuth or PAT; Claude/OpenAI families with tool calling",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "cortex": {
+      "displayName": "Snowflake Cortex (alias: cortex)",
+      "category": "Sovereign / Cloud",
+      "popularModels": [
+        "claude-sonnet-4-6",
+        "claude-haiku-4-5",
+        "gpt-5"
+      ],
+      "envVar": "SNOWFLAKE_CORTEX_TOKEN",
+      "notes": "OpenCode-supported; OAuth or PAT; Claude/OpenAI families with tool calling",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "zenmux": {
+      "displayName": "ZenMux",
+      "category": "Gateway",
+      "popularModels": [
+        "openai/gpt-5",
+        "anthropic/claude-sonnet-4",
+        "google/gemini-2.5-pro"
+      ],
+      "envVar": "ZENMUX_API_KEY",
+      "notes": "OpenCode-supported; enterprise routing across 200+ models",
+      "openaiCompatible": true
+    },
+    "zenmux-ai": {
+      "displayName": "ZenMux (alias: zenmux-ai)",
+      "category": "Gateway",
+      "popularModels": [
+        "openai/gpt-5",
+        "anthropic/claude-sonnet-4",
+        "google/gemini-2.5-pro"
+      ],
+      "envVar": "ZENMUX_API_KEY",
+      "notes": "OpenCode-supported; enterprise routing across 200+ models",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "sakana-fugu": {
+      "displayName": "Sakana AI (Fugu)",
+      "category": "Gateway",
+      "popularModels": [
+        "fugu",
+        "fugu-ultra",
+        "fugu-ultra-20260615"
+      ],
+      "envVar": "SAKANA_API_KEY",
+      "notes": "Trained multi-agent orchestrator; routes to frontier LLM pool via single OpenAI-compatible API",
+      "openaiCompatible": true
+    },
+    "sakana": {
+      "displayName": "Sakana AI (Fugu) (alias: sakana)",
+      "category": "Gateway",
+      "popularModels": [
+        "fugu",
+        "fugu-ultra",
+        "fugu-ultra-20260615"
+      ],
+      "envVar": "SAKANA_API_KEY",
+      "notes": "Trained multi-agent orchestrator; routes to frontier LLM pool via single OpenAI-compatible API",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "sakana-ai": {
+      "displayName": "Sakana AI (Fugu) (alias: sakana-ai)",
+      "category": "Gateway",
+      "popularModels": [
+        "fugu",
+        "fugu-ultra",
+        "fugu-ultra-20260615"
+      ],
+      "envVar": "SAKANA_API_KEY",
+      "notes": "Trained multi-agent orchestrator; routes to frontier LLM pool via single OpenAI-compatible API",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "fugu": {
+      "displayName": "Sakana AI (Fugu) (alias: fugu)",
+      "category": "Gateway",
+      "popularModels": [
+        "fugu",
+        "fugu-ultra",
+        "fugu-ultra-20260615"
+      ],
+      "envVar": "SAKANA_API_KEY",
+      "notes": "Trained multi-agent orchestrator; routes to frontier LLM pool via single OpenAI-compatible API",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "prism-api": {
+      "displayName": "Prism API",
+      "category": "Gateway",
+      "popularModels": [
+        "gpt-5.5",
+        "gpt-5.4",
+        "claude-sonnet-4",
+        "gemini-2.5-pro"
+      ],
+      "envVar": "PRISM_API_KEY",
+      "notes": "Independent OpenAI-compatible gateway for overseas developers; low-cost GPT-5.5 access and crypto-friendly recharge/voucher options",
+      "openaiCompatible": true
+    },
+    "sub2api": {
+      "displayName": "Prism API (alias: sub2api)",
+      "category": "Gateway",
+      "popularModels": [
+        "gpt-5.5",
+        "gpt-5.4",
+        "claude-sonnet-4",
+        "gemini-2.5-pro"
+      ],
+      "envVar": "PRISM_API_KEY",
+      "notes": "Independent OpenAI-compatible gateway for overseas developers; low-cost GPT-5.5 access and crypto-friendly recharge/voucher options",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "gpt55": {
+      "displayName": "Prism API (alias: gpt55)",
+      "category": "Gateway",
+      "popularModels": [
+        "gpt-5.5",
+        "gpt-5.4",
+        "claude-sonnet-4",
+        "gemini-2.5-pro"
+      ],
+      "envVar": "PRISM_API_KEY",
+      "notes": "Independent OpenAI-compatible gateway for overseas developers; low-cost GPT-5.5 access and crypto-friendly recharge/voucher options",
+      "openaiCompatible": true,
+      "isAlias": true
+    },
+    "bedrock-aws": {
+      "displayName": "AWS Bedrock (native SigV4 Converse)",
+      "category": "Cloud",
+      "popularModels": [],
+      "envVar": "AWS_ACCESS_KEY_ID",
+      "notes": "Native AWS Bedrock Converse + ConverseStream API with SigV4 signing. Credentials read from AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY / AWS_REGION env vars or providerOptions.",
+      "openaiCompatible": false
+    },
+    "bedrock-converse": {
+      "displayName": "AWS Bedrock (native SigV4 Converse)",
+      "category": "Cloud",
+      "popularModels": [],
+      "envVar": "AWS_ACCESS_KEY_ID",
+      "notes": "Native AWS Bedrock Converse + ConverseStream API with SigV4 signing. Credentials read from AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY / AWS_REGION env vars or providerOptions.",
+      "openaiCompatible": false
+    },
+    "openai-compatible": {
+      "displayName": "OpenAI-compatible (any)",
+      "category": "Generic",
+      "popularModels": [],
+      "envVar": "",
+      "notes": "Use this for any server speaking the OpenAI Chat Completions wire format.",
+      "openaiCompatible": true
+    }
+  }
+}

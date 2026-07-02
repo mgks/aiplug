@@ -1,0 +1,502 @@
+#!/usr/bin/env -S node --experimental-strip-types
+/**
+ * Regenerate `data/registry.json`, `data/registry.meta.json`, and the
+ * thin per-provider files under `src/providers/<slug>/` from
+ * `data/providers.json`.
+ *
+ * Replaces the old `scripts/build-registry.py` — same output, zero
+ * non-Node dependencies, runs with `node --experimental-strip-types` or
+ * `tsx` so we don't need a build step.
+ *
+ * Usage:
+ *   tsx scripts/build-registry.ts
+ *   node --experimental-strip-types scripts/build-registry.ts
+ */
+
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+// Sentinel that marks a thin file as hand-edited. The build script will
+// not overwrite files that contain this line in their leading comment.
+const KEEP_MARKER = '// @aiplug:keep';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+/* ---------------------------------------------------------------------------
+ * Paths
+ * --------------------------------------------------------------------------- */
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const ROOT = join(__dirname, '..');
+const SRC = join(ROOT, 'data/providers.json');
+const OUT_REGISTRY = join(ROOT, 'data/registry.json');
+const OUT_META = join(ROOT, 'data/registry.meta.json');
+const PROVIDERS_DIR = join(ROOT, 'src/providers');
+
+/* ---------------------------------------------------------------------------
+ * Source data shape (subset we read from data/providers.json)
+ * --------------------------------------------------------------------------- */
+
+interface SourceProvider {
+  id: number;
+  name: string;
+  slug: string;
+  aliases?: string[];
+  category?: string;
+  website?: string;
+  api_base_url?: string | null;
+  popular_models?: string[];
+  env_variable?: string;
+  openai_compatible?: boolean;
+  notes?: string;
+}
+
+/* ---------------------------------------------------------------------------
+ * Custom adapters we ship in-tree.
+ *
+ * Anything not listed here is generated as a thin instance under
+ * `src/providers/<slug>/index.ts` that re-exports the OpenAI-compatible
+ * transport with provider-specific metadata.
+ * --------------------------------------------------------------------------- */
+
+interface CustomAdapter {
+  /** Directory under `src/providers/` containing the adapter. */
+  dir: string;
+  /** Class name exported from the adapter's `index.ts`. */
+  className: string;
+  /** Auth mode. */
+  auth: 'bearer' | 'x-api-key' | 'header' | 'none';
+  /** Custom auth header name (when `auth === 'header'`). */
+  authHeader?: string;
+  /** Optional `defaultBaseURL` override (skips the upstream value). */
+  defaultBaseURL?: string | null;
+}
+
+const CUSTOM_ADAPTERS: Record<string, CustomAdapter> = {
+  anthropic: {
+    dir: 'anthropic',
+    className: 'AnthropicTransport',
+    auth: 'x-api-key',
+    authHeader: 'x-api-key',
+    // Ollama native adapter talks to /api/chat (no /v1). Anthropic uses
+    // its canonical base, no override needed.
+  },
+  gemini: {
+    dir: 'gemini',
+    className: 'GeminiTransport',
+    auth: 'header',
+    authHeader: 'x-goog-api-key',
+  },
+  ollama: {
+    dir: 'ollama',
+    className: 'OllamaTransport',
+    auth: 'none',
+    // Strip /v1 if upstream provided it.
+    defaultBaseURL: null, // set per-provider below
+  },
+  'ollama-cloud': {
+    dir: 'ollama',
+    className: 'OllamaTransport',
+    auth: 'bearer',
+    authHeader: 'Authorization',
+  },
+  openai: {
+    dir: 'openai',
+    className: 'OpenAITransport',
+    auth: 'bearer',
+    authHeader: 'Authorization',
+    // Force canonical OpenAI defaults (upstream source may differ).
+    defaultBaseURL: 'https://api.openai.com/v1',
+  },
+};
+
+/* ---------------------------------------------------------------------------
+ * Helpers
+ * --------------------------------------------------------------------------- */
+
+function normaliseUrl(raw: string | null | undefined): string | null {
+  if (!raw) return null;
+  return raw.replace(/\/+$/, '');
+}
+
+function ollamaNativeUrl(raw: string | null | undefined): string | null {
+  if (!raw) return null;
+  return raw.replace(/\/v1$/, '').replace(/\/+$/, '');
+}
+
+function pascal(slug: string): string {
+  const parts = slug
+    .split(/[-_]/)
+    .filter(Boolean)
+    .map((p) => p[0]!.toUpperCase() + p.slice(1));
+  let name = parts.join('');
+  // Identifiers cannot start with a digit. Prefix with an underscore so
+  // the class name is still valid TypeScript.
+  if (/^\d/.test(name)) name = '_' + name;
+  return name;
+}
+
+/* ---------------------------------------------------------------------------
+ * Thin file generation
+ * --------------------------------------------------------------------------- */
+
+const THIN_HEADER =
+  '/**\n' +
+  ' * Auto-generated thin instance for `%SLUG%`.\n' +
+  ' * Wire format: OpenAI-compatible Chat Completions.\n' +
+  ' *\n' +
+  ' * DO NOT hand-edit — this file is regenerated by\n' +
+  ' * `scripts/build-registry.ts`. To customise behaviour, edit the\n' +
+  ' * shared OpenAI-compatible transport in `src/providers/openai-compatible/`\n' +
+  ' * or add a custom adapter folder and reference it from the build script.\n' +
+  ' */\n';
+
+function thinFile(slug: string, defaultBaseURL: string | null): string {
+  const baseURL = defaultBaseURL ?? 'https://api.example.com/v1';
+  const safeSlug = slug.replace(/'/g, "\\'");
+  const body =
+    `import { OpenAICompatibleTransport } from '../openai-compatible/index.js';\n` +
+    `import { makeError } from '../../errors.js';\n` +
+    `import type { OpenAICompatibleConfig } from '../openai-compatible/index.js';\n` +
+    `import type { TransportMetadata } from '../../types.js';\n` +
+    `\n` +
+    `export interface ProviderConfig extends OpenAICompatibleConfig {}\n` +
+    `\n` +
+    `export class ${pascal(slug)}Transport extends OpenAICompatibleTransport {\n` +
+    `  constructor(config: ProviderConfig) {\n` +
+    `    if (!config.baseURL) {\n` +
+    `      throw makeError({\n` +
+    `        code: 'INVALID_CONFIGURATION',\n` +
+    `        transport: '${safeSlug}',\n` +
+    `        message: 'Transport "${safeSlug}" requires a baseURL',\n` +
+    `      });\n` +
+    `    }\n` +
+    `    super(config);\n` +
+    `  }\n` +
+    `\n` +
+    `  override capabilities(): TransportMetadata {\n` +
+    `    const m = super.capabilities();\n` +
+    `    return { ...m, name: '${safeSlug}'${
+      defaultBaseURL ? `, defaultBaseURL: '${defaultBaseURL}'` : ''
+    } };\n` +
+    `  }\n` +
+    `}\n` +
+    `\n` +
+    `/** Canonical default base URL for this provider. */\n` +
+    `export const DEFAULT_BASE_URL = ${defaultBaseURL ? `'${defaultBaseURL}'` : 'null'};\n`;
+  return THIN_HEADER.replace('%SLUG%', safeSlug) + body;
+}
+
+/* ---------------------------------------------------------------------------
+ * Registry entry shapes
+ * --------------------------------------------------------------------------- */
+
+interface RegistryEntry {
+  module: string;
+  class: string;
+  defaultBaseURL: string | null;
+  auth: 'bearer' | 'x-api-key' | 'header' | 'none';
+  authHeader?: string;
+  /**
+   * Static capability flags this transport exposes. The default for any
+   * OpenAI-compatible thin instance is the full set the generic wire
+   * format supports. Custom adapters (anthropic, bedrock-aws, ollama…)
+   * override per-slug.
+   */
+  capabilities?: string[];
+}
+
+interface MetaEntry {
+  displayName: string;
+  category: string;
+  popularModels: string[];
+  envVar: string;
+  notes: string;
+  openaiCompatible: boolean;
+  isAlias?: boolean;
+}
+
+/* ---------------------------------------------------------------------------
+ * Capability matrix
+ *
+ * Drives the `capabilities` field on each registry entry so consumers can
+ * introspect what a transport supports without loading the module. The
+ * default for an OpenAI-compatible thin instance is the "wire format
+ * supports it" set; per-slug overrides reflect what we know about the
+ * provider's actual surface (e.g. MiniMax-M3 is multimodal, Bedrock is
+ * per-model and we list the conservative set).
+ * --------------------------------------------------------------------------- */
+
+const DEFAULT_OPENAI_CAPABILITIES = [
+  'chat',
+  'streaming',
+  'tools',
+  'embeddings',
+  'images',
+  'audio-tts',
+  'audio-stt',
+  'json-mode',
+  'function-calling',
+];
+
+const CAPABILITIES_BY_SLUG: Record<string, string[]> = {
+  // Anthropic supports vision, prompt caching, and reasoning — but not
+  // OpenAI-style images / audio endpoints; the adapter exposes chat + tools.
+  anthropic: ['chat', 'streaming', 'tools', 'vision', 'reasoning', 'prompt-cache', 'pdf-input'],
+  // Bedrock OpenAI-compat shim — only chat-shaped calls work; no images/audio.
+  bedrock: ['chat', 'streaming', 'tools'],
+  // Bedrock native Converse path — supports vision, prompt cache, reasoning
+  // depending on the model underneath; we advertise the conservative set.
+  'bedrock-aws': ['chat', 'streaming', 'tools', 'vision', 'reasoning', 'prompt-cache'],
+  // Ollama is local; the native adapter exposes chat + embeddings + vision
+  // (model-dependent). Image generation / TTS not exposed via Ollama HTTP.
+  ollama: ['chat', 'streaming', 'tools', 'vision', 'embeddings', 'reasoning'],
+  'ollama-cloud': ['chat', 'streaming', 'tools', 'vision', 'embeddings'],
+  // MiniMax exposes chat + vision + reasoning on M3 + cache on inference
+  // endpoints. We surface the conservative public set.
+  minimax: ['chat', 'streaming', 'tools', 'vision', 'reasoning'],
+  // Custom OpenAI-compatible providers that don't speak images/audio.
+  deepseek: ['chat', 'streaming', 'tools', 'reasoning'],
+  zhipu: ['chat', 'streaming', 'tools', 'reasoning'],
+  moonshot: ['chat', 'streaming', 'tools', 'vision', 'reasoning'],
+  xai: ['chat', 'streaming', 'tools', 'reasoning'],
+  mistral: ['chat', 'streaming', 'tools', 'reasoning'],
+  cohere: ['chat', 'streaming', 'tools', 'embeddings'],
+  google: ['chat', 'streaming', 'tools', 'vision'],
+  // Local inference servers (llama.cpp / vLLM / LM Studio) — chat + tools.
+  'lm-studio': ['chat', 'streaming', 'tools'],
+  'llama-cpp': ['chat', 'streaming', 'tools'],
+  vllm: ['chat', 'streaming', 'tools'],
+  localai: ['chat', 'streaming', 'tools', 'embeddings'],
+};
+
+function capabilitiesFor(slug: string, custom?: CustomAdapter): string[] {
+  if (slug in CAPABILITIES_BY_SLUG) return CAPABILITIES_BY_SLUG[slug]!;
+  // Custom adapters without an explicit entry fall back to a chat-only set.
+  if (custom) return ['chat', 'streaming', 'tools'];
+  return DEFAULT_OPENAI_CAPABILITIES;
+}
+
+/* ---------------------------------------------------------------------------
+ * Main
+ * --------------------------------------------------------------------------- */
+
+export interface BuildOptions {
+  /** Project root. Defaults to two directories up from this script. */
+  root?: string;
+}
+
+export function build(opts: BuildOptions = {}): { generated: number; skipped: number; kept: number; total: number } {
+  const ROOT_ = opts.root ?? ROOT;
+  const SRC_ = join(ROOT_, 'data/providers.json');
+  const OUT_REGISTRY_ = join(ROOT_, 'data/registry.json');
+  const OUT_META_ = join(ROOT_, 'data/registry.meta.json');
+  const PROVIDERS_DIR_ = join(ROOT_, 'src/providers');
+
+  const providers: SourceProvider[] = JSON.parse(readFileSync(SRC_, 'utf-8'));
+  const transports: Record<string, RegistryEntry> = {};
+  const meta: Record<string, MetaEntry> = {};
+  const slugsSeen = new Set<string>();
+
+  for (const p of providers) {
+    const slug = p.slug;
+    const base = normaliseUrl(p.api_base_url);
+    const isCustom = slug in CUSTOM_ADAPTERS;
+    const aliases = p.aliases ?? [];
+
+    let entry: RegistryEntry;
+    let custom = CUSTOM_ADAPTERS[slug];
+
+    if (custom) {
+      // Use the in-tree custom adapter.
+      let defaultBaseURL = custom.defaultBaseURL ?? null;
+      if (slug === 'ollama' && defaultBaseURL === null) {
+        defaultBaseURL = ollamaNativeUrl(base);
+      } else if (slug !== 'ollama' && !custom.defaultBaseURL) {
+        defaultBaseURL = base;
+      }
+      entry = {
+        module: `./${custom.dir}/index.js`,
+        class: custom.className,
+        defaultBaseURL,
+        auth: custom.auth,
+      };
+      if (custom.authHeader) entry.authHeader = custom.authHeader;
+    } else {
+      // Thin instance: use OpenAI-compatible wire format.
+      entry = {
+        module: `./${slug}/index.js`,
+        class: `${pascal(slug)}Transport`,
+        defaultBaseURL: base,
+        auth: 'bearer',
+        authHeader: 'Authorization',
+      };
+    }
+    entry.capabilities = capabilitiesFor(slug, custom);
+
+    transports[slug] = entry;
+    meta[slug] = {
+      displayName: p.name,
+      category: p.category ?? '',
+      popularModels: p.popular_models ?? [],
+      envVar: p.env_variable ?? '',
+      notes: p.notes ?? '',
+      openaiCompatible: p.openai_compatible ?? true,
+    };
+    slugsSeen.add(slug);
+
+    // Aliases share the canonical module. Each alias gets a registry entry
+    // pointing at the same folder so users can `transport add <alias>`.
+    for (const alias of aliases) {
+      if (!alias || slugsSeen.has(alias)) continue;
+      const aliasEntry: RegistryEntry = { ...entry };
+      transports[alias] = aliasEntry;
+      meta[alias] = {
+        displayName: `${p.name} (alias: ${alias})`,
+        category: p.category ?? '',
+        popularModels: p.popular_models ?? [],
+        envVar: p.env_variable ?? '',
+        notes: p.notes ?? '',
+        openaiCompatible: p.openai_compatible ?? true,
+        isAlias: true,
+      };
+      slugsSeen.add(alias);
+    }
+  }
+
+  // Force canonical OpenAI defaults — upstream source may drift.
+  if (transports['openai']) {
+    transports['openai'].defaultBaseURL = 'https://api.openai.com/v1';
+    transports['openai'].auth = 'bearer';
+    transports['openai'].authHeader = 'Authorization';
+  }
+
+  /* ---------------------------------------------------------------------------
+   * Extra registry entries that don't come from `data/providers.json`.
+   *
+   * These are hand-shipped native transports that have no upstream
+   * provider metadata (e.g. Bedrock's SigV4 `Converse` path, which we
+   * expose separately from the OpenAI-compat `bedrock` shim). The
+   * leading underscore in the directory name tells the thin-file
+   * generator to skip it.
+   * --------------------------------------------------------------------------- */
+  const EXTRANATIVE_ENTRIES: Record<string, RegistryEntry> = {
+    'bedrock-aws': {
+      module: './_bedrock-aws/converse.js',
+      class: 'BedrockAWSTransport',
+      // Region placeholder — the transport extracts region from
+      // `providerOptions.region` or the AWS_* env vars at runtime.
+      defaultBaseURL: 'https://bedrock-runtime.us-east-1.amazonaws.com',
+      auth: 'header',
+      authHeader: 'authorization',
+    },
+    'bedrock-converse': {
+      module: './_bedrock-aws/converse.js',
+      class: 'BedrockAWSTransport',
+      defaultBaseURL: 'https://bedrock-runtime.us-east-1.amazonaws.com',
+      auth: 'header',
+      authHeader: 'authorization',
+    },
+  };
+  for (const [slug, entry] of Object.entries(EXTRANATIVE_ENTRIES)) {
+    if (slugsSeen.has(slug)) continue;
+    entry.capabilities = capabilitiesFor(slug, undefined);
+    transports[slug] = entry;
+    meta[slug] = {
+      displayName: 'AWS Bedrock (native SigV4 Converse)',
+      category: 'Cloud',
+      popularModels: [],
+      envVar: 'AWS_ACCESS_KEY_ID',
+      notes: 'Native AWS Bedrock Converse + ConverseStream API with SigV4 signing. Credentials read from AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY / AWS_REGION env vars or providerOptions.',
+      openaiCompatible: false,
+    };
+    slugsSeen.add(slug);
+  }
+
+  // Write slim runtime registry.
+  const registry = {
+    version: 4,
+    totalProviders: Object.keys(transports).length,
+    transports,
+  };
+  writeFileSync(OUT_REGISTRY_, JSON.stringify(registry, null, 2) + '\n');
+
+  // Write cosmetic meta for CLI / docs.
+  const metaFile = {
+    version: 4,
+    totalProviders: Object.keys(meta).length,
+    providers: meta,
+  };
+  writeFileSync(OUT_META_, JSON.stringify(metaFile, null, 2) + '\n');
+
+  // Generate thin per-provider files.
+  let generated = 0;
+  let skipped = 0;
+  let kept = 0;
+  for (const [slug, entry] of Object.entries(transports)) {
+    if (slug in CUSTOM_ADAPTERS) {
+      skipped++;
+      continue;
+    }
+    // Skip aliases — they share the canonical folder via the registry.
+    if (meta[slug]?.isAlias) {
+      skipped++;
+      continue;
+    }
+    const dir = join(PROVIDERS_DIR_, slug);
+    if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+    const file = join(dir, 'index.ts');
+    // Honour the `@aiplug:keep` sentinel — don't overwrite hand-edited files.
+    if (existsSync(file) && readFileSync(file, 'utf-8').includes(KEEP_MARKER)) {
+      kept++;
+      continue;
+    }
+    writeFileSync(file, thinFile(slug, entry.defaultBaseURL));
+    generated++;
+  }
+
+  // Always keep `openai-compatible` as the canonical fallback entry.
+  transports['openai-compatible'] = {
+    module: './openai-compatible/index.js',
+    class: 'OpenAICompatibleTransport',
+    defaultBaseURL: null,
+    auth: 'bearer',
+    authHeader: 'Authorization',
+  };
+  meta['openai-compatible'] = {
+    displayName: 'OpenAI-compatible (any)',
+    category: 'Generic',
+    popularModels: [],
+    envVar: '',
+    notes: 'Use this for any server speaking the OpenAI Chat Completions wire format.',
+    openaiCompatible: true,
+  };
+  // Re-write with the fallback entry appended.
+  const final = {
+    version: 4,
+    totalProviders: Object.keys(transports).length,
+    transports,
+  };
+  writeFileSync(OUT_REGISTRY_, JSON.stringify(final, null, 2) + '\n');
+  const finalMeta = {
+    version: 4,
+    totalProviders: Object.keys(meta).length,
+    providers: meta,
+  };
+  writeFileSync(OUT_META_, JSON.stringify(finalMeta, null, 2) + '\n');
+
+  return { generated, skipped, kept, total: Object.keys(transports).length };
+}
+
+/** CLI entry point. */
+function main(): void {
+  const result = build();
+  console.log(
+    `Wrote ${result.total} registry entries ` +
+    `(${result.generated} thin files generated, ${result.skipped} skipped, ${result.kept} kept-by-sentinel)`,
+  );
+}
+
+// Only invoke main() when run as the script entry, not when imported.
+import { fileURLToPath } from 'node:url';
+const invokedDirectly =
+  process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
+if (invokedDirectly) main();

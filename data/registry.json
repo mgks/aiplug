@@ -1,0 +1,4688 @@
+{
+  "version": 4,
+  "totalProviders": 272,
+  "transports": {
+    "302": {
+      "module": "./302-ai/index.js",
+      "class": "_302AiTransport",
+      "defaultBaseURL": "https://api.302.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "558686": {
+      "module": "./prism-api/index.js",
+      "class": "PrismApiTransport",
+      "defaultBaseURL": "https://sub2api.558686.xyz/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "openai": {
+      "module": "./openai/index.js",
+      "class": "OpenAITransport",
+      "defaultBaseURL": "https://api.openai.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools"
+      ]
+    },
+    "chatgpt": {
+      "module": "./openai/index.js",
+      "class": "OpenAITransport",
+      "defaultBaseURL": "https://api.openai.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools"
+      ]
+    },
+    "gpt": {
+      "module": "./openai/index.js",
+      "class": "OpenAITransport",
+      "defaultBaseURL": "https://api.openai.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools"
+      ]
+    },
+    "anthropic": {
+      "module": "./anthropic/index.js",
+      "class": "AnthropicTransport",
+      "defaultBaseURL": "https://api.anthropic.com",
+      "auth": "x-api-key",
+      "authHeader": "x-api-key",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "vision",
+        "reasoning",
+        "prompt-cache",
+        "pdf-input"
+      ]
+    },
+    "claude": {
+      "module": "./anthropic/index.js",
+      "class": "AnthropicTransport",
+      "defaultBaseURL": "https://api.anthropic.com",
+      "auth": "x-api-key",
+      "authHeader": "x-api-key",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "vision",
+        "reasoning",
+        "prompt-cache",
+        "pdf-input"
+      ]
+    },
+    "claude-ai": {
+      "module": "./anthropic/index.js",
+      "class": "AnthropicTransport",
+      "defaultBaseURL": "https://api.anthropic.com",
+      "auth": "x-api-key",
+      "authHeader": "x-api-key",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "vision",
+        "reasoning",
+        "prompt-cache",
+        "pdf-input"
+      ]
+    },
+    "google-ai-studio": {
+      "module": "./google-ai-studio/index.js",
+      "class": "GoogleAiStudioTransport",
+      "defaultBaseURL": "https://generativelanguage.googleapis.com",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "gemini": {
+      "module": "./google-ai-studio/index.js",
+      "class": "GoogleAiStudioTransport",
+      "defaultBaseURL": "https://generativelanguage.googleapis.com",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "google": {
+      "module": "./google-ai-studio/index.js",
+      "class": "GoogleAiStudioTransport",
+      "defaultBaseURL": "https://generativelanguage.googleapis.com",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "aistudio": {
+      "module": "./google-ai-studio/index.js",
+      "class": "GoogleAiStudioTransport",
+      "defaultBaseURL": "https://generativelanguage.googleapis.com",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "deepseek": {
+      "module": "./deepseek/index.js",
+      "class": "DeepseekTransport",
+      "defaultBaseURL": "https://api.deepseek.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "reasoning"
+      ]
+    },
+    "deep-seek": {
+      "module": "./deepseek/index.js",
+      "class": "DeepseekTransport",
+      "defaultBaseURL": "https://api.deepseek.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "reasoning"
+      ]
+    },
+    "mistral": {
+      "module": "./mistral/index.js",
+      "class": "MistralTransport",
+      "defaultBaseURL": "https://api.mistral.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "reasoning"
+      ]
+    },
+    "mistralai": {
+      "module": "./mistral/index.js",
+      "class": "MistralTransport",
+      "defaultBaseURL": "https://api.mistral.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "reasoning"
+      ]
+    },
+    "xai": {
+      "module": "./xai/index.js",
+      "class": "XaiTransport",
+      "defaultBaseURL": "https://api.x.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "reasoning"
+      ]
+    },
+    "grok": {
+      "module": "./xai/index.js",
+      "class": "XaiTransport",
+      "defaultBaseURL": "https://api.x.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "reasoning"
+      ]
+    },
+    "x-ai": {
+      "module": "./xai/index.js",
+      "class": "XaiTransport",
+      "defaultBaseURL": "https://api.x.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "reasoning"
+      ]
+    },
+    "cohere": {
+      "module": "./cohere/index.js",
+      "class": "CohereTransport",
+      "defaultBaseURL": "https://api.cohere.com/v2",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings"
+      ]
+    },
+    "ai21": {
+      "module": "./ai21/index.js",
+      "class": "Ai21Transport",
+      "defaultBaseURL": "https://api.ai21.com/studio/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "ai21labs": {
+      "module": "./ai21/index.js",
+      "class": "Ai21Transport",
+      "defaultBaseURL": "https://api.ai21.com/studio/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "jamba": {
+      "module": "./ai21/index.js",
+      "class": "Ai21Transport",
+      "defaultBaseURL": "https://api.ai21.com/studio/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "baidu-qianfan": {
+      "module": "./baidu-qianfan/index.js",
+      "class": "BaiduQianfanTransport",
+      "defaultBaseURL": "https://api.baiduqianfan.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "qianfan": {
+      "module": "./baidu-qianfan/index.js",
+      "class": "BaiduQianfanTransport",
+      "defaultBaseURL": "https://api.baiduqianfan.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "ernie": {
+      "module": "./baidu-qianfan/index.js",
+      "class": "BaiduQianfanTransport",
+      "defaultBaseURL": "https://api.baiduqianfan.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "baidu": {
+      "module": "./baidu-qianfan/index.js",
+      "class": "BaiduQianfanTransport",
+      "defaultBaseURL": "https://api.baiduqianfan.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "stepfun": {
+      "module": "./stepfun/index.js",
+      "class": "StepfunTransport",
+      "defaultBaseURL": "https://api.stepfun.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "step": {
+      "module": "./stepfun/index.js",
+      "class": "StepfunTransport",
+      "defaultBaseURL": "https://api.stepfun.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "zhipu": {
+      "module": "./zhipu/index.js",
+      "class": "ZhipuTransport",
+      "defaultBaseURL": "https://open.bigmodel.cn/api/paas/v4",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "reasoning"
+      ]
+    },
+    "bigmodel": {
+      "module": "./zhipu/index.js",
+      "class": "ZhipuTransport",
+      "defaultBaseURL": "https://open.bigmodel.cn/api/paas/v4",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "reasoning"
+      ]
+    },
+    "glm": {
+      "module": "./zhipu/index.js",
+      "class": "ZhipuTransport",
+      "defaultBaseURL": "https://open.bigmodel.cn/api/paas/v4",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "reasoning"
+      ]
+    },
+    "z-ai": {
+      "module": "./zhipu/index.js",
+      "class": "ZhipuTransport",
+      "defaultBaseURL": "https://open.bigmodel.cn/api/paas/v4",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "reasoning"
+      ]
+    },
+    "z.ai": {
+      "module": "./zhipu/index.js",
+      "class": "ZhipuTransport",
+      "defaultBaseURL": "https://open.bigmodel.cn/api/paas/v4",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "reasoning"
+      ]
+    },
+    "xiaomi": {
+      "module": "./xiaomi/index.js",
+      "class": "XiaomiTransport",
+      "defaultBaseURL": "Custom endpoint",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "mimo": {
+      "module": "./xiaomi/index.js",
+      "class": "XiaomiTransport",
+      "defaultBaseURL": "Custom endpoint",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "reka": {
+      "module": "./reka/index.js",
+      "class": "RekaTransport",
+      "defaultBaseURL": "https://api.reka.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "rekaai": {
+      "module": "./reka/index.js",
+      "class": "RekaTransport",
+      "defaultBaseURL": "https://api.reka.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "inflection": {
+      "module": "./inflection/index.js",
+      "class": "InflectionTransport",
+      "defaultBaseURL": "Custom webhooks",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "pi": {
+      "module": "./inflection/index.js",
+      "class": "InflectionTransport",
+      "defaultBaseURL": "Custom webhooks",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "minimax": {
+      "module": "./minimax/index.js",
+      "class": "MinimaxTransport",
+      "defaultBaseURL": "https://api.minimax.io/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "vision",
+        "reasoning"
+      ]
+    },
+    "minimax-ai": {
+      "module": "./minimax/index.js",
+      "class": "MinimaxTransport",
+      "defaultBaseURL": "https://api.minimax.io/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "vision",
+        "reasoning"
+      ]
+    },
+    "dashscope": {
+      "module": "./dashscope/index.js",
+      "class": "DashscopeTransport",
+      "defaultBaseURL": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "qwen": {
+      "module": "./dashscope/index.js",
+      "class": "DashscopeTransport",
+      "defaultBaseURL": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "alibaba": {
+      "module": "./dashscope/index.js",
+      "class": "DashscopeTransport",
+      "defaultBaseURL": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "aliyun": {
+      "module": "./dashscope/index.js",
+      "class": "DashscopeTransport",
+      "defaultBaseURL": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "upstage": {
+      "module": "./upstage/index.js",
+      "class": "UpstageTransport",
+      "defaultBaseURL": "https://api.upstage.ai/v1/solar",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "solar": {
+      "module": "./upstage/index.js",
+      "class": "UpstageTransport",
+      "defaultBaseURL": "https://api.upstage.ai/v1/solar",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "perplexity": {
+      "module": "./perplexity/index.js",
+      "class": "PerplexityTransport",
+      "defaultBaseURL": "https://api.perplexity.ai",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "sonar": {
+      "module": "./perplexity/index.js",
+      "class": "PerplexityTransport",
+      "defaultBaseURL": "https://api.perplexity.ai",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "voyage": {
+      "module": "./voyage/index.js",
+      "class": "VoyageTransport",
+      "defaultBaseURL": "https://api.voyageai.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "voyageai": {
+      "module": "./voyage/index.js",
+      "class": "VoyageTransport",
+      "defaultBaseURL": "https://api.voyageai.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "groq": {
+      "module": "./groq/index.js",
+      "class": "GroqTransport",
+      "defaultBaseURL": "https://api.groq.com/openai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "groq-ai": {
+      "module": "./groq/index.js",
+      "class": "GroqTransport",
+      "defaultBaseURL": "https://api.groq.com/openai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "cerebras": {
+      "module": "./cerebras/index.js",
+      "class": "CerebrasTransport",
+      "defaultBaseURL": "https://api.cerebras.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "cerebras-ai": {
+      "module": "./cerebras/index.js",
+      "class": "CerebrasTransport",
+      "defaultBaseURL": "https://api.cerebras.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "sambanova": {
+      "module": "./sambanova/index.js",
+      "class": "SambanovaTransport",
+      "defaultBaseURL": "https://api.sambanova.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "together": {
+      "module": "./together/index.js",
+      "class": "TogetherTransport",
+      "defaultBaseURL": "https://api.together.xyz/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "together-ai": {
+      "module": "./together/index.js",
+      "class": "TogetherTransport",
+      "defaultBaseURL": "https://api.together.xyz/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "togetherai": {
+      "module": "./together/index.js",
+      "class": "TogetherTransport",
+      "defaultBaseURL": "https://api.together.xyz/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "fireworks": {
+      "module": "./fireworks/index.js",
+      "class": "FireworksTransport",
+      "defaultBaseURL": "https://api.fireworks.ai/inference/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "fireworks-ai": {
+      "module": "./fireworks/index.js",
+      "class": "FireworksTransport",
+      "defaultBaseURL": "https://api.fireworks.ai/inference/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "fireworksai": {
+      "module": "./fireworks/index.js",
+      "class": "FireworksTransport",
+      "defaultBaseURL": "https://api.fireworks.ai/inference/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "deepinfra": {
+      "module": "./deepinfra/index.js",
+      "class": "DeepinfraTransport",
+      "defaultBaseURL": "https://api.deepinfra.com/v1/openai",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "deep-infra": {
+      "module": "./deepinfra/index.js",
+      "class": "DeepinfraTransport",
+      "defaultBaseURL": "https://api.deepinfra.com/v1/openai",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "nebius": {
+      "module": "./nebius/index.js",
+      "class": "NebiusTransport",
+      "defaultBaseURL": "https://api.studio.nebius.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "nebius-studio": {
+      "module": "./nebius/index.js",
+      "class": "NebiusTransport",
+      "defaultBaseURL": "https://api.studio.nebius.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "nebius-token-factory": {
+      "module": "./nebius/index.js",
+      "class": "NebiusTransport",
+      "defaultBaseURL": "https://api.studio.nebius.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "token-factory": {
+      "module": "./nebius/index.js",
+      "class": "NebiusTransport",
+      "defaultBaseURL": "https://api.studio.nebius.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "siliconflow": {
+      "module": "./siliconflow/index.js",
+      "class": "SiliconflowTransport",
+      "defaultBaseURL": "https://api.siliconflow.cn/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "siliconcloud": {
+      "module": "./siliconflow/index.js",
+      "class": "SiliconflowTransport",
+      "defaultBaseURL": "https://api.siliconflow.cn/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "inception": {
+      "module": "./inception/index.js",
+      "class": "InceptionTransport",
+      "defaultBaseURL": "https://api.inceptionlabs.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "inceptionlabs": {
+      "module": "./inception/index.js",
+      "class": "InceptionTransport",
+      "defaultBaseURL": "https://api.inceptionlabs.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "mercury": {
+      "module": "./inception/index.js",
+      "class": "InceptionTransport",
+      "defaultBaseURL": "https://api.inceptionlabs.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "liquid": {
+      "module": "./liquid/index.js",
+      "class": "LiquidTransport",
+      "defaultBaseURL": "Custom cluster endpoints",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "liquidai": {
+      "module": "./liquid/index.js",
+      "class": "LiquidTransport",
+      "defaultBaseURL": "Custom cluster endpoints",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "lfm": {
+      "module": "./liquid/index.js",
+      "class": "LiquidTransport",
+      "defaultBaseURL": "Custom cluster endpoints",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "friendli": {
+      "module": "./friendli/index.js",
+      "class": "FriendliTransport",
+      "defaultBaseURL": "https://api.friendli.ai/serverless/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "friendliai": {
+      "module": "./friendli/index.js",
+      "class": "FriendliTransport",
+      "defaultBaseURL": "https://api.friendli.ai/serverless/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "inceptron": {
+      "module": "./inceptron/index.js",
+      "class": "InceptronTransport",
+      "defaultBaseURL": "Custom endpoint",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "infermatic": {
+      "module": "./infermatic/index.js",
+      "class": "InfermaticTransport",
+      "defaultBaseURL": "https://api.totalgpt.ai",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "totalgpt": {
+      "module": "./infermatic/index.js",
+      "class": "InfermaticTransport",
+      "defaultBaseURL": "https://api.totalgpt.ai",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "mancer": {
+      "module": "./mancer/index.js",
+      "class": "MancerTransport",
+      "defaultBaseURL": "https://mancer.tech/oai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "morph": {
+      "module": "./morph/index.js",
+      "class": "MorphTransport",
+      "defaultBaseURL": "https://api.morphllm.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "morphllm": {
+      "module": "./morph/index.js",
+      "class": "MorphTransport",
+      "defaultBaseURL": "https://api.morphllm.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "aionlabs": {
+      "module": "./aionlabs/index.js",
+      "class": "AionlabsTransport",
+      "defaultBaseURL": "https://api.aionlabs.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "aion": {
+      "module": "./aionlabs/index.js",
+      "class": "AionlabsTransport",
+      "defaultBaseURL": "https://api.aionlabs.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "huggingface": {
+      "module": "./huggingface/index.js",
+      "class": "HuggingfaceTransport",
+      "defaultBaseURL": "https://router.huggingface.co/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "hf": {
+      "module": "./huggingface/index.js",
+      "class": "HuggingfaceTransport",
+      "defaultBaseURL": "https://router.huggingface.co/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "hugging face": {
+      "module": "./huggingface/index.js",
+      "class": "HuggingfaceTransport",
+      "defaultBaseURL": "https://router.huggingface.co/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "hugging-face": {
+      "module": "./huggingface/index.js",
+      "class": "HuggingfaceTransport",
+      "defaultBaseURL": "https://router.huggingface.co/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "nvidia-nim": {
+      "module": "./nvidia-nim/index.js",
+      "class": "NvidiaNimTransport",
+      "defaultBaseURL": "https://integrate.api.nvidia.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "nim": {
+      "module": "./nvidia-nim/index.js",
+      "class": "NvidiaNimTransport",
+      "defaultBaseURL": "https://integrate.api.nvidia.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "nvidia": {
+      "module": "./nvidia-nim/index.js",
+      "class": "NvidiaNimTransport",
+      "defaultBaseURL": "https://integrate.api.nvidia.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "hyperbolic": {
+      "module": "./hyperbolic/index.js",
+      "class": "HyperbolicTransport",
+      "defaultBaseURL": "https://api.hyperbolic.xyz/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "lepton": {
+      "module": "./lepton/index.js",
+      "class": "LeptonTransport",
+      "defaultBaseURL": "https://api.lepton.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "leptonai": {
+      "module": "./lepton/index.js",
+      "class": "LeptonTransport",
+      "defaultBaseURL": "https://api.lepton.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "kluster": {
+      "module": "./kluster/index.js",
+      "class": "KlusterTransport",
+      "defaultBaseURL": "https://api.kluster.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "klusterai": {
+      "module": "./kluster/index.js",
+      "class": "KlusterTransport",
+      "defaultBaseURL": "https://api.kluster.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "anyscale": {
+      "module": "./anyscale/index.js",
+      "class": "AnyscaleTransport",
+      "defaultBaseURL": "https://api.endpoints.anyscale.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "replicate": {
+      "module": "./replicate/index.js",
+      "class": "ReplicateTransport",
+      "defaultBaseURL": "https://api.replicate.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "inference-net": {
+      "module": "./inference-net/index.js",
+      "class": "InferenceNetTransport",
+      "defaultBaseURL": "https://api.inference.net/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "inference.net": {
+      "module": "./inference-net/index.js",
+      "class": "InferenceNetTransport",
+      "defaultBaseURL": "https://api.inference.net/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "arcee": {
+      "module": "./arcee/index.js",
+      "class": "ArceeTransport",
+      "defaultBaseURL": "https://conductor.arcee.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "arceeai": {
+      "module": "./arcee/index.js",
+      "class": "ArceeTransport",
+      "defaultBaseURL": "https://conductor.arcee.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "trinity": {
+      "module": "./arcee/index.js",
+      "class": "ArceeTransport",
+      "defaultBaseURL": "https://conductor.arcee.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "glhf": {
+      "module": "./glhf/index.js",
+      "class": "GlhfTransport",
+      "defaultBaseURL": "https://glhf.chat/api/openai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "glhfchat": {
+      "module": "./glhf/index.js",
+      "class": "GlhfTransport",
+      "defaultBaseURL": "https://glhf.chat/api/openai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "akashml": {
+      "module": "./akashml/index.js",
+      "class": "AkashmlTransport",
+      "defaultBaseURL": "https://api.akashml.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "akash": {
+      "module": "./akashml/index.js",
+      "class": "AkashmlTransport",
+      "defaultBaseURL": "https://api.akashml.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "atlascloud": {
+      "module": "./atlascloud/index.js",
+      "class": "AtlascloudTransport",
+      "defaultBaseURL": "https://api.atlascloud.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "atlas": {
+      "module": "./atlascloud/index.js",
+      "class": "AtlascloudTransport",
+      "defaultBaseURL": "https://api.atlascloud.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "chutes": {
+      "module": "./chutes/index.js",
+      "class": "ChutesTransport",
+      "defaultBaseURL": "https://llm.chutes.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "chutesai": {
+      "module": "./chutes/index.js",
+      "class": "ChutesTransport",
+      "defaultBaseURL": "https://llm.chutes.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "cloudflare-workers-ai": {
+      "module": "./cloudflare-workers-ai/index.js",
+      "class": "CloudflareWorkersAiTransport",
+      "defaultBaseURL": "https://api.cloudflare.com/client/v4/accounts/{id}/ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "workers-ai": {
+      "module": "./cloudflare-workers-ai/index.js",
+      "class": "CloudflareWorkersAiTransport",
+      "defaultBaseURL": "https://api.cloudflare.com/client/v4/accounts/{id}/ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "cf-ai": {
+      "module": "./cloudflare-workers-ai/index.js",
+      "class": "CloudflareWorkersAiTransport",
+      "defaultBaseURL": "https://api.cloudflare.com/client/v4/accounts/{id}/ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "digitalocean": {
+      "module": "./digitalocean/index.js",
+      "class": "DigitaloceanTransport",
+      "defaultBaseURL": "https://inference.do-ai.run/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "digitalocean-inference": {
+      "module": "./digitalocean/index.js",
+      "class": "DigitaloceanTransport",
+      "defaultBaseURL": "https://inference.do-ai.run/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "do-ai": {
+      "module": "./digitalocean/index.js",
+      "class": "DigitaloceanTransport",
+      "defaultBaseURL": "https://inference.do-ai.run/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "gmicloud": {
+      "module": "./gmicloud/index.js",
+      "class": "GmicloudTransport",
+      "defaultBaseURL": "https://api.gmi-serving.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "gmi": {
+      "module": "./gmicloud/index.js",
+      "class": "GmicloudTransport",
+      "defaultBaseURL": "https://api.gmi-serving.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "io-net": {
+      "module": "./io-net/index.js",
+      "class": "IoNetTransport",
+      "defaultBaseURL": "https://api.intelligence.io.solutions/api/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "io.net": {
+      "module": "./io-net/index.js",
+      "class": "IoNetTransport",
+      "defaultBaseURL": "https://api.intelligence.io.solutions/api/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "ionet": {
+      "module": "./io-net/index.js",
+      "class": "IoNetTransport",
+      "defaultBaseURL": "https://api.intelligence.io.solutions/api/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "nextbit": {
+      "module": "./nextbit/index.js",
+      "class": "NextbitTransport",
+      "defaultBaseURL": "https://api.nextbit256.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "nextbit256": {
+      "module": "./nextbit/index.js",
+      "class": "NextbitTransport",
+      "defaultBaseURL": "https://api.nextbit256.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "novita": {
+      "module": "./novita/index.js",
+      "class": "NovitaTransport",
+      "defaultBaseURL": "https://api.novita.ai/openai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "novitaai": {
+      "module": "./novita/index.js",
+      "class": "NovitaTransport",
+      "defaultBaseURL": "https://api.novita.ai/openai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "parasail": {
+      "module": "./parasail/index.js",
+      "class": "ParasailTransport",
+      "defaultBaseURL": "https://api.saas.parasail.io/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "phala": {
+      "module": "./phala/index.js",
+      "class": "PhalaTransport",
+      "defaultBaseURL": "POST /v1/chat/completions",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "phalanetwork": {
+      "module": "./phala/index.js",
+      "class": "PhalaTransport",
+      "defaultBaseURL": "POST /v1/chat/completions",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "poolside": {
+      "module": "./poolside/index.js",
+      "class": "PoolsideTransport",
+      "defaultBaseURL": "https://divers.poolsi.de/openai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "laguna": {
+      "module": "./poolside/index.js",
+      "class": "PoolsideTransport",
+      "defaultBaseURL": "https://divers.poolsi.de/openai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "venice": {
+      "module": "./venice/index.js",
+      "class": "VeniceTransport",
+      "defaultBaseURL": "https://api.venice.ai/api/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "venice-ai": {
+      "module": "./venice/index.js",
+      "class": "VeniceTransport",
+      "defaultBaseURL": "https://api.venice.ai/api/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "veniceai": {
+      "module": "./venice/index.js",
+      "class": "VeniceTransport",
+      "defaultBaseURL": "https://api.venice.ai/api/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "wafer": {
+      "module": "./wafer/index.js",
+      "class": "WaferTransport",
+      "defaultBaseURL": "https://pass.wafer.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "waferai": {
+      "module": "./wafer/index.js",
+      "class": "WaferTransport",
+      "defaultBaseURL": "https://pass.wafer.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "pass.wafer.ai": {
+      "module": "./wafer/index.js",
+      "class": "WaferTransport",
+      "defaultBaseURL": "https://pass.wafer.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "azure-openai": {
+      "module": "./azure-openai/index.js",
+      "class": "AzureOpenaiTransport",
+      "defaultBaseURL": "https://<resource>.openai.azure.com/openai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "azure": {
+      "module": "./azure-openai/index.js",
+      "class": "AzureOpenaiTransport",
+      "defaultBaseURL": "https://<resource>.openai.azure.com/openai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "microsoft": {
+      "module": "./azure-openai/index.js",
+      "class": "AzureOpenaiTransport",
+      "defaultBaseURL": "https://<resource>.openai.azure.com/openai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "vertex-ai": {
+      "module": "./vertex-ai/index.js",
+      "class": "VertexAiTransport",
+      "defaultBaseURL": "Region-dependent",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "gcp": {
+      "module": "./vertex-ai/index.js",
+      "class": "VertexAiTransport",
+      "defaultBaseURL": "Region-dependent",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "google-vertex-ai": {
+      "module": "./vertex-ai/index.js",
+      "class": "VertexAiTransport",
+      "defaultBaseURL": "Region-dependent",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "vertex": {
+      "module": "./vertex-ai/index.js",
+      "class": "VertexAiTransport",
+      "defaultBaseURL": "Region-dependent",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "bedrock": {
+      "module": "./bedrock/index.js",
+      "class": "BedrockTransport",
+      "defaultBaseURL": "https://bedrock-runtime.<region>.amazonaws.com",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools"
+      ]
+    },
+    "amazon": {
+      "module": "./bedrock/index.js",
+      "class": "BedrockTransport",
+      "defaultBaseURL": "https://bedrock-runtime.<region>.amazonaws.com",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools"
+      ]
+    },
+    "amazon-bedrock": {
+      "module": "./bedrock/index.js",
+      "class": "BedrockTransport",
+      "defaultBaseURL": "https://bedrock-runtime.<region>.amazonaws.com",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools"
+      ]
+    },
+    "aws": {
+      "module": "./bedrock/index.js",
+      "class": "BedrockTransport",
+      "defaultBaseURL": "https://bedrock-runtime.<region>.amazonaws.com",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools"
+      ]
+    },
+    "baseten": {
+      "module": "./baseten/index.js",
+      "class": "BasetenTransport",
+      "defaultBaseURL": "https://model-{id}.api.baseten.co/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "baseten-ai": {
+      "module": "./baseten/index.js",
+      "class": "BasetenTransport",
+      "defaultBaseURL": "https://model-{id}.api.baseten.co/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "clarifai": {
+      "module": "./clarifai/index.js",
+      "class": "ClarifaiTransport",
+      "defaultBaseURL": "Custom endpoints",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "scaleway": {
+      "module": "./scaleway/index.js",
+      "class": "ScalewayTransport",
+      "defaultBaseURL": "https://api.scaleway.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "scaleway-generative-apis": {
+      "module": "./scaleway/index.js",
+      "class": "ScalewayTransport",
+      "defaultBaseURL": "https://api.scaleway.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "ovhcloud": {
+      "module": "./ovhcloud/index.js",
+      "class": "OvhcloudTransport",
+      "defaultBaseURL": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "ovh": {
+      "module": "./ovhcloud/index.js",
+      "class": "OvhcloudTransport",
+      "defaultBaseURL": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "ovhcloud-ai-endpoints": {
+      "module": "./ovhcloud/index.js",
+      "class": "OvhcloudTransport",
+      "defaultBaseURL": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "github-models": {
+      "module": "./github-models/index.js",
+      "class": "GithubModelsTransport",
+      "defaultBaseURL": "https://models.inference.ai.azure.com",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "github": {
+      "module": "./github-models/index.js",
+      "class": "GithubModelsTransport",
+      "defaultBaseURL": "https://models.inference.ai.azure.com",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "modal": {
+      "module": "./modal/index.js",
+      "class": "ModalTransport",
+      "defaultBaseURL": "https://<app>.modal.run/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "openrouter": {
+      "module": "./openrouter/index.js",
+      "class": "OpenrouterTransport",
+      "defaultBaseURL": "https://openrouter.ai/api/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "openrouter-ai": {
+      "module": "./openrouter/index.js",
+      "class": "OpenrouterTransport",
+      "defaultBaseURL": "https://openrouter.ai/api/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "or": {
+      "module": "./openrouter/index.js",
+      "class": "OpenrouterTransport",
+      "defaultBaseURL": "https://openrouter.ai/api/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "opper": {
+      "module": "./opper/index.js",
+      "class": "OpperTransport",
+      "defaultBaseURL": "https://api.opper.ai/v3/compat",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "opperai": {
+      "module": "./opper/index.js",
+      "class": "OpperTransport",
+      "defaultBaseURL": "https://api.opper.ai/v3/compat",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "axiom": {
+      "module": "./axiom/index.js",
+      "class": "AxiomTransport",
+      "defaultBaseURL": "https://cloud.axiomstudio.ai/rest/v1/llm-gateway/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "axiomstudio": {
+      "module": "./axiom/index.js",
+      "class": "AxiomTransport",
+      "defaultBaseURL": "https://cloud.axiomstudio.ai/rest/v1/llm-gateway/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "switchpoint": {
+      "module": "./switchpoint/index.js",
+      "class": "SwitchpointTransport",
+      "defaultBaseURL": "https://api.ppq.ai",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "ppq": {
+      "module": "./switchpoint/index.js",
+      "class": "SwitchpointTransport",
+      "defaultBaseURL": "https://api.ppq.ai",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "payperq": {
+      "module": "./switchpoint/index.js",
+      "class": "SwitchpointTransport",
+      "defaultBaseURL": "https://api.ppq.ai",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "relace": {
+      "module": "./relace/index.js",
+      "class": "RelaceTransport",
+      "defaultBaseURL": "https://api.relace.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "relaceai": {
+      "module": "./relace/index.js",
+      "class": "RelaceTransport",
+      "defaultBaseURL": "https://api.relace.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "moonshot": {
+      "module": "./moonshot/index.js",
+      "class": "MoonshotTransport",
+      "defaultBaseURL": "https://api.moonshot.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "vision",
+        "reasoning"
+      ]
+    },
+    "kimi": {
+      "module": "./moonshot/index.js",
+      "class": "MoonshotTransport",
+      "defaultBaseURL": "https://api.moonshot.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "vision",
+        "reasoning"
+      ]
+    },
+    "moonshot-ai": {
+      "module": "./moonshot/index.js",
+      "class": "MoonshotTransport",
+      "defaultBaseURL": "https://api.moonshot.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "vision",
+        "reasoning"
+      ]
+    },
+    "moonshotai": {
+      "module": "./moonshot/index.js",
+      "class": "MoonshotTransport",
+      "defaultBaseURL": "https://api.moonshot.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "vision",
+        "reasoning"
+      ]
+    },
+    "openinference": {
+      "module": "./openinference/index.js",
+      "class": "OpeninferenceTransport",
+      "defaultBaseURL": "Tracing / observability",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "wandb": {
+      "module": "./wandb/index.js",
+      "class": "WandbTransport",
+      "defaultBaseURL": "Evaluation registry",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "weights-and-biases": {
+      "module": "./wandb/index.js",
+      "class": "WandbTransport",
+      "defaultBaseURL": "Evaluation registry",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "perceptron": {
+      "module": "./perceptron/index.js",
+      "class": "PerceptronTransport",
+      "defaultBaseURL": "Custom gateway",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "perceptronai": {
+      "module": "./perceptron/index.js",
+      "class": "PerceptronTransport",
+      "defaultBaseURL": "Custom gateway",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "portkey": {
+      "module": "./portkey/index.js",
+      "class": "PortkeyTransport",
+      "defaultBaseURL": "https://api.portkey.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "portkeyai": {
+      "module": "./portkey/index.js",
+      "class": "PortkeyTransport",
+      "defaultBaseURL": "https://api.portkey.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "litellm": {
+      "module": "./litellm/index.js",
+      "class": "LitellmTransport",
+      "defaultBaseURL": "http://localhost:4000/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "berriai": {
+      "module": "./litellm/index.js",
+      "class": "LitellmTransport",
+      "defaultBaseURL": "http://localhost:4000/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "requesty": {
+      "module": "./requesty/index.js",
+      "class": "RequestyTransport",
+      "defaultBaseURL": "https://router.requesty.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "requestyai": {
+      "module": "./requesty/index.js",
+      "class": "RequestyTransport",
+      "defaultBaseURL": "https://router.requesty.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "unify": {
+      "module": "./unify/index.js",
+      "class": "UnifyTransport",
+      "defaultBaseURL": "https://api.unify.ai/v0",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "unifyai": {
+      "module": "./unify/index.js",
+      "class": "UnifyTransport",
+      "defaultBaseURL": "https://api.unify.ai/v0",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "helicone": {
+      "module": "./helicone/index.js",
+      "class": "HeliconeTransport",
+      "defaultBaseURL": "https://ai-gateway.helicone.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "helicone-ai": {
+      "module": "./helicone/index.js",
+      "class": "HeliconeTransport",
+      "defaultBaseURL": "https://ai-gateway.helicone.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "vercel-ai-gateway": {
+      "module": "./vercel-ai-gateway/index.js",
+      "class": "VercelAiGatewayTransport",
+      "defaultBaseURL": "https://ai-gateway.vercel.sh/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "vercel": {
+      "module": "./vercel-ai-gateway/index.js",
+      "class": "VercelAiGatewayTransport",
+      "defaultBaseURL": "https://ai-gateway.vercel.sh/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "cloudflare-ai-gateway": {
+      "module": "./cloudflare-ai-gateway/index.js",
+      "class": "CloudflareAiGatewayTransport",
+      "defaultBaseURL": "https://gateway.ai.cloudflare.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "cf-gateway": {
+      "module": "./cloudflare-ai-gateway/index.js",
+      "class": "CloudflareAiGatewayTransport",
+      "defaultBaseURL": "https://gateway.ai.cloudflare.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "kong-ai-gateway": {
+      "module": "./kong-ai-gateway/index.js",
+      "class": "KongAiGatewayTransport",
+      "defaultBaseURL": "Self-hosted / enterprise",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "kong": {
+      "module": "./kong-ai-gateway/index.js",
+      "class": "KongAiGatewayTransport",
+      "defaultBaseURL": "Self-hosted / enterprise",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "aimlapi": {
+      "module": "./aimlapi/index.js",
+      "class": "AimlapiTransport",
+      "defaultBaseURL": "https://api.aimlapi.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "ai-ml-api": {
+      "module": "./aimlapi/index.js",
+      "class": "AimlapiTransport",
+      "defaultBaseURL": "https://api.aimlapi.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "aiml": {
+      "module": "./aimlapi/index.js",
+      "class": "AimlapiTransport",
+      "defaultBaseURL": "https://api.aimlapi.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "eden-ai": {
+      "module": "./eden-ai/index.js",
+      "class": "EdenAiTransport",
+      "defaultBaseURL": "https://api.edenai.co/v2",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "edenai": {
+      "module": "./eden-ai/index.js",
+      "class": "EdenAiTransport",
+      "defaultBaseURL": "https://api.edenai.co/v2",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "lemondata": {
+      "module": "./lemondata/index.js",
+      "class": "LemondataTransport",
+      "defaultBaseURL": "https://api.lemondata.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "coze": {
+      "module": "./coze/index.js",
+      "class": "CozeTransport",
+      "defaultBaseURL": "https://api.coze.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "bytedance": {
+      "module": "./coze/index.js",
+      "class": "CozeTransport",
+      "defaultBaseURL": "https://api.coze.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "coze.com": {
+      "module": "./coze/index.js",
+      "class": "CozeTransport",
+      "defaultBaseURL": "https://api.coze.com/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "nlpcloud": {
+      "module": "./nlpcloud/index.js",
+      "class": "NlpcloudTransport",
+      "defaultBaseURL": "https://api.nlpcloud.io/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "nlp-cloud": {
+      "module": "./nlpcloud/index.js",
+      "class": "NlpcloudTransport",
+      "defaultBaseURL": "https://api.nlpcloud.io/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "puter": {
+      "module": "./puter/index.js",
+      "class": "PuterTransport",
+      "defaultBaseURL": "https://api.puter.com/ai/chat",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "puterjs": {
+      "module": "./puter/index.js",
+      "class": "PuterTransport",
+      "defaultBaseURL": "https://api.puter.com/ai/chat",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "ollama": {
+      "module": "./ollama/index.js",
+      "class": "OllamaTransport",
+      "defaultBaseURL": "http://localhost:11434",
+      "auth": "none",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "vision",
+        "embeddings",
+        "reasoning"
+      ]
+    },
+    "ollama-local": {
+      "module": "./ollama/index.js",
+      "class": "OllamaTransport",
+      "defaultBaseURL": "http://localhost:11434",
+      "auth": "none",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "vision",
+        "embeddings",
+        "reasoning"
+      ]
+    },
+    "lm-studio": {
+      "module": "./lm-studio/index.js",
+      "class": "LmStudioTransport",
+      "defaultBaseURL": "http://localhost:1234/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools"
+      ]
+    },
+    "lmstudio": {
+      "module": "./lm-studio/index.js",
+      "class": "LmStudioTransport",
+      "defaultBaseURL": "http://localhost:1234/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools"
+      ]
+    },
+    "llama-cpp": {
+      "module": "./llama-cpp/index.js",
+      "class": "LlamaCppTransport",
+      "defaultBaseURL": "http://localhost:8080/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools"
+      ]
+    },
+    "ggml": {
+      "module": "./llama-cpp/index.js",
+      "class": "LlamaCppTransport",
+      "defaultBaseURL": "http://localhost:8080/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools"
+      ]
+    },
+    "llama.cpp": {
+      "module": "./llama-cpp/index.js",
+      "class": "LlamaCppTransport",
+      "defaultBaseURL": "http://localhost:8080/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools"
+      ]
+    },
+    "llamacpp": {
+      "module": "./llama-cpp/index.js",
+      "class": "LlamaCppTransport",
+      "defaultBaseURL": "http://localhost:8080/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools"
+      ]
+    },
+    "jan": {
+      "module": "./jan/index.js",
+      "class": "JanTransport",
+      "defaultBaseURL": "http://localhost:1337/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "janai": {
+      "module": "./jan/index.js",
+      "class": "JanTransport",
+      "defaultBaseURL": "http://localhost:1337/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "vllm": {
+      "module": "./vllm/index.js",
+      "class": "VllmTransport",
+      "defaultBaseURL": "http://localhost:8000/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools"
+      ]
+    },
+    "localai": {
+      "module": "./localai/index.js",
+      "class": "LocalaiTransport",
+      "defaultBaseURL": "http://localhost:8080/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings"
+      ]
+    },
+    "302-ai": {
+      "module": "./302-ai/index.js",
+      "class": "_302AiTransport",
+      "defaultBaseURL": "https://api.302.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "302ai": {
+      "module": "./302-ai/index.js",
+      "class": "_302AiTransport",
+      "defaultBaseURL": "https://api.302.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "atomic-chat": {
+      "module": "./atomic-chat/index.js",
+      "class": "AtomicChatTransport",
+      "defaultBaseURL": "http://127.0.0.1:1337/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "atomicchat": {
+      "module": "./atomic-chat/index.js",
+      "class": "AtomicChatTransport",
+      "defaultBaseURL": "http://127.0.0.1:1337/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "azure-cognitive-services": {
+      "module": "./azure-cognitive-services/index.js",
+      "class": "AzureCognitiveServicesTransport",
+      "defaultBaseURL": "https://<resource>.cognitiveservices.azure.com/openai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "azure-cognitive": {
+      "module": "./azure-cognitive-services/index.js",
+      "class": "AzureCognitiveServicesTransport",
+      "defaultBaseURL": "https://<resource>.cognitiveservices.azure.com/openai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "azure-ai-services": {
+      "module": "./azure-cognitive-services/index.js",
+      "class": "AzureCognitiveServicesTransport",
+      "defaultBaseURL": "https://<resource>.cognitiveservices.azure.com/openai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "cortecs": {
+      "module": "./cortecs/index.js",
+      "class": "CortecsTransport",
+      "defaultBaseURL": "https://api.cortecs.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "cortecs-ai": {
+      "module": "./cortecs/index.js",
+      "class": "CortecsTransport",
+      "defaultBaseURL": "https://api.cortecs.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "frogbot": {
+      "module": "./frogbot/index.js",
+      "class": "FrogbotTransport",
+      "defaultBaseURL": "https://app.frogbot.ai/api",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "frogbot-ai": {
+      "module": "./frogbot/index.js",
+      "class": "FrogbotTransport",
+      "defaultBaseURL": "https://app.frogbot.ai/api",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "gitlab-duo": {
+      "module": "./gitlab-duo/index.js",
+      "class": "GitlabDuoTransport",
+      "defaultBaseURL": "https://gitlab.com/api/v4/ai",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "gitlab": {
+      "module": "./gitlab-duo/index.js",
+      "class": "GitlabDuoTransport",
+      "defaultBaseURL": "https://gitlab.com/api/v4/ai",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "duo-chat": {
+      "module": "./gitlab-duo/index.js",
+      "class": "GitlabDuoTransport",
+      "defaultBaseURL": "https://gitlab.com/api/v4/ai",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "github-copilot": {
+      "module": "./github-copilot/index.js",
+      "class": "GithubCopilotTransport",
+      "defaultBaseURL": "OAuth device flow (Copilot subscription)",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "copilot": {
+      "module": "./github-copilot/index.js",
+      "class": "GithubCopilotTransport",
+      "defaultBaseURL": "OAuth device flow (Copilot subscription)",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "gh-copilot": {
+      "module": "./github-copilot/index.js",
+      "class": "GithubCopilotTransport",
+      "defaultBaseURL": "OAuth device flow (Copilot subscription)",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "ollama-cloud": {
+      "module": "./ollama/index.js",
+      "class": "OllamaTransport",
+      "defaultBaseURL": "https://ollama.com/api",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "vision",
+        "embeddings"
+      ]
+    },
+    "ollama.com": {
+      "module": "./ollama/index.js",
+      "class": "OllamaTransport",
+      "defaultBaseURL": "https://ollama.com/api",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "vision",
+        "embeddings"
+      ]
+    },
+    "opencode-zen": {
+      "module": "./opencode-zen/index.js",
+      "class": "OpencodeZenTransport",
+      "defaultBaseURL": "https://opencode.ai/zen/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "zen": {
+      "module": "./opencode-zen/index.js",
+      "class": "OpencodeZenTransport",
+      "defaultBaseURL": "https://opencode.ai/zen/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "opencode": {
+      "module": "./opencode-zen/index.js",
+      "class": "OpencodeZenTransport",
+      "defaultBaseURL": "https://opencode.ai/zen/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "opencode-go": {
+      "module": "./opencode-go/index.js",
+      "class": "OpencodeGoTransport",
+      "defaultBaseURL": "https://opencode.ai/zen/go/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "opencode-go-plan": {
+      "module": "./opencode-go/index.js",
+      "class": "OpencodeGoTransport",
+      "defaultBaseURL": "https://opencode.ai/zen/go/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "llm-gateway": {
+      "module": "./llm-gateway/index.js",
+      "class": "LlmGatewayTransport",
+      "defaultBaseURL": "https://api.llmgateway.io/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "llmgateway": {
+      "module": "./llm-gateway/index.js",
+      "class": "LlmGatewayTransport",
+      "defaultBaseURL": "https://api.llmgateway.io/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "theopenco-llmgateway": {
+      "module": "./llm-gateway/index.js",
+      "class": "LlmGatewayTransport",
+      "defaultBaseURL": "https://api.llmgateway.io/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "sap-ai-core": {
+      "module": "./sap-ai-core/index.js",
+      "class": "SapAiCoreTransport",
+      "defaultBaseURL": "https://api.ai.<region>.<landscape>.ml.hana.ondemand.com/v2",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "sap-aicore": {
+      "module": "./sap-ai-core/index.js",
+      "class": "SapAiCoreTransport",
+      "defaultBaseURL": "https://api.ai.<region>.<landscape>.ml.hana.ondemand.com/v2",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "aicore": {
+      "module": "./sap-ai-core/index.js",
+      "class": "SapAiCoreTransport",
+      "defaultBaseURL": "https://api.ai.<region>.<landscape>.ml.hana.ondemand.com/v2",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "stackit": {
+      "module": "./stackit/index.js",
+      "class": "StackitTransport",
+      "defaultBaseURL": "https://api.openai-compat.model-serving.eu01.onstackit.cloud/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "stackit-ai": {
+      "module": "./stackit/index.js",
+      "class": "StackitTransport",
+      "defaultBaseURL": "https://api.openai-compat.model-serving.eu01.onstackit.cloud/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "stackit-model-serving": {
+      "module": "./stackit/index.js",
+      "class": "StackitTransport",
+      "defaultBaseURL": "https://api.openai-compat.model-serving.eu01.onstackit.cloud/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "snowflake-cortex": {
+      "module": "./snowflake-cortex/index.js",
+      "class": "SnowflakeCortexTransport",
+      "defaultBaseURL": "https://<account>.snowflakecomputing.com/api/v2/cortex/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "snowflake": {
+      "module": "./snowflake-cortex/index.js",
+      "class": "SnowflakeCortexTransport",
+      "defaultBaseURL": "https://<account>.snowflakecomputing.com/api/v2/cortex/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "cortex": {
+      "module": "./snowflake-cortex/index.js",
+      "class": "SnowflakeCortexTransport",
+      "defaultBaseURL": "https://<account>.snowflakecomputing.com/api/v2/cortex/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "zenmux": {
+      "module": "./zenmux/index.js",
+      "class": "ZenmuxTransport",
+      "defaultBaseURL": "https://zenmux.ai/api/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "zenmux-ai": {
+      "module": "./zenmux/index.js",
+      "class": "ZenmuxTransport",
+      "defaultBaseURL": "https://zenmux.ai/api/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "sakana-fugu": {
+      "module": "./sakana-fugu/index.js",
+      "class": "SakanaFuguTransport",
+      "defaultBaseURL": "https://api.sakana.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "sakana": {
+      "module": "./sakana-fugu/index.js",
+      "class": "SakanaFuguTransport",
+      "defaultBaseURL": "https://api.sakana.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "sakana-ai": {
+      "module": "./sakana-fugu/index.js",
+      "class": "SakanaFuguTransport",
+      "defaultBaseURL": "https://api.sakana.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "fugu": {
+      "module": "./sakana-fugu/index.js",
+      "class": "SakanaFuguTransport",
+      "defaultBaseURL": "https://api.sakana.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "prism-api": {
+      "module": "./prism-api/index.js",
+      "class": "PrismApiTransport",
+      "defaultBaseURL": "https://sub2api.558686.xyz/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "sub2api": {
+      "module": "./prism-api/index.js",
+      "class": "PrismApiTransport",
+      "defaultBaseURL": "https://sub2api.558686.xyz/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "gpt55": {
+      "module": "./prism-api/index.js",
+      "class": "PrismApiTransport",
+      "defaultBaseURL": "https://sub2api.558686.xyz/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "bedrock-aws": {
+      "module": "./_bedrock-aws/converse.js",
+      "class": "BedrockAWSTransport",
+      "defaultBaseURL": "https://bedrock-runtime.us-east-1.amazonaws.com",
+      "auth": "header",
+      "authHeader": "authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "vision",
+        "reasoning",
+        "prompt-cache"
+      ]
+    },
+    "bedrock-converse": {
+      "module": "./_bedrock-aws/converse.js",
+      "class": "BedrockAWSTransport",
+      "defaultBaseURL": "https://bedrock-runtime.us-east-1.amazonaws.com",
+      "auth": "header",
+      "authHeader": "authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "openai-compatible": {
+      "module": "./openai-compatible/index.js",
+      "class": "OpenAICompatibleTransport",
+      "defaultBaseURL": null,
+      "auth": "bearer",
+      "authHeader": "Authorization"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "name": "aiplug",
+  "version": "0.1.0",
+  "description": "AIPlug core runtime — typed foundation for transport-pluggable AI clients.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json",
+    "./data/registry.json": "./data/registry.json"
+  },
+  "bin": {
+    "aiplug": "dist/cli/index.js"
+  },
+  "files": [
+    "dist",
+    "data",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "test": "node --import tsx --test 'src/__tests__/**/*.test.ts'",
+    "build:registry": "tsx scripts/build-registry.ts",
+    "dev": "npm run build:registry && tsc -p tsconfig.json --watch",
+    "smoke": "tsx scripts/smoke.ts",
+    "smoke:e2e": "tsx scripts/smoke-e2e.ts"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  },
+  "dependencies": {
+    "yaml": "^2.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
