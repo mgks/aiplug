@@ -1,7 +1,7 @@
 {
   "name": "aiplug",
   "version": "0.1.0",
-  "description": "AIPlug core runtime — typed foundation for transport-pluggable AI clients.",
+  "description": "A lightweight runtime that unifies 110+ AI providers behind a single, OpenAI-compatible API.",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -42,5 +42,46 @@
     "@types/node": "^22.20.0",
     "tsx": "^4.22.5",
     "typescript": "^5.9.3"
-  }
+  },
+  "keywords": [
+    "memoryblock",
+    "mblk",
+    "ai-agent",
+    "assistants",
+    "agents",
+    "automation",
+    "multi-agent",
+    "agentic-framework",
+    "core",
+    "cli",
+    "framework",
+    "interface",
+    "channels",
+    "adapters",
+    "tools",
+    "skills",
+    "local-ai",
+    "local-llm",
+    "openai",
+    "anthropic",
+    "gemini",
+    "groq",
+    "chatgpt",
+    "deepseek",
+    "ollama"
+  ],
+  "author": {
+    "name": "Ghazi",
+    "url": "https://mgks.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mgks/aiplug.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mgks/aiplug/issues"
+  },
+  "homepage": "https://mgks.dev",
+  "funding": "https://github.com/sponsors/mgks",
+  "license": "MIT"
 }
