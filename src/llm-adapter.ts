@@ -208,8 +208,12 @@ export interface LLMAdapterConfig {
   model: string;
   apiKey?: string;
   baseURL?: string;
-  /** Pass-through transport options. */
-  options?: Omit<AIPlugOptions, 'transport'>;
+  /**
+   * Pass-through transport options. Accepts the full aiplug config minus
+   * `transport` (which is set from `provider` above). Use this to forward
+   * `providerOptions`, `headers`, `timeoutMs`, etc.
+   */
+  options?: Omit<import('./types.js').AiplugConfig, 'transport' | 'apiKey' | 'baseURL' | 'model'>;
 }
 
 export function createLLMAdapter(config: LLMAdapterConfig): LLMAdapter {
@@ -218,7 +222,8 @@ export function createLLMAdapter(config: LLMAdapterConfig): LLMAdapter {
     ...(config.apiKey !== undefined ? { apiKey: config.apiKey } : {}),
     ...(config.baseURL !== undefined ? { baseURL: config.baseURL } : {}),
     model: config.model,
-  }, config.options ?? {});
+    ...(config.options ?? {}),
+  });
 
   const adapter: LLMAdapter = {
     provider: config.provider,

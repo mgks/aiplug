@@ -387,6 +387,8 @@ export interface AIPlugErrorSnapshot {
   message: string;
   status?: number;
   retryable: boolean;
+  /** Provider slug the error originated from. */
+  provider?: string;
 }
 
 /* ---------------------------------------------------------------------------

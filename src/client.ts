@@ -35,6 +35,13 @@ import type {
 import { AIPlugError, makeError } from './errors.js';
 import { Transport } from './transport.js';
 import { getEntry, loadTransport, type LoadedTransport } from './registry.js';
+import {
+  configSchema,
+  describeProvider,
+  listProviders,
+  type ProviderConfigSchema,
+  type ProviderDescriptor,
+} from './introspect.js';
 
 /** Construction-time options that are NOT part of `AiplugConfig`. */
 export interface AIPlugOptions {
@@ -185,6 +192,44 @@ export class AIPlug {
     if (entry.authHeader) meta.authHeader = entry.authHeader;
     if (entry.defaultBaseURL !== null) meta.defaultBaseURL = entry.defaultBaseURL;
     return meta;
+  }
+
+  /* ---------------------------------------------------------------------------
+   * Provider introspection
+   *
+   * Synchronous, registry-only — never instantiates a transport. Safe to
+   * call before any credentials are configured, so a host UI can list
+   * providers + render the right config form at startup.
+   * --------------------------------------------------------------------------- */
+
+  /** Every provider aiplug knows about, sorted by category then name. */
+  static providers(): ProviderDescriptor[] {
+    return listProviders();
+  }
+
+  /** Single provider descriptor. Throws on unknown slug. */
+  static describeProvider(slug: string): ProviderDescriptor {
+    return describeProvider(slug);
+  }
+
+  /**
+   * Field-level schema for the configuration UI. Tells the host which
+   * fields to render (with type, label, required/optional, env-var
+   * fallback, secret flag).
+   */
+  static configSchema(slug: string): ProviderConfigSchema {
+    return configSchema(slug);
+  }
+
+  /**
+   * Auto-detect which providers + local runtimes are reachable on this
+   * machine. Scans process env, common dotenv files, the AWS shared
+   * credentials file, and probes known local-runtime HTTP ports. Never
+   * returns credential values — just presence + a masked prefix.
+   */
+  static async detect(): Promise<import('./detect.js').DetectionReport> {
+    const { detect } = await import('./detect.js');
+    return detect();
   }
 }
 

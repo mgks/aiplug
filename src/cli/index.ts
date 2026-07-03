@@ -9,6 +9,7 @@
  *   transport add <name> | remove <name> | list | test <name> | use <name>
  *   models
  *   config
+ *   detect
  *   status [--live]
  *   serve [--port=3711] [--host=127.0.0.1]
  *   health
@@ -25,6 +26,7 @@ import { cmdTransportTest } from './commands/transport-test.js';
 import { cmdTransportUse } from './commands/transport-use.js';
 import { cmdModels } from './commands/models.js';
 import { cmdConfig } from './commands/config.js';
+import { cmdDetect } from './commands/detect.js';
 import { cmdStatus } from './commands/status.js';
 import { cmdServe } from './commands/serve.js';
 import { cmdHealth } from './commands/health.js';
@@ -99,6 +101,9 @@ async function main(): Promise<void> {
         return;
       case 'config':
         await cmdConfig({ json });
+        return;
+      case 'detect':
+        await cmdDetect({ json });
         return;
       case 'status':
         await cmdStatus({ json, args: rest });

@@ -2,7 +2,7 @@
  * aiplug transport add <name> [--api-key=...] [--base-url=...] [--model=...]
  */
 
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { globalConfigDir } from '../../config.js';
 import { getEntry, listTransportNames } from '../../registry.js';
 import { printOK, print, makeOutput, printError, hasFlag, readArg } from '../output.js';
@@ -33,8 +33,7 @@ function readGlobal(): GlobalConfig {
 function writeGlobal(cfg: GlobalConfig): void {
   const dir = globalConfigDir();
   if (!existsSync(dir)) {
-    // lazy mkdir
-    require('node:fs').mkdirSync(dir, { recursive: true });
+    mkdirSync(dir, { recursive: true });
   }
   const file = `${dir}/config.json`;
   writeFileSync(file, JSON.stringify(cfg, null, 2), 'utf-8');

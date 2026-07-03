@@ -69,3 +69,12 @@ export {
   type StopReason,
   type TokenUsage,
 } from './llm-adapter.js';
+export {
+  listProviders,
+  describeProvider,
+  configSchema,
+  type ProviderDescriptor,
+  type ProviderConfigSchema,
+  type ConfigField,
+  type ConfigFieldKind,
+} from './introspect.js';

@@ -14,12 +14,19 @@
  *   POST /v1/audio/transcriptions
  *   GET  /v1/models
  *   GET  /healthz
+ *   GET  /v1/providers          (provider list — for host UIs)
+ *   GET  /v1/providers/:slug    (single provider config schema)
  */
 
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import { loadTransport } from '../registry.js';
 import { readGlobal } from '../cli/commands/transport-shared.js';
 import { makeError } from '../errors.js';
+import {
+  configSchema,
+  describeProvider,
+  listProviders,
+} from '../introspect.js';
 import type { AiplugConfig, ChatRequest, ImageRequest, AudioRequest, TranscriptionRequest, EmbeddingsRequest } from '../types.js';
 import type { Transport } from '../transport.js';
 
@@ -420,6 +427,30 @@ export async function startServer(opts: ServeOptions): Promise<import('node:http
 
       if (req.method !== 'POST') {
         if (pathname === '/v1/models' && req.method === 'GET') return handleModels(ctx, res);
+        if (pathname === '/v1/providers' && req.method === 'GET') {
+          sendJSON(res, 200, { providers: listProviders() });
+          return;
+        }
+        if (pathname === '/v1/detect' && req.method === 'GET') {
+          // Auto-detect providers and local runtimes. Time-bound scan
+          // (~1s per probe); safe to call from any UI surface.
+          const { detect } = await import('../detect.js');
+          sendJSON(res, 200, await detect());
+          return;
+        }
+        if (pathname?.startsWith('/v1/providers/') && req.method === 'GET') {
+          const slug = decodeURIComponent(pathname.slice('/v1/providers/'.length));
+          try {
+            sendJSON(res, 200, {
+              descriptor: describeProvider(slug),
+              config: configSchema(slug),
+            });
+          } catch (err) {
+            const e = err as { code?: string; message?: string; status?: number };
+            sendError(res, e.status ?? 404, e.code ?? 'not_found', e.message ?? 'unknown provider');
+          }
+          return;
+        }
         sendError(res, 405, 'method_not_allowed', `Method ${req.method} not allowed`);
         return;
       }

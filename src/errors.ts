@@ -180,9 +180,19 @@ export class AIPlugError extends Error {
     if (init.cause !== undefined) this.cause = redactCause(init.cause);
   }
 
+  /**
+   * User-facing provider slug (e.g. `'minimax'`, `'bedrock-aws'`). For aiplug
+   * the provider slug and transport name are the same, so this is an alias
+   * for `transport` kept on the error for clarity at call sites.
+   */
+  get provider(): string {
+    return this.transport;
+  }
+
   /** Plain-data view, suitable for logs / transport across boundaries. */
   toSnapshot(): AIPlugErrorSnapshot {
-    return snapshotError(this);
+    const snap = snapshotError(this);
+    return { ...snap, provider: this.transport };
   }
 }
 
