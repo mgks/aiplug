@@ -49,7 +49,7 @@ jobs:
         run: npm run typecheck
 
       - name: Tests
-        run: npm test
+        run: find src/__tests__ -name "*.test.ts" -print0 | xargs -0 npx tsx --test
 
       - name: Smoke
         if: success()
