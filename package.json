@@ -26,7 +26,7 @@
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc --noEmit",
     "lint": "tsc --noEmit",
-    "test": "node --import tsx --test 'src/__tests__/**/*.test.ts'",
+    "test": "tsx --test src/__tests__/**/*.test.ts",
     "build:registry": "tsx scripts/build-registry.ts",
     "dev": "npm run build:registry && tsc -p tsconfig.json --watch",
     "smoke": "tsx scripts/smoke.ts",
