@@ -17,6 +17,20 @@
  * Global flags: --json, --help
  */
 
+// Top-level error boundary. Any uncaught throw or unhandled rejection
+// exits non-zero. Without this, a missing await or a thrown init
+// error would print a stack trace and exit 0.
+process.on('uncaughtException', (err) => {
+    console.error(`Fatal: ${err instanceof Error ? err.message : String(err)}`);
+    if (process.env['VERBOSE']) console.error(err instanceof Error ? err.stack : '');
+    process.exit(1);
+});
+process.on('unhandledRejection', (reason) => {
+    console.error(`Fatal: ${reason instanceof Error ? reason.message : String(reason)}`);
+    if (process.env['VERBOSE']) console.error(reason instanceof Error ? reason.stack : '');
+    process.exit(1);
+});
+
 import { printError } from './output.js';
 import { cmdInit } from './commands/init.js';
 import { cmdTransportAdd } from './commands/transport-add.js';
