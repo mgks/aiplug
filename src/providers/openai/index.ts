@@ -283,7 +283,17 @@ export class OpenAITransport extends Transport {
 
   override async *stream(req: ChatRequest, signal?: AbortSignal): AsyncIterableIterator<StreamChunk> {
     requireModel(this.config);
-    const body = { ...this.buildBody(req), stream: true };
+    // OpenAI (and any OpenAI-compatible server) requires an explicit
+    // `stream_options.include_usage` flag to surface token counts in the
+    // final streaming chunk. Without it the cost-tracker sees zero usage
+    // for every streamed turn. The flag is part of the OpenAI streaming
+    // spec, so compatible servers (Together, Groq, OpenRouter, DeepSeek,
+    // minimax, Moonshot, llama.cpp server, vLLM, …) all honour it.
+    const body = {
+      ...this.buildBody(req),
+      stream: true,
+      stream_options: { include_usage: true },
+    };
     const url = `${this.baseURL}/chat/completions`;
     const headers = { ...this.authHeaders, 'content-type': 'application/json', ...this.config.headers };
     let res: Response;
