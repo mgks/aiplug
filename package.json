@@ -1,6 +1,6 @@
 {
   "name": "aiplug",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A lightweight runtime that unifies 110+ AI providers behind a single, OpenAI-compatible API.",
   "type": "module",
   "main": "dist/index.js",
@@ -42,6 +42,10 @@
     "@types/node": "^22.20.0",
     "tsx": "^4.22.5",
     "typescript": "^5.9.3"
+  },
+  "allowScripts": {
+    "esbuild": true,
+    "fsevents": true
   },
   "keywords": [
     "memoryblock",
