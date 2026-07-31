@@ -41,23 +41,12 @@ interface MetaFile {
   >;
 }
 
-let cachedMeta: MetaFile | null = null;
+import metaData from '../data/registry.meta.json' with { type: 'json' };
 
-function defaultMetaPath(): string {
-  const here = dirname(fileURLToPath(import.meta.url));
-  return pathResolve(here, '..', 'data', 'registry.meta.json');
-}
+let cachedMeta: MetaFile | null = metaData as unknown as MetaFile;
 
 function loadMeta(): MetaFile | null {
-  if (cachedMeta) return cachedMeta;
-  const path = defaultMetaPath();
-  if (!existsSync(path)) return null;
-  try {
-    cachedMeta = JSON.parse(readFileSync(path, 'utf-8')) as MetaFile;
-    return cachedMeta;
-  } catch {
-    return null;
-  }
+  return cachedMeta;
 }
 
 /** Test-only override for `registry.meta.json` resolution. */
