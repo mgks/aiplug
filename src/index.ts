@@ -73,6 +73,7 @@ export {
   listProviders,
   describeProvider,
   configSchema,
+  type ListProvidersOptions,
   type ProviderDescriptor,
   type ProviderConfigSchema,
   type ConfigField,

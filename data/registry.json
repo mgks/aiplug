@@ -647,6 +647,34 @@
         "reasoning"
       ]
     },
+    "minimax-cn": {
+      "module": "./minimax/index.js",
+      "class": "MinimaxTransport",
+      "defaultBaseURL": "https://api.minimax.chat/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "vision",
+        "reasoning"
+      ]
+    },
+    "minimax-intl": {
+      "module": "./minimax/index.js",
+      "class": "MinimaxTransport",
+      "defaultBaseURL": "https://api.minimaxi.chat/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "vision",
+        "reasoning"
+      ]
+    },
     "minimax-ai": {
       "module": "./minimax/index.js",
       "class": "MinimaxTransport",

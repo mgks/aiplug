@@ -270,7 +270,7 @@
   },
   {
     "id": 15,
-    "name": "MiniMax",
+    "name": "MiniMax (Token Plan)",
     "slug": "minimax",
     "aliases": [
       "minimax-ai"
@@ -286,6 +286,38 @@
     "env_variable": "MINIMAX_API_KEY",
     "openai_compatible": true,
     "notes": "OpenAI + Anthropic compatible; agentic"
+  },
+  {
+    "id": 151,
+    "name": "MiniMax China",
+    "slug": "minimax-cn",
+    "category": "Frontier",
+    "website": "https://platform.minimax.chat",
+    "api_base_url": "https://api.minimax.chat/v1",
+    "popular_models": [
+      "MiniMax-M3",
+      "MiniMax-M2.1",
+      "MiniMax-M2"
+    ],
+    "env_variable": "MINIMAX_API_KEY",
+    "openai_compatible": true,
+    "notes": "China region endpoint (api.minimax.chat)"
+  },
+  {
+    "id": 152,
+    "name": "MiniMax International",
+    "slug": "minimax-intl",
+    "category": "Frontier",
+    "website": "https://platform.minimaxi.chat",
+    "api_base_url": "https://api.minimaxi.chat/v1",
+    "popular_models": [
+      "MiniMax-M3",
+      "MiniMax-M2.1",
+      "MiniMax-M2"
+    ],
+    "env_variable": "MINIMAX_API_KEY",
+    "openai_compatible": true,
+    "notes": "International endpoint (api.minimaxi.chat)"
   },
   {
     "id": 16,

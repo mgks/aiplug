@@ -11,9 +11,6 @@
  * data + meta. Safe to call before any credentials are configured.
  */
 
-import { existsSync, readFileSync } from 'node:fs';
-import { dirname, resolve as pathResolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { getEntry, getRegistry, listTransportNames } from './registry.js';
 import { makeError } from './errors.js';
 import type { Capability } from './types.js';
@@ -69,6 +66,8 @@ export interface ProviderDescriptor {
   isAlias: boolean;
   /** Default upstream base URL (provider-distributed). */
   defaultBaseURL: string | null;
+  /** Extracted API hostname, e.g. `'api.openai.com'`, `'api.minimax.io'`. */
+  apiHost?: string | null;
   /** Auth scheme: `'bearer'`, `'x-api-key'`, `'header'`, or `'none'`. */
   auth: 'bearer' | 'x-api-key' | 'header' | 'none';
   /** Custom auth header name when `auth === 'header'`. */
@@ -210,21 +209,47 @@ function fieldsForAuth(
  * Public API
  * --------------------------------------------------------------------------- */
 
+export interface ListProvidersOptions {
+  /** Filter by category, e.g. `'Frontier'`, `'Cloud'`, `'IaaS'`, `'Local'`, `'Embedding'`. */
+  category?: string;
+  /** Filter popular / frontier providers only. */
+  popularOnly?: boolean;
+  /** Exclude alias entries (e.g. `'chatgpt'`, `'claude'`) leaving only primary slugs. */
+  excludeAliases?: boolean;
+  /** Maximum number of providers to return. */
+  limit?: number;
+}
+
 /**
  * Return every provider aiplug knows about, sorted by category then name.
  * Cheap — reads cached registry + meta; never instantiates a transport.
  */
-export function listProviders(): ProviderDescriptor[] {
+export function listProviders(options?: ListProvidersOptions): ProviderDescriptor[] {
   const reg = getRegistry();
   const meta = loadMeta();
-  const out: ProviderDescriptor[] = [];
+  let out: ProviderDescriptor[] = [];
   for (const slug of listTransportNames()) {
     out.push(describeProviderInternal(slug, reg, meta));
+  }
+  if (options?.excludeAliases || options?.popularOnly) {
+    out = out.filter((p) => !p.isAlias);
+  }
+  if (options?.category) {
+    const cat = options.category.toLowerCase();
+    out = out.filter((p) => p.category.toLowerCase() === cat);
+  }
+  if (options?.popularOnly) {
+    out = out.filter(
+      (p) => p.category === 'Frontier' || (p.popularModels && p.popularModels.length > 0)
+    );
   }
   out.sort((a, b) => {
     if (a.category !== b.category) return a.category.localeCompare(b.category);
     return a.displayName.localeCompare(b.displayName);
   });
+  if (options?.limit && options.limit > 0) {
+    out = out.slice(0, options.limit);
+  }
   return out;
 }
 
@@ -253,12 +278,22 @@ function describeProviderInternal(
     .map((p) => (p[0] ?? '').toUpperCase() + p.slice(1))
     .join(' ');
   const capabilities = (entry.capabilities as Capability[] | undefined) ?? [];
+  let apiHost: string | null = null;
+  if (entry.defaultBaseURL && /^https?:\/\//i.test(entry.defaultBaseURL)) {
+    try {
+      apiHost = new URL(entry.defaultBaseURL).hostname;
+    } catch {
+      apiHost = entry.defaultBaseURL;
+    }
+  }
+
   const out: ProviderDescriptor = {
     slug,
     displayName: m?.displayName ?? fallbackName,
     category: m?.category ?? 'Other',
     isAlias: m?.isAlias ?? false,
     defaultBaseURL: entry.defaultBaseURL,
+    apiHost,
     auth: entry.auth,
     openaiCompatible: m?.openaiCompatible ?? true,
     capabilities,

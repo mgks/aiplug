@@ -50,7 +50,16 @@ export function __setRegistryPathForTests(path: string | null): void {
 }
 
 function defaultRegistryPath(): string {
-  const here = dirname(fileURLToPath(import.meta.url));
+  let url = 'file:///app/index.js';
+  try {
+    const metaUrl = (typeof import.meta !== 'undefined' && import.meta) ? (import.meta as any).url : undefined;
+    if (typeof metaUrl === 'string' && metaUrl.startsWith('file:')) {
+      url = metaUrl;
+    } else if (typeof __filename === 'string' && __filename) {
+      url = 'file://' + __filename;
+    }
+  } catch {}
+  const here = dirname(fileURLToPath(url));
   return pathResolve(here, '..', 'data', 'registry.json');
 }
 
@@ -149,10 +158,36 @@ function validateRegistry(parsed: unknown): asserts parsed is RegistryFile {
   }
 }
 
+import rawRegistryData from '../data/registry.json' with { type: 'json' };
+
+const BUILTIN_IMPORTS: Record<string, () => Promise<any>> = {
+  minimax: () => import('./providers/minimax/index.js'),
+  'minimax-cn': () => import('./providers/minimax/index.js'),
+  'minimax-intl': () => import('./providers/minimax/index.js'),
+  openai: () => import('./providers/openai/index.js'),
+  anthropic: () => import('./providers/anthropic/index.js'),
+  gemini: () => import('./providers/gemini/index.js'),
+  deepseek: () => import('./providers/deepseek/index.js'),
+  zhipu: () => import('./providers/zhipu/index.js'),
+  'openai-compatible': () => import('./providers/openai-compatible/index.js'),
+  openrouter: () => import('./providers/openrouter/index.js'),
+  groq: () => import('./providers/groq/index.js'),
+  mistral: () => import('./providers/mistral/index.js'),
+  ollama: () => import('./providers/ollama/index.js'),
+  cohere: () => import('./providers/cohere/index.js'),
+  together: () => import('./providers/together/index.js'),
+  xai: () => import('./providers/xai/index.js'),
+  cerebras: () => import('./providers/cerebras/index.js'),
+  fireworks: () => import('./providers/fireworks/index.js'),
+};
+
 /** Return the parsed registry (cached). */
 export function getRegistry(): RegistryFile {
-  if (!cachedRegistry) cachedRegistry = loadRegistryFile();
-  return cachedRegistry;
+  if (REGISTRY_PATH_OVERRIDE) {
+    if (!cachedRegistry) cachedRegistry = loadRegistryFile();
+    return cachedRegistry;
+  }
+  return rawRegistryData as unknown as RegistryFile;
 }
 
 export function getEntry(name: string): RegistryEntry {
@@ -188,8 +223,11 @@ export function __setImporterForTests(importer: ModuleImporter | null): void {
   IMPORTER_OVERRIDE = importer;
 }
 
-async function dynamicImport(specifier: string): Promise<Record<string, unknown>> {
+async function dynamicImport(specifier: string, transportName?: string): Promise<Record<string, unknown>> {
   if (IMPORTER_OVERRIDE) return IMPORTER_OVERRIDE(specifier);
+  if (transportName && BUILTIN_IMPORTS[transportName]) {
+    return await BUILTIN_IMPORTS[transportName]();
+  }
   return (await import(specifier)) as Record<string, unknown>;
 }
 
@@ -200,17 +238,7 @@ export interface LoadedTransport {
 }
 
 /**
- * Instantiate a transport by name. Performs:
- *   1. Look up the entry in `data/registry.json`.
- *   2. Resolve the `module` path relative to the package root.
- *   3. Dynamic `import()` of that module (cached by Node's loader).
- *   4. Pull the named `class` off the module's exports.
- *   5. Merge `instanceConfig` with the entry's `defaultBaseURL` if the
- *      user didn't supply one.
- *   6. Construct with the merged config.
- *
- * Throws `TRANSPORT_UNAVAILABLE` if the transport can't be located, or
- * `INVALID_CONFIGURATION` if the module doesn't export the expected class.
+ * Instantiate a transport by name.
  */
 export async function loadTransport(
   name: string,
@@ -220,7 +248,7 @@ export async function loadTransport(
   const modulePath = resolveModulePath(entry.module);
   let mod: Record<string, unknown>;
   try {
-    mod = await dynamicImport(modulePath);
+    mod = await dynamicImport(modulePath, name);
   } catch (err) {
     throw makeError({
       code: 'TRANSPORT_UNAVAILABLE',
@@ -282,7 +310,16 @@ function resolveModulePath(moduleSpecifier: string): string {
   if (moduleSpecifier.startsWith('./') || moduleSpecifier.startsWith('../')) {
     // registry.js lives at dist/registry.js at runtime. The compiled
     // provider modules are next to it: dist/providers/<name>/index.js.
-    const here = dirname(fileURLToPath(import.meta.url));
+    let url = 'file:///app/index.js';
+    try {
+      const metaUrl = (typeof import.meta !== 'undefined' && import.meta) ? (import.meta as any).url : undefined;
+      if (typeof metaUrl === 'string' && metaUrl.startsWith('file:')) {
+        url = metaUrl;
+      } else if (typeof __filename === 'string' && __filename) {
+        url = 'file://' + __filename;
+      }
+    } catch {}
+    const here = dirname(fileURLToPath(url));
     const providersRoot = pathResolve(here, 'providers');
     return pathResolve(providersRoot, moduleSpecifier.replace(/^\.\//, ''));
   }

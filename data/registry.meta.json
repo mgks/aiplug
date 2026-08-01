@@ -498,7 +498,7 @@
       "isAlias": true
     },
     "minimax": {
-      "displayName": "MiniMax",
+      "displayName": "MiniMax (Token Plan)",
       "category": "Frontier",
       "popularModels": [
         "MiniMax-M3",
@@ -507,6 +507,30 @@
       ],
       "envVar": "MINIMAX_API_KEY",
       "notes": "OpenAI + Anthropic compatible; agentic",
+      "openaiCompatible": true
+    },
+    "minimax-cn": {
+      "displayName": "MiniMax China",
+      "category": "Frontier",
+      "popularModels": [
+        "MiniMax-M3",
+        "MiniMax-M2.1",
+        "MiniMax-M2"
+      ],
+      "envVar": "MINIMAX_API_KEY",
+      "notes": "China region endpoint (api.minimax.chat)",
+      "openaiCompatible": true
+    },
+    "minimax-intl": {
+      "displayName": "MiniMax International",
+      "category": "Frontier",
+      "popularModels": [
+        "MiniMax-M3",
+        "MiniMax-M2.1",
+        "MiniMax-M2"
+      ],
+      "envVar": "MINIMAX_API_KEY",
+      "notes": "International endpoint (api.minimaxi.chat)",
       "openaiCompatible": true
     },
     "minimax-ai": {

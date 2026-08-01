@@ -28,6 +28,15 @@ describe('introspect', () => {
     }
   });
 
+  it('listProviders supports category, popularOnly, and limit filters', () => {
+    const popular = listProviders({ popularOnly: true });
+    assert.ok(popular.length > 0 && popular.length < listProviders().length);
+    const limited = listProviders({ limit: 5 });
+    assert.equal(limited.length, 5);
+    const frontier = listProviders({ category: 'Frontier' });
+    assert.ok(frontier.every((p) => p.category.toLowerCase() === 'frontier'));
+  });
+
   it('describeProvider(minimax) returns the canonical MiniMax descriptor', () => {
     const d = describeProvider('minimax');
     assert.equal(d.slug, 'minimax');

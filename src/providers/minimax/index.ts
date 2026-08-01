@@ -54,14 +54,10 @@ function isReasoningCapable(modelId: string): boolean {
 
 export class MinimaxTransport extends OpenAICompatibleTransport {
   constructor(config: ProviderConfig) {
-    if (!config.baseURL) {
-      throw makeError({
-        code: 'INVALID_CONFIGURATION',
-        transport: 'minimax',
-        message: 'Transport "minimax" requires a baseURL',
-      });
-    }
-    super(config);
+    super({
+      ...config,
+      baseURL: config.baseURL || DEFAULT_BASE_URL
+    });
   }
 
   override capabilities(): TransportMetadata {
