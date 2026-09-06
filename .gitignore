@@ -136,3 +136,4 @@ dist
 .pnp.*
 
 .api-token
+.DS_Store
