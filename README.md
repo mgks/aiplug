@@ -1,24 +1,21 @@
-# AIPlug
-
 <div align="center">
+<h1>AIPlug</h1>
 
 [![npm version](https://img.shields.io/npm/v/aiplug?color=blue)](https://www.npmjs.com/package/aiplug)
-[![license](https://img.shields.io/github/license/memoryblock-io/aiplug)](LICENSE)
+[![license](https://img.shields.io/github/license/mgks/aiplug)](LICENSE)
 [![tests](https://img.shields.io/badge/tests-27%20passing-brightgreen)](package.json)
 [![providers](https://img.shields.io/badge/providers-490%2B-blueviolet)](PROVIDERS.md)
 
 [**Quick Start**](#quick-start) •
 [**CLI**](#cli) •
-[**Programmatic API**](#programmatic-api) •
-[**Providers Directory (490+)**](PROVIDERS.md) •
+[**API**](#programmatic-api) •
+[**Providers List**](PROVIDERS.md) •
 [**Streaming & Fallback**](#features--capabilities) •
 [**HTTP Gateway**](#http-gateway-server) •
-[**Sponsors**](#sponsors--support) •
-[**Contributing**](#contributing)
+[**Sponsors**](#sponsors--support)
 
+<p>A lightweight, dependency-free TypeScript runtime that gives every AI backend one identical face. AIPlug is a <b>universal transport layer</b> - point any OpenAI-compatible SDK at AIPlug and switch the underlying provider with one config line.</p>
 </div>
-
-A lightweight, dependency-free TypeScript runtime that gives every AI backend one identical face. AIPlug is a **universal transport layer** — point any OpenAI-compatible SDK at AIPlug and switch the underlying provider with one config line.
 
 ```ts
 import OpenAI from 'openai';
@@ -58,7 +55,9 @@ npm run build
 ./dist/cli/index.js serve
 ```
 
-Then point any OpenAI SDK at `http://localhost:3711/v1`. **The application code doesn't change** when you switch providers — only the `aiplug transport use` line.
+Then point any OpenAI SDK at `http://localhost:3711/v1`.
+
+**The application code doesn't change** when you switch providers — only the `aiplug transport use` line.
 
 ## CLI
 
