@@ -32,9 +32,10 @@ const client = new OpenAI({
 // depending on what you set with `aiplug transport use anthropic`.
 ```
 
-Built on three principles:
+Built on four principles:
 
 - **Zero runtime dependencies** beyond `yaml` (≈ 80 kB).
+- **Zero artificial limits.** No turn limits, no tool caps, no autonomous loops — your application controls the conversation budget.
 - **No hidden retries, no hidden routing, no automatic model selection.** You say what you want, AIPlug sends it.
 - **One folder per provider.** Adding a new provider is a five-minute copy-paste.
 
@@ -472,14 +473,17 @@ Every transport is dynamically `import()`-ed on first use. Nothing is bundled in
 
 The codebase will not introduce any of the following without a major version bump:
 
-- Per-request token counting or rate limiting
-- Per-request retries (deliberate — wrap the client if you need them)
-- Per-request capability re-detection
-- Per-request logging or telemetry hooks
-- Per-request redaction or sanitisation of the request body
-- Per-request config re-resolution
+- **Turn or message limits**: You can pass as many turns or messages as the upstream model's context window accepts.
+- **Tool call limits or caps**: No limits on the number of tool definitions or emitted tool calls (including parallel tool calls).
+- **Autonomous agent loops or recursive retries**: `aiplug` never auto-executes tools or loops on itself. Turn iteration and tool execution loops live entirely in your application.
+- **Per-request token counting or rate limiting**
+- **Per-request retries** (deliberate — use middleware or wrap the client if needed)
+- **Per-request capability re-detection**
+- **Per-request logging or telemetry hooks**
+- **Per-request redaction or sanitisation of the request body**
+- **Per-request config re-resolution**
 
-If you need any of those, wrap the client with a higher-level abstraction. They live "one layer up" by design.
+If you need higher-level orchestration, wrap the client with a higher-level abstraction. They live "one layer up" by design.
 
 <details>
 <summary><strong>What runs on the request path</strong> (7 cheap operations, no I/O)</summary>
