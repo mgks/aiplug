@@ -101,10 +101,20 @@ for (const cat of categoryOrder) {
 }
 md += `\n---\n\n`;
 
+function toGfmHeadingAnchor(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/ /g, '-');
+}
+
 for (const cat of categoryOrder) {
   const list = grouped[cat];
   if (!list || list.length === 0) continue;
   const title = categoryTitles[cat] || cat;
+  const anchor = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const gfmAnchor = toGfmHeadingAnchor(`${title} (${list.length})`);
+  md += `<a id="${anchor}"></a><a id="${gfmAnchor}"></a>\n`;
   md += `## ${title} (${list.length})\n\n`;
   md += `| Provider | Slug | API Base URL | Default Env Var | Wire Protocol | Notes |\n`;
   md += `| :--- | :--- | :--- | :--- | :--- | :--- |\n`;

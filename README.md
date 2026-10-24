@@ -185,6 +185,7 @@ ai.capabilities();               // → TransportMetadata (sync)
 const providers = AIPlug.searchProviders('groq', { capability: 'vision' });
 ```
 
+<a id="features--capabilities"></a><a id="streaming-fallback"></a>
 ### Multi-provider resilience & fallback
 
 Chain multiple providers together with automatic failover upon HTTP 429 rate-limits, timeouts, or service outages:
@@ -233,7 +234,8 @@ const testClient = new AIPlug({
 });
 ```
 
-## HTTP server
+<a id="http-gateway-server"></a><a id="http-gateway"></a><a id="http-server"></a>
+## HTTP gateway server
 
 `aiplug serve` exposes an OpenAI-compatible API on `127.0.0.1:3711` by default:
 
@@ -279,6 +281,7 @@ console.log(reply.message.content, reply.stopReason, reply.usage);
 
 `createLLMAdapter` returns an `LLMAdapter` whose `converse` and `converseStream` methods match the canonical contract (`LLMMessage`, `TokenUsage`, `StopReason`). The re-exported types `LLMMessage`, `LLMResponse`, `LLMAdapterToolDefinition`, `TokenUsage`, `StopReason` are pure aliases so existing agent code runs unchanged.
 
+<a id="streaming"></a><a id="stream"></a>
 ## Stream protocol
 
 `AIPlug.stream()` yields a discriminated union of `StreamChunk` variants. Downstream consumers (agents, orchestrators, chat UIs, scripts) consume this uniform shape regardless of the underlying provider. The wire format is provider-specific; the chunk shape is uniform.

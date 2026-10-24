@@ -26,6 +26,7 @@ Every provider listed below can be plugged into the AIPlug SDK, the OpenAI-compa
 
 ---
 
+<a id="frontier-labs-flagship-apis"></a><a id="frontier-labs--flagship-apis-74"></a>
 ## Frontier Labs & Flagship APIs (74)
 
 | Provider | Slug | API Base URL | Default Env Var | Wire Protocol | Notes |
@@ -105,6 +106,7 @@ Every provider listed below can be plugged into the AIPlug SDK, the OpenAI-compa
 | [Aleph Alpha](https://docs.aleph-alpha.com) | `aleph-alpha` | `Custom Pharia deployment` | `ALEPH_ALPHA_API_KEY` | ✓ OpenAI | Chat inference is on your own Pharia deployment, not one public base URL. |
 | [WebWright](https://webwright.ai) | `webwright` | `https://webwright.ai/v1` | `WEBWRIGHT_API_KEY` | ✓ OpenAI | Wren R1 chat, transcription and web search behind one OpenAI-compatible base URL. |
 
+<a id="api-gateways-unified-proxies"></a><a id="api-gateways--unified-proxies-130"></a>
 ## API Gateways & Unified Proxies (130)
 
 | Provider | Slug | API Base URL | Default Env Var | Wire Protocol | Notes |
@@ -240,6 +242,7 @@ Every provider listed below can be plugged into the AIPlug SDK, the OpenAI-compa
 | [LinkAGI](https://api.linktoagi.com) | `linkagi` | `https://api.linktoagi.com/v1` | `LINKAGI_API_KEY` | ✓ OpenAI | AI API gateway with CNY usage billing, public model pricing and per-key usage logs. Docs: https://docs.linktoagi.com/. Model IDs are selected from its public catalog; model and account-group access may vary. |
 | [BetterToken](https://bettertoken.ai) | `bettertoken` | `https://bettertoken.ai/v1` | `BETTERTOKEN_API_KEY` | ✓ OpenAI | OpenAI- and Anthropic-compatible multi-model LLM gateway; pay-as-you-go; docs https://docs.bettertoken.ai |
 
+<a id="aggregators-multi-provider-routers"></a><a id="aggregators--multi-provider-routers-20"></a>
 ## Aggregators & Multi-Provider Routers (20)
 
 | Provider | Slug | API Base URL | Default Env Var | Wire Protocol | Notes |
@@ -265,6 +268,7 @@ Every provider listed below can be plugged into the AIPlug SDK, the OpenAI-compa
 | [CometAPI](https://apidoc.cometapi.com/guides/change-base-url-to-cometapi) | `cometapi` | `https://api.cometapi.com/v1` | `COMETAPI_KEY` | ✓ OpenAI | CometAPI OpenAI-compatible aggregator. |
 | [ModelRush](https://modelrush.ai) | `modelrush` | `https://api.modelrush.ai/v1` | `MODELRUSH_API_KEY` | ✓ OpenAI | Paid, proprietary multi-model API with prepaid credits. OpenAI-compatible chat; images, video, and audio use separate documented endpoints. Model prices vary by capability. Docs: https://modelrush.ai/docs. Spicy image/video models require adult-access confirmation. |
 
+<a id="iaas-bare-metal-gpu-clouds"></a><a id="iaas-bare-metal--gpu-clouds-63"></a>
 ## IaaS, Bare-Metal & GPU Clouds (63)
 
 | Provider | Slug | API Base URL | Default Env Var | Wire Protocol | Notes |
@@ -333,6 +337,7 @@ Every provider listed below can be plugged into the AIPlug SDK, the OpenAI-compa
 | [IteraCompute](https://iteracompute.com/docs.html) | `iteracompute` | `https://api.iteracompute.com/v1` | `ITERACOMPUTE_API_KEY` | ✓ OpenAI | IteraCompute hosted models. Access depends on the API key or contract. |
 | [CloudRift](https://www.cloudrift.ai) | `cloudrift` | `https://inference.cloudrift.ai/v1` | `CLOUDRIFT_API_KEY` | ✓ OpenAI | CloudRift OpenAI-compatible inference. |
 
+<a id="enterprise-cloud-sovereign-infrastructure"></a><a id="enterprise-cloud--sovereign-infrastructure-43"></a>
 ## Enterprise Cloud & Sovereign Infrastructure (43)
 
 | Provider | Slug | API Base URL | Default Env Var | Wire Protocol | Notes |
@@ -381,6 +386,7 @@ Every provider listed below can be plugged into the AIPlug SDK, the OpenAI-compa
 | [Infomaniak AI Services](https://www.infomaniak.com/en/hosting/ai-services/open-source-models) | `infomaniak` | `https://api.infomaniak.com/2/ai/{product_id}/openai/v1` | `INFOMANIAK_API_KEY` | ✓ OpenAI | Swiss AI Services. Replace {product_id} with your AI product id. |
 | [Yandex Cloud AI Studio](https://yandex.cloud/en/docs/ai-studio/) | `yandex` | `https://ai.api.cloud.yandex.net/v1` | `YANDEX_API_KEY` | ✓ OpenAI | OpenAI-compatible. Model URIs look like gpt://<folder_ID>/yandexgpt/latest. |
 
+<a id="local-runtimes-offline-servers"></a><a id="local-runtimes--offline-servers-28"></a>
 ## Local Runtimes & Offline Servers (28)
 
 | Provider | Slug | API Base URL | Default Env Var | Wire Protocol | Notes |
@@ -414,6 +420,7 @@ Every provider listed below can be plugged into the AIPlug SDK, the OpenAI-compa
 | [MLX-LM](https://github.com/ml-explore/mlx-lm) | `mlx-lm` | `http://localhost:8080/v1` | — | ✓ OpenAI | Generic mlx_lm.server on port 8080. Separate from the MLX Gemma and MLX Qwen entries, which use their own ports. |
 | [Privatemode AI](https://docs.privatemode.ai) | `privatemode` | `http://localhost:8080/v1` | `PRIVATEMODE_API_KEY` | ✓ OpenAI | Confidential inference. The OpenAI client talks to the local encryption proxy on port 8080, not the hosted URL directly. |
 
+<a id="search-web-retrieval-apis"></a><a id="search--web-retrieval-apis-19"></a>
 ## Search & Web Retrieval APIs (19)
 
 | Provider | Slug | API Base URL | Default Env Var | Wire Protocol | Notes |
@@ -438,6 +445,7 @@ Every provider listed below can be plugged into the AIPlug SDK, the OpenAI-compa
 | [Jina Reader (r.jina.ai)](https://jina.ai/reader) | `jina-reader` | `https://r.jina.ai` | `JINA_READER_API_KEY` | Native / Custom | Bearer API key for r.jina.ai URL-to-markdown (/v1/web/fetch only). Does not serve /v1/embeddings or /v1/rerank. The same Jina token as Foundation API works; Reader / r.jina.ai only — not embeddings or rerank. Free tier: 1M fetches/month. |
 | [TinyFish Fetch](https://docs.tinyfish.ai/fetch-api) | `tinyfish` | `https://api.tinyfish.ai` | `TINYFISH_API_KEY` | Native / Custom | X-API-Key from agent.tinyfish.ai/api-keys; Fetch does not use TinyFish credits. |
 
+<a id="audio-speech-to-text-text-to-speech"></a><a id="audio-speech-to-text--text-to-speech-15"></a>
 ## Audio, Speech-to-Text & Text-to-Speech (15)
 
 | Provider | Slug | API Base URL | Default Env Var | Wire Protocol | Notes |
@@ -458,6 +466,7 @@ Every provider listed below can be plugged into the AIPlug SDK, the OpenAI-compa
 | [Rime](https://docs.rime.ai) | `rime` | `https://users.rime.ai/v1` | `RIME_API_KEY` | Native / Custom | Text-to-speech API. |
 | [Resemble AI](https://docs.resemble.ai/welcome) | `resemble` | `https://app.resemble.ai/api/v2` | `RESEMBLE_API_KEY` | Native / Custom | Voice cloning and TTS. Voices are project-specific; this is not an OpenAI chat API. |
 
+<a id="image-video-generation"></a><a id="image--video-generation-20"></a>
 ## Image & Video Generation (20)
 
 | Provider | Slug | API Base URL | Default Env Var | Wire Protocol | Notes |
@@ -483,6 +492,7 @@ Every provider listed below can be plugged into the AIPlug SDK, the OpenAI-compa
 | [Bria AI](https://docs.bria.ai/image-generation) | `bria` | `https://engine.prod.bria-api.com/v1` | `BRIA_API_KEY` | Native / Custom | Image generation and editing API. |
 | [Runware](https://docs.runware.ai) | `runware` | `https://api.runware.ai/v1` | `RUNWARE_API_KEY` | Native / Custom | Multimodal task-array API, not OpenAI chat completions. |
 
+<a id="dedicated-embeddings-vector-providers"></a><a id="dedicated-embeddings--vector-providers-5"></a>
 ## Dedicated Embeddings & Vector Providers (5)
 
 | Provider | Slug | API Base URL | Default Env Var | Wire Protocol | Notes |
@@ -493,6 +503,7 @@ Every provider listed below can be plugged into the AIPlug SDK, the OpenAI-compa
 | [Mixedbread AI](https://www.mixedbread.com) | `mixedbread` | `https://api.mixedbread.com/v1` | `MIXEDBREAD_API_KEY` | Native / Custom | Free-tier API key via signup, no credit card required.; Bearer API key for the Mixedbread embeddings API. |
 | [Pinecone Inference](https://docs.pinecone.io/guides/index-data/indexing-overview) | `pinecone` | `https://api.pinecone.io` | `PINECONE_API_KEY` | Native / Custom | Embedding and rerank API, not a chat completions endpoint. |
 
+<a id="oauth-developer-platforms"></a><a id="oauth--developer-platforms-22"></a>
 ## OAuth & Developer Platforms (22)
 
 | Provider | Slug | API Base URL | Default Env Var | Wire Protocol | Notes |
@@ -520,6 +531,7 @@ Every provider listed below can be plugged into the AIPlug SDK, the OpenAI-compa
 | [Devin CLI](https://cli.devin.ai) | `devin-cli` | `OAuth (provider-specific)` | — | Native / Custom | Requires the Devin CLI binary. Run `devin auth login` to authenticate, or provide your WINDSURF_API_KEY. Install: https://cli.devin.ai |
 | [CodeBuddy CN](https://copilot.tencent.com) | `codebuddy-cn` | `https://copilot.tencent.com/v2` | — | ✓ OpenAI | Tencent CodeBuddy CN (copilot.tencent.com). Sign in via the official CLI device-code flow, or paste a direct API key (sent as Authorization: Bearer). Catalog: GLM / Kimi / MiniMax / DeepSeek / Hunyuan. |
 
+<a id="session-web-based-endpoints"></a><a id="session--web-based-endpoints-34"></a>
 ## Session & Web-Based Endpoints (34)
 
 | Provider | Slug | API Base URL | Default Env Var | Wire Protocol | Notes |
@@ -559,6 +571,7 @@ Every provider listed below can be plugged into the AIPlug SDK, the OpenAI-compa
 | [MaxAI](https://www.maxai.co) | `maxai` | `https://api.maxai.me` | — | ✓ OpenAI | Sign in once (email code or browser) to mint a MaxAI access token. |
 | [UC (uncensored.com)](https://uncensored.com) | `uc` | `https://internal-6.pubyar.com` | — | ✓ OpenAI | Sign in once with an email code to bootstrap a UC (uncensored.com) subscription session.; you only re-run the email login about once a month when the subscription session rolls over. |
 
+<a id="free-no-auth-endpoints"></a><a id="free--no-auth-endpoints-10"></a>
 ## Free & No-Auth Endpoints (10)
 
 | Provider | Slug | API Base URL | Default Env Var | Wire Protocol | Notes |
@@ -574,6 +587,7 @@ Every provider listed below can be plugged into the AIPlug SDK, the OpenAI-compa
 | [UncloseAI](https://uncloseai.com) | `uncloseai` | `https://hermes.ai.unturf.com/v1` | — | ✓ OpenAI | Free forever — no signup, no credit card. OpenAI-compatible endpoints.; No auth required. API accepts any non-empty string as key for identification. If older built-in models return 404, use Available Models → Import from /models or Auto-Sync; verified live model: solidrust/Hermes-3-Llama-3.1-8B-AWQ.; UncloseAI needs no API key. API accepts any non-empty string as key for identification. If older built-in models r… |
 | [AI Horde](https://aihorde.net) | `aihorde` | `https://oai.aihorde.net/v1` | — | ✓ OpenAI | Crowdsourced inference from volunteer GPUs. Throughput is a shared queue, not a quota: there is no RPM/RPD cap, but waits grow when the network is busy.; No API key required — uses AI Horde's documented anonymous key. Adding a free aihorde.net key is optional and only buys higher queue priority (kudos).; AI Horde routes to volunteer-run workers, so chat and image jobs can take minutes and tool calling is unavailab… |
 
+<a id="domain-specific-specialized-ai"></a><a id="domain-specific--specialized-ai-6"></a>
 ## Domain-Specific & Specialized AI (6)
 
 | Provider | Slug | API Base URL | Default Env Var | Wire Protocol | Notes |
@@ -585,6 +599,7 @@ Every provider listed below can be plugged into the AIPlug SDK, the OpenAI-compa
 | [Jev API Pro](https://jevapi.pro) | `jev-api-pro` | `https://jevapi.pro/api/v1` | `JEV_API_PRO_API_KEY` | Native / Custom | Independent REST API for TypeSafe's Jev decision model (via OpenRouter); POST /decisions returns a typed label, confidence, and needsReview flag. Custom API format; keys need a paid access period. |
 | [Jev Agent](https://jev-agent.com/api-access) | `jev-agent` | `https://jev-agent.com/api/v1` | `JEV_AGENT_KEY` | Native / Custom | Independent Jev AI model API (unofficial relay for TypeSafe Jev / System One). Free jv_live_ key: 5 credits/month (1 credit = 1k input tokens). POST /systemone, /classify, /decisions. Not affiliated with TypeSafe AI. |
 
+<a id="cloud-coding-autonomous-agents"></a><a id="cloud-coding--autonomous-agents-3"></a>
 ## Cloud Coding & Autonomous Agents (3)
 
 | Provider | Slug | API Base URL | Default Env Var | Wire Protocol | Notes |
