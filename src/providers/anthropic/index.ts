@@ -113,6 +113,24 @@ function mapToolChoice(choice: ChatRequest['toolChoice']): unknown | undefined {
   return { type: 'tool', name: choice.name };
 }
 
+function mapContentToAnthropicBlocks(content: ChatMessage['content']): unknown {
+  if (typeof content === 'string') return content;
+  if (!Array.isArray(content)) return '';
+  return content.map((p) => {
+    if (p.type === 'text') return { type: 'text', text: p.text };
+    if (p.type === 'image_base64') {
+      return { type: 'image', source: { type: 'base64', media_type: p.mediaType, data: p.data } };
+    }
+    if (p.type === 'image_url') {
+      return { type: 'image', source: { type: 'url', url: p.imageUrl.url } };
+    }
+    if (p.type === 'document') {
+      return { type: 'document', source: { type: 'base64', media_type: p.mediaType, data: p.data } };
+    }
+    return { type: 'text', text: JSON.stringify(p) };
+  });
+}
+
 export class AnthropicTransport extends Transport {
   private readonly apiVersion: string;
 
@@ -133,7 +151,7 @@ export class AnthropicTransport extends Transport {
         const text = extractText(m.content);
         if (text) systemParts.push(text);
       } else if (m.role === 'user') {
-        messages.push({ role: 'user', content: m.content });
+        messages.push({ role: 'user', content: mapContentToAnthropicBlocks(m.content) });
       } else if (m.role === 'assistant') {
         const blocks: AnthropicContent[] = [];
         const text = extractText(m.content);

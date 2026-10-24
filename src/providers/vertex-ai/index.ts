@@ -28,9 +28,9 @@ export class VertexAiTransport extends OpenAICompatibleTransport {
 
   override capabilities(): TransportMetadata {
     const m = super.capabilities();
-    return { ...m, name: 'vertex-ai', defaultBaseURL: 'Region-dependent' };
+    return { ...m, name: 'vertex-ai', defaultBaseURL: 'https://us-central1-aiplatform.googleapis.com/v1/projects' };
   }
 }
 
 /** Canonical default base URL for this provider. */
-export const DEFAULT_BASE_URL = 'Region-dependent';
+export const DEFAULT_BASE_URL = 'https://us-central1-aiplatform.googleapis.com/v1/projects';

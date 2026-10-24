@@ -28,9 +28,9 @@ export class GithubCopilotTransport extends OpenAICompatibleTransport {
 
   override capabilities(): TransportMetadata {
     const m = super.capabilities();
-    return { ...m, name: 'github-copilot', defaultBaseURL: 'OAuth device flow (Copilot subscription)' };
+    return { ...m, name: 'github-copilot', defaultBaseURL: 'https://api.githubcopilot.com' };
   }
 }
 
 /** Canonical default base URL for this provider. */
-export const DEFAULT_BASE_URL = 'OAuth device flow (Copilot subscription)';
+export const DEFAULT_BASE_URL = 'https://api.githubcopilot.com';

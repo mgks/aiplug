@@ -179,6 +179,8 @@ const BUILTIN_IMPORTS: Record<string, () => Promise<any>> = {
   xai: () => import('./providers/xai/index.js'),
   cerebras: () => import('./providers/cerebras/index.js'),
   fireworks: () => import('./providers/fireworks/index.js'),
+  fallback: () => import('./providers/fallback/index.js'),
+  mock: () => import('./providers/mock/index.js'),
 };
 
 /** Return the parsed registry (cached). */

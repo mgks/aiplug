@@ -73,9 +73,13 @@ export {
   listProviders,
   describeProvider,
   configSchema,
+  searchProviders,
   type ListProvidersOptions,
+  type SearchProvidersOptions,
   type ProviderDescriptor,
   type ProviderConfigSchema,
   type ConfigField,
   type ConfigFieldKind,
 } from './introspect.js';
+export { FallbackTransport, type FallbackOptions } from './providers/fallback/index.js';
+export { MockTransport, type MockProviderOptions } from './providers/mock/index.js';

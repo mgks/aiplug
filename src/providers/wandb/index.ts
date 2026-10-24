@@ -28,9 +28,9 @@ export class WandbTransport extends OpenAICompatibleTransport {
 
   override capabilities(): TransportMetadata {
     const m = super.capabilities();
-    return { ...m, name: 'wandb', defaultBaseURL: 'Evaluation registry' };
+    return { ...m, name: 'wandb', defaultBaseURL: 'https://api.inference.wandb.ai/v1' };
   }
 }
 
 /** Canonical default base URL for this provider. */
-export const DEFAULT_BASE_URL = 'Evaluation registry';
+export const DEFAULT_BASE_URL = 'https://api.inference.wandb.ai/v1';

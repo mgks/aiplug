@@ -16,6 +16,7 @@
  */
 
 import type {
+  AIPlugMiddleware,
   AiplugConfig,
   AudioRequest,
   AudioResponse,
@@ -39,8 +40,10 @@ import {
   configSchema,
   describeProvider,
   listProviders,
+  searchProviders,
   type ProviderConfigSchema,
   type ProviderDescriptor,
+  type SearchProvidersOptions,
 } from './introspect.js';
 
 /** Construction-time options that are NOT part of `AiplugConfig`. */
@@ -51,6 +54,10 @@ export interface AIPlugOptions {
    * tooling that composes transports programmatically.
    */
   transport?: LoadedTransport;
+  /**
+   * Optional middleware chain to intercept `chat()` calls.
+   */
+  middlewares?: AIPlugMiddleware[];
 }
 
 export class AIPlug {
@@ -61,9 +68,15 @@ export class AIPlug {
   private _transportLoader: Promise<Transport> | null = null;
   /** The entry that came back from the registry (if any). */
   private readonly _registryEntryName: string | null;
+  /** Registered middlewares for this client instance. */
+  private readonly _middlewares: AIPlugMiddleware[] = [];
 
   constructor(config: AiplugConfig, options: AIPlugOptions = {}) {
     this.config = freezeConfig(config);
+
+    if (options.middlewares && options.middlewares.length > 0) {
+      this._middlewares.push(...options.middlewares);
+    }
 
     if (options.transport) {
       this._transport = options.transport.transport;
@@ -71,6 +84,15 @@ export class AIPlug {
     } else {
       this._registryEntryName = null;
     }
+  }
+
+  /**
+   * Register a middleware to intercept and wrap `chat()` calls.
+   * Enables logging, tracing, rate-limiting, and cost tracking.
+   */
+  use(middleware: AIPlugMiddleware): this {
+    this._middlewares.push(middleware);
+    return this;
   }
 
   /**
@@ -97,7 +119,31 @@ export class AIPlug {
 
   async chat(req: ChatRequest, opts: { signal?: AbortSignal } = {}): Promise<ChatResponse> {
     const t = await this.ready();
-    return invoke(() => t.chat(req, opts.signal), `transport "${t.capabilities().name}"`);
+    const execute = (finalReq: ChatRequest) =>
+      invoke(() => t.chat(finalReq, opts.signal), `transport "${t.capabilities().name}"`);
+
+    if (this._middlewares.length === 0) {
+      return execute(req);
+    }
+
+    const ctx = {
+      transportName: t.capabilities().name,
+      model: req.model ?? this.config.model,
+    };
+
+    let index = 0;
+    const dispatch = (currentReq: ChatRequest): Promise<ChatResponse> => {
+      if (index >= this._middlewares.length) {
+        return execute(currentReq);
+      }
+      const mw = this._middlewares[index++];
+      if (!mw) {
+        return execute(currentReq);
+      }
+      return mw(currentReq, dispatch, ctx);
+    };
+
+    return dispatch(req);
   }
 
   async *stream(
@@ -121,6 +167,21 @@ export class AIPlug {
       }
     } catch (err) {
       throw wrapClientError(err, t.capabilities().name);
+    }
+  }
+
+  /**
+   * Convenience async iterator that yields only text delta strings.
+   * Simplifies consumer live-streaming loops.
+   */
+  async *streamText(
+    req: ChatRequest,
+    opts: { signal?: AbortSignal } = {},
+  ): AsyncIterableIterator<string> {
+    for await (const chunk of this.stream(req, opts)) {
+      if (chunk.type === 'text-delta' && chunk.delta) {
+        yield chunk.delta;
+      }
     }
   }
 
@@ -161,6 +222,17 @@ export class AIPlug {
     return invoke(() => t.models(), `transport "${t.capabilities().name}"`);
   }
 
+  /**
+   * Dynamically query live models from the active transport.
+   * If a substring query is provided, filters model IDs case-insensitively.
+   */
+  async searchModels(query?: string): Promise<ModelInfo[]> {
+    const list = await this.models();
+    if (!query || !query.trim()) return list;
+    const q = query.trim().toLowerCase();
+    return list.filter((m) => m.id.toLowerCase().includes(q));
+  }
+
   async health(): Promise<HealthInfo> {
     const t = await this.ready();
     return invoke(() => t.health(), `transport "${t.capabilities().name}"`);
@@ -195,16 +267,82 @@ export class AIPlug {
   }
 
   /* ---------------------------------------------------------------------------
-   * Provider introspection
-   *
-   * Synchronous, registry-only — never instantiates a transport. Safe to
-   * call before any credentials are configured, so a host UI can list
-   * providers + render the right config form at startup.
+   * Provider introspection & construction helpers
    * --------------------------------------------------------------------------- */
+
+  /**
+   * Instantiate an AIPlug client from a "provider/model" specifier string.
+   * e.g. AIPlug.fromModel('groq/llama-3.3-70b-versatile', { apiKey: '...' })
+   */
+  static fromModel(specifier: string, options: Partial<AiplugConfig> & AIPlugOptions = {}): AIPlug {
+    const slashIdx = specifier.indexOf('/');
+    if (slashIdx === -1) {
+      throw makeError({
+        code: 'INVALID_CONFIGURATION',
+        transport: 'unknown',
+        message: `Invalid model specifier "${specifier}". Expected "provider/model" format (e.g. "groq/llama-3.3-70b-versatile" or "anthropic/claude-3-7-sonnet").`,
+      });
+    }
+    const transport = specifier.slice(0, slashIdx);
+    const model = specifier.slice(slashIdx + 1);
+    const { transport: _, ...rest } = options as Record<string, unknown>;
+    const cfg: AiplugConfig = {
+      transport,
+      model,
+      ...(rest as Partial<AiplugConfig>),
+    };
+    return new AIPlug(cfg, options);
+  }
+
+  /**
+   * Instantiate an AIPlug client configured with an automatic failover chain.
+   * If a provider returns a rate-limit (429), timeout, or outage, calls automatically
+   * failover to the next provider in the chain.
+   */
+  static fallback(
+    chain: AiplugConfig[],
+    options: {
+      fallbackOn?: string[];
+      onFailover?: (from: string, to: string, error: Error) => void;
+    } = {},
+  ): AIPlug {
+    return new AIPlug({
+      transport: 'fallback',
+      providerOptions: {
+        chain,
+        ...options,
+      },
+    });
+  }
 
   /** Every provider aiplug knows about, sorted by category then name. */
   static providers(): ProviderDescriptor[] {
     return listProviders();
+  }
+
+  /**
+   * Search registered providers in-memory by query, category, or capability.
+   */
+  static searchProviders(
+    query: string,
+    options?: SearchProvidersOptions,
+  ): ProviderDescriptor[] {
+    return searchProviders(query, options);
+  }
+
+  /**
+   * Dynamically query live models from any provider without creating a persistent client instance.
+   */
+  static async getDynamicModels(
+    transportOrConfig: string | AiplugConfig,
+    apiKey?: string,
+  ): Promise<ModelInfo[]> {
+    const config: AiplugConfig =
+      typeof transportOrConfig === 'string'
+        ? { transport: transportOrConfig, ...(apiKey ? { apiKey } : {}) }
+        : transportOrConfig;
+    const client = new AIPlug(config);
+    return client.models();
   }
 
   /** Single provider descriptor. Throws on unknown slug. */

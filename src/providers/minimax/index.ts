@@ -62,7 +62,11 @@ export class MinimaxTransport extends OpenAICompatibleTransport {
 
   override capabilities(): TransportMetadata {
     const m = super.capabilities();
-    return { ...m, name: 'minimax', defaultBaseURL: 'https://api.minimax.io/v1' };
+    return {
+      ...m,
+      name: this.config.transport || 'minimax',
+      defaultBaseURL: this.baseURL,
+    };
   }
 
   /**

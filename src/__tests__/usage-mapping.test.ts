@@ -3,8 +3,8 @@
  *
  * Locks the contract that `cacheReadTokens`, `cacheWriteTokens`, and
  * `reasoningTokens` flow from provider-specific usage shapes into the
- * neutral `Usage` interface, so adapters downstream (memoryblock, custom
- * agents) can rely on a stable shape regardless of provider.
+ * neutral `Usage` interface, so downstream consumers (host applications,
+ * agents, and analytics) can rely on a stable shape regardless of provider.
  */
 
 import { describe, it } from 'node:test';

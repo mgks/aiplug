@@ -28,9 +28,9 @@ export class LiquidTransport extends OpenAICompatibleTransport {
 
   override capabilities(): TransportMetadata {
     const m = super.capabilities();
-    return { ...m, name: 'liquid', defaultBaseURL: 'Custom cluster endpoints' };
+    return { ...m, name: 'liquid', defaultBaseURL: 'https://inference.liquid.ai/v1' };
   }
 }
 
 /** Canonical default base URL for this provider. */
-export const DEFAULT_BASE_URL = 'Custom cluster endpoints';
+export const DEFAULT_BASE_URL = 'https://inference.liquid.ai/v1';

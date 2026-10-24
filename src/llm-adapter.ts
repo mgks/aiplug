@@ -1,11 +1,9 @@
 /**
- * `LLMAdapter` — the canonical adapter shape every consumer of aiplug
- * should target (memoryblock, custom agents, scripts, …).
+ * `LLMAdapter` — the canonical adapter façade for embedding in host frameworks,
+ * multi-agent platforms, and custom automations.
  *
- * This shape is provider-agnostic and intentionally aligns with the
- * `LLMAdapter` interface previously defined in memoryblock's
- * `@memoryblock/types`. Embedders that migrate to aiplug can keep the
- * same `LLMMessage`, `ToolDefinition`, and `LLMResponse` types.
+ * This shape is provider-agnostic and provides a standard `converse` and
+ * `converseStream` contract across all 490+ transports.
  *
  * Two implementations ship in this file:
  *   - `createLLMAdapter(config)` builds a fully-typed adapter backed by
@@ -14,7 +12,7 @@
  *     for hosts that only have an AIPlug instance.
  *
  * The adapter does NOT add new responsibilities — it is purely a thin
- * translation layer between the memoryblock-style message shape and
+ * translation layer between the classic message shape and
  * AIPlug's own `ChatMessage` / `ChatResponse` shapes.
  *
  * NOTE: declared here rather than in `client.ts` to keep `client.ts`
@@ -160,7 +158,7 @@ function emptyUsage(): TokenUsage {
 
 function finalMessageFromContent(content: ChatMessage['content'], toolCalls: AIPlugToolCall[]): LLMMessage {
   const message: LLMMessage = { role: 'assistant' };
-  // The memoryblock adapter shape carries a single string. Multimodal
+  // The classic adapter shape carries a single string. Multimodal
   // content is flattened to the text view here — callers needing the
   // full part stream should use aiplug's native ChatMessage instead.
   const text = typeof content === 'string'

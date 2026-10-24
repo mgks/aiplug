@@ -106,6 +106,18 @@ const CUSTOM_ADAPTERS: Record<string, CustomAdapter> = {
     // Force canonical OpenAI defaults (upstream source may differ).
     defaultBaseURL: 'https://api.openai.com/v1',
   },
+  fallback: {
+    dir: 'fallback',
+    className: 'FallbackTransport',
+    auth: 'none',
+    defaultBaseURL: null,
+  },
+  mock: {
+    dir: 'mock',
+    className: 'MockTransport',
+    auth: 'none',
+    defaultBaseURL: null,
+  },
 };
 
 /* ---------------------------------------------------------------------------
@@ -395,18 +407,64 @@ export function build(opts: BuildOptions = {}): { generated: number; skipped: nu
       auth: 'header',
       authHeader: 'authorization',
     },
+    fallback: {
+      module: './fallback/index.js',
+      class: 'FallbackTransport',
+      defaultBaseURL: null,
+      auth: 'none',
+    },
+    mock: {
+      module: './mock/index.js',
+      class: 'MockTransport',
+      defaultBaseURL: null,
+      auth: 'none',
+    },
   };
-  for (const [slug, entry] of Object.entries(EXTRANATIVE_ENTRIES)) {
-    if (slugsSeen.has(slug)) continue;
-    entry.capabilities = capabilitiesFor(slug, undefined);
-    transports[slug] = entry;
-    meta[slug] = {
+  const EXTRANATIVE_META: Record<string, MetaEntry> = {
+    'bedrock-aws': {
       displayName: 'AWS Bedrock (native SigV4 Converse)',
       category: 'Cloud',
       popularModels: [],
       envVar: 'AWS_ACCESS_KEY_ID',
       notes: 'Native AWS Bedrock Converse + ConverseStream API with SigV4 signing. Credentials read from AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY / AWS_REGION env vars or providerOptions.',
       openaiCompatible: false,
+    },
+    'bedrock-converse': {
+      displayName: 'AWS Bedrock (native SigV4 Converse)',
+      category: 'Cloud',
+      popularModels: [],
+      envVar: 'AWS_ACCESS_KEY_ID',
+      notes: 'Native AWS Bedrock Converse + ConverseStream API with SigV4 signing.',
+      openaiCompatible: false,
+    },
+    fallback: {
+      displayName: 'Resilience Fallback Router',
+      category: 'Router',
+      popularModels: [],
+      envVar: '',
+      notes: 'Multi-provider failover transport that automatically routes requests through a chain of providers upon 429, timeout, or outage.',
+      openaiCompatible: true,
+    },
+    mock: {
+      displayName: 'Mock (Testing & Offline)',
+      category: 'Testing',
+      popularModels: ['mock-general-v1', 'mock-vision-v1'],
+      envVar: '',
+      notes: 'Zero-network mock transport for unit testing and offline development.',
+      openaiCompatible: true,
+    },
+  };
+  for (const [slug, entry] of Object.entries(EXTRANATIVE_ENTRIES)) {
+    if (slugsSeen.has(slug)) continue;
+    entry.capabilities = capabilitiesFor(slug, undefined);
+    transports[slug] = entry;
+    meta[slug] = EXTRANATIVE_META[slug] ?? {
+      displayName: slug,
+      category: 'Custom',
+      popularModels: [],
+      envVar: '',
+      notes: '',
+      openaiCompatible: true,
     };
     slugsSeen.add(slug);
   }

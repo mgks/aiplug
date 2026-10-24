@@ -31,8 +31,32 @@ import { METADATA, CAPABILITIES } from './capabilities.js';
 
 interface GeminiPart {
   text?: string;
+  inlineData?: { mimeType: string; data: string };
+  fileData?: { fileUri: string; mimeType?: string };
   functionCall?: { name: string; args: Record<string, unknown> };
   functionResponse?: { name: string; response: Record<string, unknown> };
+}
+
+function mapContentToGeminiParts(content: ChatMessage['content']): GeminiPart[] {
+  if (typeof content === 'string') return [{ text: content }];
+  if (!Array.isArray(content)) return [];
+  const parts: GeminiPart[] = [];
+  for (const p of content) {
+    if (p.type === 'text') {
+      parts.push({ text: p.text });
+    } else if (p.type === 'image_base64' || p.type === 'video_base64' || p.type === 'audio' || p.type === 'document') {
+      parts.push({ inlineData: { mimeType: p.mediaType, data: p.data } });
+    } else if (p.type === 'image_url') {
+      parts.push({ fileData: { fileUri: p.imageUrl.url, mimeType: 'image/jpeg' } });
+    } else if (p.type === 'video_url') {
+      parts.push({ fileData: { fileUri: p.videoUrl.url, mimeType: 'video/mp4' } });
+    } else if (p.type === 'audio_url') {
+      parts.push({ fileData: { fileUri: p.audioUrl.url, mimeType: 'audio/mp3' } });
+    } else if (p.type === 'file_url') {
+      parts.push({ fileData: { fileUri: p.fileUrl.url, ...(p.fileUrl.mimeType ? { mimeType: p.fileUrl.mimeType } : {}) } });
+    }
+  }
+  return parts.length > 0 ? parts : [{ text: '' }];
 }
 
 interface GeminiContent {
@@ -80,8 +104,7 @@ function mapMessages(messages: ChatMessage[]): { contents: GeminiContent[]; syst
       continue;
     }
     if (m.role === 'user') {
-      const text = extractText(m.content);
-      contents.push({ role: 'user', parts: [{ text }] });
+      contents.push({ role: 'user', parts: mapContentToGeminiParts(m.content) });
     } else if (m.role === 'assistant') {
       const parts: GeminiPart[] = [];
       const text = extractText(m.content);

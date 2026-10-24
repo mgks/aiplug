@@ -1,5 +1,23 @@
 # AIPlug
 
+<div align="center">
+
+[![npm version](https://img.shields.io/npm/v/aiplug?color=blue)](https://www.npmjs.com/package/aiplug)
+[![license](https://img.shields.io/github/license/memoryblock-io/aiplug)](LICENSE)
+[![tests](https://img.shields.io/badge/tests-27%20passing-brightgreen)](package.json)
+[![providers](https://img.shields.io/badge/providers-490%2B-blueviolet)](PROVIDERS.md)
+
+[**Quick Start**](#quick-start) •
+[**CLI**](#cli) •
+[**Programmatic API**](#programmatic-api) •
+[**Providers Directory (490+)**](PROVIDERS.md) •
+[**Streaming & Fallback**](#features--capabilities) •
+[**HTTP Gateway**](#http-gateway-server) •
+[**Sponsors**](#sponsors--support) •
+[**Contributing**](#contributing)
+
+</div>
+
 A lightweight, dependency-free TypeScript runtime that gives every AI backend one identical face. AIPlug is a **universal transport layer** — point any OpenAI-compatible SDK at AIPlug and switch the underlying provider with one config line.
 
 ```ts
@@ -10,7 +28,7 @@ const client = new OpenAI({
   apiKey: 'whatever',        // AIPlug handles real auth
 });
 
-// Now this hits Anthropic, or Ollama, or Groq, or any of 100+ providers
+// Now this hits Anthropic, or Ollama, or Groq, or any of 490+ providers
 // depending on what you set with `aiplug transport use anthropic`.
 ```
 
@@ -105,7 +123,7 @@ you> /exit
 ```ts
 import { AIPlug, loadConfig } from 'aiplug';
 
-// Pick a provider two ways:
+// Pick a provider in three ways:
 //   1. Explicit config
 const ai = new AIPlug({
   transport: 'anthropic',
@@ -113,9 +131,14 @@ const ai = new AIPlug({
   model:     'claude-3-5-sonnet-latest',
 });
 
-//   2. From a profile in aiplug.config.json (CLI > env > file > defaults)
+//   2. Unified "provider/model" specifier string
+const fast = AIPlug.fromModel('groq/llama-3.3-70b-versatile', {
+  apiKey: process.env.GROQ_API_KEY,
+});
+
+//   3. From a profile in aiplug.config.json (CLI > env > file > defaults)
 const { config } = loadConfig({}, 'work');
-const ai = new AIPlug(config);
+const configuredAi = new AIPlug(config);
 
 // All methods accept an AbortSignal
 const ctrl = new AbortController();
@@ -130,12 +153,21 @@ const reply = await ai.chat(
 );
 console.log(reply.message.content);
 
-// Streaming
-for await (const chunk of ai.stream({
+// Live text streaming — yields string text deltas directly
+for await (const text of ai.streamText({
   model: 'claude-3-5-sonnet-latest',
   messages: [{ role: 'user', content: 'Tell me a story.' }],
 })) {
+  process.stdout.write(text);
+}
+
+// Or full stream chunk inspection (reasoning, tool calls, cache, usage)
+for await (const chunk of ai.stream({
+  model: 'claude-3-5-sonnet-latest',
+  messages: [{ role: 'user', content: 'Design a system.' }],
+})) {
   if (chunk.type === 'text-delta') process.stdout.write(chunk.delta);
+  if (chunk.type === 'reasoning-delta') console.log('[thinking]', chunk.delta);
   if (chunk.type === 'finish') console.log('\n[done]', chunk.reason);
 }
 
@@ -144,9 +176,61 @@ await ai.embeddings({ model: 'text-embedding-3-small', input: 'hello world' });
 await ai.images({ model: 'dall-e-3', prompt: 'a robot cat' });
 await ai.audio({ model: 'tts-1', input: 'hello world', voice: 'alloy' });
 await ai.transcription({ model: 'whisper-1', audio: audioBytes });
-await ai.models();           // → ModelInfo[]
-await ai.health();           // → { ok, latencyMs? }
-ai.capabilities();           // → TransportMetadata (sync)
+await ai.models();               // → ModelInfo[] (queries live endpoint)
+await ai.searchModels('llama');  // → ModelInfo[] filtered by query
+await ai.health();               // → { ok, latencyMs? }
+ai.capabilities();               // → TransportMetadata (sync)
+
+// Fast in-memory provider search across 490+ providers
+const providers = AIPlug.searchProviders('groq', { capability: 'vision' });
+```
+
+### Multi-provider resilience & fallback
+
+Chain multiple providers together with automatic failover upon HTTP 429 rate-limits, timeouts, or service outages:
+
+```ts
+const resilient = AIPlug.fallback(
+  [
+    { transport: 'groq', apiKey: process.env.GROQ_API_KEY, model: 'llama-3.3-70b-versatile' },
+    { transport: 'deepseek', apiKey: process.env.DEEPSEEK_API_KEY, model: 'deepseek-chat' },
+    { transport: 'openai', apiKey: process.env.OPENAI_API_KEY, model: 'gpt-4o-mini' },
+  ],
+  {
+    onFailover: (from, to, err) => {
+      console.warn(`[aiplug] Failover from ${from} to ${to}: ${err.message}`);
+    },
+  },
+);
+
+// If Groq is rate-limited, this seamlessly executes on DeepSeek:
+const res = await resilient.chat({ messages: [{ role: 'user', content: 'Run query' }] });
+```
+
+### Pluggable middleware pipeline
+
+Intercept requests and responses without subclassing or wrapping transports:
+
+```ts
+ai.use(async (req, next, ctx) => {
+  const start = Date.now();
+  console.log(`[aiplug] Calling ${ctx.transportName} with model ${ctx.model}`);
+  const res = await next(req);
+  console.log(`[aiplug] Completed in ${Date.now() - start}ms`);
+  return res;
+});
+```
+
+### Offline & CI testing with MockTransport
+
+```ts
+const testClient = new AIPlug({
+  transport: 'mock',
+  model: 'mock-model-1',
+  providerOptions: {
+    mockResponse: 'Deterministic response for tests',
+  },
+});
 ```
 
 ## HTTP server
@@ -154,13 +238,16 @@ ai.capabilities();           // → TransportMetadata (sync)
 `aiplug serve` exposes an OpenAI-compatible API on `127.0.0.1:3711` by default:
 
 ```
-POST /v1/chat/completions      # OpenAI Chat Completions; SSE when stream=true
-POST /v1/responses             # alias for /v1/chat/completions
+POST /v1/chat/completions          # OpenAI Chat Completions; SSE when stream=true
+POST /v1/responses                 # alias for /v1/chat/completions
 POST /v1/embeddings
 POST /v1/images/generations
 POST /v1/audio/speech
-POST /v1/audio/transcriptions  # multipart
-GET  /v1/models
+POST /v1/audio/transcriptions      # multipart
+GET  /v1/models                    # models for active transport (or ?provider=...)
+GET  /v1/providers                 # list all 490+ registered providers
+GET  /v1/providers/search?q=...    # in-memory fast provider search
+GET  /v1/providers/:slug/models    # dynamic live model discovery from source provider
 GET  /healthz
 ```
 
@@ -170,11 +257,11 @@ Use `--port=0` for ephemeral ports (useful in tests).
 
 ## Embedding AIPlug in another project
 
-`AIPlug` and the typed public surface (`AIPlug`, `Transport`, `ChatMessage`, `ToolCall`, …) are the canonical types an embedding project should consume. The package has zero third-party runtime dependencies, ships as ESM, and exposes its full shape via `import { … } from 'aiplug'`. Memoryblock and any other host should treat aiplug as the source of truth for adapter implementations.
+`AIPlug` and the typed public surface (`AIPlug`, `Transport`, `ChatMessage`, `ToolCall`, …) are the canonical types an embedding project should consume. The package has zero third-party runtime dependencies, ships as ESM, and exposes its full shape via `import { … } from 'aiplug'`. Embedding applications and host frameworks can treat aiplug as the single source of truth for all provider transports.
 
-### `LLMAdapter` shape (memoryblock-compatible)
+### `LLMAdapter` compatibility façade
 
-For host projects that follow the `LLMAdapter` shape from `@memoryblock/types`, aiplug ships an exact-match façade:
+For host projects or agent architectures that follow the classic `LLMAdapter` interface (`converse`, `converseStream`), aiplug ships an exact-match façade:
 
 ````typescript
 import { createLLMAdapter, type LLMMessage } from 'aiplug';
@@ -190,11 +277,11 @@ const reply = await adapter.converse([
 console.log(reply.message.content, reply.stopReason, reply.usage);
 ````
 
-`createLLMAdapter` returns an `LLMAdapter` whose `converse` and `converseStream` methods match the canonical memoryblock contract (`LLMMessage`, `TokenUsage`, `StopReason`). The re-exported types `LLMMessage`, `LLMResponse`, `LLMAdapterToolDefinition`, `TokenUsage`, `StopReason` are pure aliases of the same names so user code compiles unchanged.
+`createLLMAdapter` returns an `LLMAdapter` whose `converse` and `converseStream` methods match the canonical contract (`LLMMessage`, `TokenUsage`, `StopReason`). The re-exported types `LLMMessage`, `LLMResponse`, `LLMAdapterToolDefinition`, `TokenUsage`, `StopReason` are pure aliases so existing agent code runs unchanged.
 
 ## Stream protocol
 
-`AIPlug.stream()` yields a discriminated union of `StreamChunk` variants. Adapters downstream (memoryblock, custom agents, scripts) consume this shape regardless of the underlying provider. The wire format is provider-specific; the chunk shape is uniform.
+`AIPlug.stream()` yields a discriminated union of `StreamChunk` variants. Downstream consumers (agents, orchestrators, chat UIs, scripts) consume this uniform shape regardless of the underlying provider. The wire format is provider-specific; the chunk shape is uniform.
 
 ### Chunk variants
 
@@ -226,24 +313,31 @@ const usage = chunk.usage;
 
 Provider-specific fields land through the index signature (e.g. Anthropic's `cache_creation_input_tokens`).
 
-### Multimodal content
+### Multimodal content & rich media
 
-`ChatMessage.content` is `string | ContentPart[]`. Each `ContentPart` carries an optional `cacheControl` marker that maps to the provider-native equivalent (`cache_control: { type: 'ephemeral' }` on Anthropic/Bedrock, server-side prefix cache on OpenAI).
+`ChatMessage.content` is `string | ContentPart[]`. AIPlug transparently maps rich media across OpenAI-compatible, Anthropic, Gemini, and custom providers:
+
+- **Images**: `{ type: 'image_url', imageUrl: { url, detail?: 'auto' | 'low' | 'high' } }` or base64 `{ type: 'image_base64', mediaType: 'image/png', data }`
+- **Videos**: `{ type: 'video_url', videoUrl: { url } }` or base64 `{ type: 'video_base64', mediaType: 'video/mp4', data }`
+- **Audio**: `{ type: 'audio', mediaType: 'audio/mp3', data }` or `{ type: 'audio_url', audioUrl: { url } }`
+- **Documents & PDFs**: `{ type: 'document', mediaType: 'application/pdf', data, name?: 'doc.pdf' }` or `{ type: 'file_url', fileUrl: { url } }`
 
 ```typescript
 await ai.chat({
-  model: 'MiniMax-M3',
+  model: 'gpt-4o',
   messages: [{
     role: 'user',
     content: [
-      { type: 'text', text: 'What is in this image?' },
-      { type: 'image_url', imageUrl: { url: 'https://…/photo.jpg', detail: 'high' } },
+      { type: 'text', text: 'Analyze this chart, document, and video recording.' },
+      { type: 'image_url', imageUrl: { url: 'https://example.com/chart.png', detail: 'high' } },
+      { type: 'document', mediaType: 'application/pdf', name: 'report.pdf', data: pdfBase64 },
+      { type: 'video_url', videoUrl: { url: 'https://example.com/demo.mp4' } },
     ],
   }],
 });
 ```
 
-The transport serialises content parts into the provider's wire format. Providers that do not support a given part type silently drop it from the text view via the `extractText` helper; if you need to gate multimodal inputs at the application boundary, use `transport.capabilities()` to check before sending.
+The transport normalises content parts into each provider's native wire format (data URLs for OpenAI-compatible, content blocks for Anthropic Messages, `inlineData` / `fileData` for Gemini). Providers that do not support a given part type silently drop it from the text view via the `extractText` helper; to gate multimodal inputs before sending, inspect `transport.capabilities()` or `AIPlug.describeProvider(slug).capabilities`.
 
 ### Provider-specific body overrides
 
@@ -262,230 +356,99 @@ await ai.stream({
 
 For convenience, the MiniMax transport injects `thinking: { type: 'adaptive' }` + `reasoning_split: true` by default for reasoning-capable model IDs, so callers do not need to remember the wire format.
 
-## Embedding aiplug in memoryblock
+## Integrating with Host Applications & Frameworks
 
-`aiplug` stays an independent package — memoryblock's `@memoryblock/adapters` package wraps it so the rest of memoryblock stays provider-agnostic.
+`aiplug` is completely self-contained and framework-agnostic. Host applications, multi-agent frameworks, and autonomous systems can embed `aiplug` as their universal transport engine.
 
-### Pass-through pattern
+### Generic Adapter Pattern
 
-Replace the per-provider classes in `packages/adapters/src/{openai,anthropic,gemini,bedrock}/index.ts` with a thin pass-through:
+Instead of maintaining separate HTTP/SSE drivers for every provider, host applications can wrap `aiplug` behind a unified interface:
 
 ```typescript
-// before — packages/adapters/src/openai/index.ts
-export class OpenAIAdapter implements LLMAdapter {
-  constructor(config) { /* ~50 lines of field mapping */ }
-  async converse(messages, tools) { /* hand-written HTTP + JSON */ }
-  async converseStream(messages, tools, onChunk) { /* SSE parsing */ }
-}
+import { createLLMAdapter, type LLMAdapter, type LLMMessage } from 'aiplug';
 
-// after
-import { createLLMAdapter } from 'aiplug';
-
-export class OpenAIAdapter {
+export class AgentProviderAdapter {
   private inner: LLMAdapter;
-  constructor(config) {
+
+  constructor(provider: string, model: string, apiKey?: string) {
     this.inner = createLLMAdapter({
-      provider: 'openai',
-      model: config.model,
-      apiKey: config.apiKey ?? process.env.OPENAI_API_KEY,
-      baseURL: config.baseURL,
+      provider,
+      model,
+      apiKey,
     });
   }
+
   get provider() { return this.inner.provider; }
   get model() { return this.inner.model; }
-  converse = this.inner.converse.bind(this.inner);
-  converseStream = this.inner.converseStream?.bind(this.inner);
+
+  converse = (messages: LLMMessage[], tools?: any[]) => 
+    this.inner.converse(messages, tools);
+
+  converseStream = (messages: LLMMessage[], tools: any[], onChunk: (text: string) => void) =>
+    this.inner.converseStream?.(messages, tools, onChunk);
 }
 ```
 
-The class names stay so existing imports in `packages/memoryblock` and the `init` / `start` commands keep working. The hand-written HTTP and JSON parsing go away.
+### Capability-Gated Execution
 
-### Provider name mapping
+Host applications can query `transport.capabilities()` at runtime before dispatching requests to dynamically determine if vision, tool calling, embeddings, or streaming is supported:
 
-Memoryblock's `block.config.json` continues to declare `adapter.provider`. Map it to aiplug's transport slug:
+```typescript
+const caps = await ai.capabilities();
 
-| memoryblock `provider` | aiplug transport slug |
-|------------------------|-----------------------|
-| `bedrock` | `bedrock-aws` (SigV4 Converse) |
-| `openai` | `openai` |
-| `anthropic` | `anthropic` |
-| `gemini` | `google-ai-studio` (native adapter) |
-| `ollama` | `ollama` |
+if (caps.includes('tools')) {
+  // Safe to pass function declarations to the model
+}
+if (caps.includes('image-input') || caps.includes('video-input')) {
+  // Safe to attach multimodal buffers/URLs
+}
+```
 
-The capability matrix exposed by `transport.capabilities()` is the signal memoryblock should consult when deciding whether to gate vision / tool / streaming support per-block, rather than the provider-name string match alone.
+## Supported providers (490+ providers, 930+ routes)
 
-### Streaming integration
+The complete, unabridged catalog of all 490+ providers, external API base URLs, default environment variables, and wire formats is maintained in:
 
-`converseStream` keeps the existing `onChunk(text)` callback contract, so the `Monitor` engine does not need to change. When aiplug emits a `reasoning-delta`, the wrapper can either drop it (current behaviour — reasoning is invisible) or forward it as a separate notification so memoryblock can log it. Recommendation: log reasoning to `logs/<date>.log` keyed by `blockName + turnId`, keep the user-visible stream text-only. Reasoning never reaches the chat channel.
+👉 **[Complete Supported Providers Directory (PROVIDERS.md)](PROVIDERS.md)**
 
-### Adding a new provider
+### Category Breakdown
 
-When memoryblock needs a provider aiplug does not yet ship:
+| Category | Providers | Highlights & Key Examples |
+|:---|:---:|:---|
+| **[Frontier Labs & Flagships](PROVIDERS.md#frontier-labs--flagship-apis-74)** | 74 | OpenAI, Anthropic, Gemini, DeepSeek, xAI, Mistral, MiniMax, Qwen, Baidu Qianfan |
+| **[API Gateways & Proxies](PROVIDERS.md#api-gateways--unified-proxies-130)** | 130 | OpenRouter, LiteLLM, Portkey, Vercel AI, Helicone, Cloudflare Gateway, BetterToken |
+| **[Multi-Provider Routers](PROVIDERS.md#aggregators--multi-provider-routers-20)** | 20 | AIPlug Fallback Router, 302.AI, AIMLAPI, LinkAGI, ModelRush, ZenMux |
+| **[IaaS & GPU Clouds](PROVIDERS.md#iaas-bare-metal--gpu-clouds-63)** | 63 | Groq, Cerebras, SambaNova, Together, Fireworks, DeepInfra, Nebius, Vultr |
+| **[Enterprise Cloud & Sovereign](PROVIDERS.md#enterprise-cloud--sovereign-infrastructure-43)** | 43 | AWS Bedrock (SigV4), Azure OpenAI, Google Vertex AI, Cloudflare Workers AI |
+| **[Local & Offline Runtimes](PROVIDERS.md#local-runtimes--offline-servers-28)** | 28 | AIPlug Mock Transport, Ollama, LM Studio, vLLM, llama.cpp, LocalAI, Jan |
+| **[Search & Web Retrieval](PROVIDERS.md#search--web-retrieval-apis-19)** | 19 | Perplexity, Exa Search, Tavily, Jina Reader, Serper, Firecrawl |
+| **[Audio, STT & TTS](PROVIDERS.md#audio-speech-to-text--text-to-speech-15)** | 15 | ElevenLabs, Gladia, PlayHT, Speechmatics, Fish Audio, Rev.ai |
+| **[Image & Video Generation](PROVIDERS.md#image--video-generation-20)** | 20 | RunwayML, Luma, Ideogram, Leonardo, Recraft, Haiper, Fal.ai |
+| **[Dedicated Embeddings & Vector](PROVIDERS.md#dedicated-embeddings--vector-providers-5)** | 5 | Pinecone, Voyage AI, Mixedbread, Nomic |
+| **[OAuth & Cloud Platforms](PROVIDERS.md#oauth--developer-platforms-22)** | 22 | GitHub Copilot, Databricks, Vertex Partner, Watsonx |
+| **[Free & Community Endpoints](PROVIDERS.md#free--no-auth-endpoints-10)** | 10 | Pollinations, FreeInference, DuckDuckGo, FreeAI |
 
-1. Add the provider to `data/providers.json`, or write a custom adapter under `aiplug/src/providers/<slug>/` with `@aiplug:keep`.
-2. Run `npm run build:registry` in the aiplug package.
-3. Map the provider name in `packages/adapters/src/index.ts` to the new aiplug transport slug.
-4. Update memoryblock's `init.ts` provider list.
+### Searching Providers Dynamically
 
-No memoryblock core changes required.
+You don't need to manually cross-reference base URLs or env vars. AIPlug includes instant in-memory provider search across the entire registry:
 
-## Supported providers (100+ entries)
+```typescript
+import { AIPlug, searchProviders } from 'aiplug';
 
-The full registry lives in [`data/registry.json`](data/registry.json) and is generated from [`data/providers.json`](data/providers.json) (synced from [foisalislambd/all-llm-provider-list](https://github.com/foisalislambd/all-llm-provider-list)).
+// Search in-memory by name, keyword, or category
+const results = searchProviders('groq');
+// => [{ slug: 'groq', name: 'Groq', category: 'IaaS', defaultBaseURL: 'https://api.groq.com/openai/v1', ... }]
+```
 
-### Frontier (18)
+Via the CLI:
+```bash
+aiplug transport list            # browse configured + active providers
+aiplug models                    # list live models from the upstream provider
+```
 
-| Slug | Name | Base URL | Env var | OpenAI-shaped |
-|------|------|----------|---------|---------------|
-| `openai` | OpenAI | `https://api.openai.com/v1` | `OPENAI_API_KEY` | ✓ |
-| `anthropic` | Anthropic | `https://api.anthropic.com` | `ANTHROPIC_API_KEY` | ✗ |
-| `google-ai-studio` | Google AI Studio | `https://generativelanguage.googleapis.com` | `GEMINI_API_KEY` | ✓ |
-| `gemini` | Gemini (native adapter) | `https://generativelanguage.googleapis.com` | `GEMINI_API_KEY` | ✗ |
-| `xai` | xAI (Grok) | `https://api.x.ai/v1` | `XAI_API_KEY` | ✓ |
-| `deepseek` | DeepSeek | `https://api.deepseek.com/v1` | `DEEPSEEK_API_KEY` | ✓ |
-| `mistral` | Mistral AI | `https://api.mistral.ai/v1` | `MISTRAL_API_KEY` | ✓ |
-| `cohere` | Cohere | `https://api.cohere.com/v2` | `COHERE_API_KEY` | ✗ |
-| `perplexity` | Perplexity | `https://api.perplexity.ai` | `PERPLEXITY_API_KEY` | ✓ |
-| `ai21` | AI21 Labs | `https://api.ai21.com/studio/v1` | `AI21_API_KEY` | ✓ |
-| `minimax` | MiniMax | `https://api.minimax.io/v1` | `MINIMAX_API_KEY` | ✓ |
-| `reka` | Reka AI | `https://api.reka.ai/v1` | `REKA_API_KEY` | ✓ |
-| `baidu-qianfan` | Baidu Qianfan | `https://api.baiduqianfan.ai/v1` | `QIANFAN_API_KEY` | ✓ |
-| `dashscope` | Alibaba DashScope | `https://dashscope-intl.aliyuncs.com/compatible-mode/v1` | `DASHSCOPE_API_KEY` | ✓ |
-| `stepfun` | StepFun | `https://api.stepfun.com/v1` | `STEPFUN_API_KEY` | ✓ |
-| `zhipu` | Z.ai (Zhipu AI) | `https://open.bigmodel.cn/api/paas/v4/` | `ZHIPU_API_KEY` | ✓ |
-| `upstage` | Upstage | `https://api.upstage.ai/v1/solar` | `UPSTAGE_API_KEY` | ✓ |
-| `xiaomi` | Xiaomi | Custom endpoint | — | ✗ |
-| `inflection` | Inflection | Custom webhooks | — | ✗ |
-
-### Aggregator (6)
-
-| Slug | Name | Base URL | Env var | OpenAI-shaped |
-|------|------|----------|---------|---------------|
-| `openrouter` | OpenRouter | `https://openrouter.ai/api/v1` | `OPENROUTER_API_KEY` | ✓ |
-| `litellm` | LiteLLM | `http://localhost:4000/v1` | `LITELLM_MASTER_KEY` | ✓ |
-| `portkey` | Portkey | `https://api.portkey.ai/v1` | `PORTKEY_API_KEY` | ✓ |
-| `302-ai` | 302.AI | `https://api.302.ai/v1` | `302AI_API_KEY` | ✓ |
-| `aimlapi` | AIMLAPI | `https://api.aimlapi.com/v1` | `AIMLAPI_API_KEY` | ✓ |
-| `coze` | Coze (ByteDance) | `https://api.coze.com/v1` | `COZE_API_KEY` | ✓ |
-| `frogbot` | FrogBot | `https://app.frogbot.ai/api` | `FROGBOT_API_KEY` | ✓ |
-| `lemondata` | LemonData | `https://api.lemondata.ai/v1` | `LEMONDATA_API_KEY` | ✓ |
-| `eden-ai` | Eden AI | `https://api.edenai.co/v2` | `EDENAI_API_KEY` | ✗ |
-
-### IaaS / GPU clouds (27)
-
-| Slug | Name | Base URL |
-|------|------|----------|
-| `groq` | Groq | `https://api.groq.com/openai/v1` |
-| `cerebras` | Cerebras | `https://api.cerebras.ai/v1` |
-| `sambanova` | SambaNova | `https://api.sambanova.ai/v1` |
-| `fireworks` | Fireworks AI | `https://api.fireworks.ai/inference/v1` |
-| `together` | Together AI | `https://api.together.xyz/v1` |
-| `deepinfra` | DeepInfra | `https://api.deepinfra.com/v1/openai` |
-| `huggingface` | HuggingFace Inference | `https://router.huggingface.co/v1` |
-| `nvidia-nim` | NVIDIA NIM | `https://integrate.api.nvidia.com/v1` |
-| `nebius` | Nebius AI Studio | `https://api.studio.nebius.ai/v1` |
-| `novita` | Novita | `https://api.novita.ai/openai/v1` |
-| `anyscale` | Anyscale Endpoints | `https://api.endpoints.anyscale.com/v1` |
-| `arcee` | Arcee AI | `https://conductor.arcee.ai/v1` |
-| `friendli` | Friendli | `https://api.friendli.ai/serverless/v1` |
-| `glhf` | Glhf.chat | `https://glhf.chat/api/openai/v1` |
-| `hyperbolic` | Hyperbolic | `https://api.hyperbolic.xyz/v1` |
-| `inception` | Inception | `https://api.inceptionlabs.ai/v1` |
-| `inceptron` | Inceptron | Custom endpoint |
-| `inference-net` | Inference.net | `https://api.inference.net/v1` |
-| `infermatic` | Infermatic | `https://api.totalgpt.ai` |
-| `kluster` | Kluster.ai | `https://api.kluster.ai/v1` |
-| `lepton` | Lepton AI | `https://api.lepton.ai/v1` |
-| `liquid` | Liquid AI | Custom cluster endpoints |
-| `mancer` | Mancer | `https://mancer.tech/oai/v1` |
-| `morph` | Morph | `https://api.morphllm.com/v1` |
-| `siliconflow` | SiliconFlow | `https://api.siliconflow.cn/v1` |
-| `replicate` | Replicate | `https://api.replicate.com/v1` |
-| `ollama-cloud` | Ollama Cloud | `https://ollama.com/api` |
-
-### Sovereign / Cloud (29)
-
-| Slug | Name | Base URL |
-|------|------|----------|
-| `bedrock` | Amazon Bedrock | `https://bedrock-runtime.<region>.amazonaws.com` |
-| `azure-openai` | Azure OpenAI | `https://<resource>.openai.azure.com/openai/v1` |
-| `azure-cognitive-services` | Azure Cognitive Services | `https://<resource>.cognitiveservices.azure.com/openai/v1` |
-| `vertex-ai` | Google Vertex AI | Region-dependent |
-| `cloudflare-workers-ai` | Cloudflare Workers AI | `https://api.cloudflare.com/client/v4/accounts/{id}/ai/v1` |
-| `github-models` | GitHub Models | `https://models.inference.ai.azure.com` |
-| `github-copilot` | GitHub Copilot | OAuth device flow |
-| `gitlab-duo` | GitLab Duo | `https://gitlab.com/api/v4/ai` |
-| `digitalocean` | DigitalOcean | `https://inference.do-ai.run/v1/` |
-| `scaleway` | Scaleway | `https://api.scaleway.ai/v1` |
-| `ovhcloud` | OVHcloud AI | `https://oai.endpoints.kepler.ai.cloud.ovh.net/v1` |
-| `stackit` | STACKIT AI Model Serving | `https://api.openai-compat.model-serving.eu01.onstackit.cloud/v1` |
-| `akashml` | AkashML | `https://api.akashml.com/v1` |
-| `atlascloud` | AtlasCloud | `https://api.atlascloud.ai/v1` |
-| `baseten` | Baseten | `https://model-{id}.api.baseten.co/v1` |
-| `chutes` | Chutes | `https://llm.chutes.ai/v1` |
-| `clarifai` | Clarifai | Custom endpoints |
-| `gmicloud` | GMICloud | `https://api.gmi-serving.com/v1` |
-| `modal` | Modal | `https://<app>.modal.run/v1` |
-| `nextbit` | NextBit | `https://api.nextbit256.com/v1` |
-| `parasail` | Parasail | `https://api.saas.parasail.io/v1` |
-| `phala` | Phala | `POST /v1/chat/completions` |
-| `poolside` | Poolside | `https://divers.poolsi.de/openai/v1/` |
-| `sap-ai-core` | SAP AI Core | Region-dependent |
-| `snowflake-cortex` | Snowflake Cortex | `https://<account>.snowflakecomputing.com/api/v2/cortex/v1` |
-| `venice` | Venice | `https://api.venice.ai/api/v1` |
-| `wafer` | Wafer | `https://pass.wafer.ai/v1` |
-| `io-net` | io.net | `https://api.intelligence.io.solutions/api/v1` |
-
-### Gateway (24)
-
-| Slug | Name | Base URL |
-|------|------|----------|
-| `vercel-ai-gateway` | Vercel AI Gateway | `https://ai-gateway.vercel.sh/v1` |
-| `helicone` | Helicone | `https://ai-gateway.helicone.ai/v1` |
-| `cloudflare-ai-gateway` | Cloudflare AI Gateway | `https://gateway.ai.cloudflare.com/v1` |
-| `llm-gateway` | LLM Gateway | `https://api.llmgateway.io/v1` |
-| `axiom` | Axiom | `https://cloud.axiomstudio.ai/rest/v1/llm-gateway/v1/` |
-| `cortecs` | Cortecs | `https://api.cortecs.ai/v1` |
-| `kong-ai-gateway` | Kong AI Gateway | Self-hosted / enterprise |
-| `moonshot` | Moonshot AI | `https://api.moonshot.ai/v1` |
-| `opencode-go` | OpenCode Go | `https://opencode.ai/zen/go/v1` |
-| `opencode-zen` | OpenCode Zen | `https://opencode.ai/zen/v1` |
-| `opper` | Opper | `https://api.opper.ai/v3/compat` |
-| `perceptron` | Perceptron | Custom gateway |
-| `prism-api` | Prism API | `https://sub2api.558686.xyz/v1` |
-| `relace` | Relace | `https://api.relace.ai/v1` |
-| `requesty` | Requesty | `https://router.requesty.ai/v1` |
-| `sakana-fugu` | Sakana AI (Fugu) | `https://api.sakana.ai/v1` |
-| `switchpoint` | Switchpoint | `https://api.ppq.ai` |
-| `unify` | Unify.ai | `https://api.unify.ai/v0` |
-| `wandb` | Weights & Biases | Evaluation registry |
-| `zenmux` | ZenMux | `https://zenmux.ai/api/v1` |
-| `openinference` | OpenInference | Tracing / observability |
-
-### Local runtimes (7)
-
-| Slug | Name | Base URL |
-|------|------|----------|
-| `ollama` | Ollama | `http://localhost:11434` |
-| `llama-cpp` | llama.cpp | `http://localhost:8080/v1` |
-| `lm-studio` | LM Studio | `http://localhost:1234/v1` |
-| `vllm` | vLLM | `http://localhost:8000/v1` |
-| `localai` | LocalAI | `http://localhost:8080/v1` |
-| `jan` | Jan.ai | `http://localhost:1337/v1` |
-| `atomic-chat` | Atomic Chat | `http://127.0.0.1:1337/v1` |
-
-### Specialized (2)
-
-| Slug | Name | Base URL |
-|------|------|----------|
-| `nlpcloud` | NLP Cloud | `https://api.nlpcloud.io/v1` |
-| `puter` | Puter.js | `https://api.puter.com/ai/chat` |
-
-### Embeddings (1)
-
-| Slug | Name | Base URL |
-|------|------|----------|
-| `voyage` | Voyage AI | `https://api.voyageai.com/v1` |
+Via the HTTP API Gateway:
+```bash
+curl http://localhost:3711/v1/providers/search?q=cerebras
+```
 
 ## How it works
 
@@ -495,9 +458,9 @@ The full registry lives in [`data/registry.json`](data/registry.json) and is gen
 - **`gemini`** — Google AI Studio native API + SSE, `contents[].parts[]` blocks, `systemInstruction` field, function calling via `tools[].functionDeclarations`, embeddings via `models/embedContent` (not yet wired).
 - **`ollama`** — Ollama native `/api/chat` (NDJSON streaming), `/api/embeddings`, `/api/tags`. No auth header.
 
-### OpenAI-compatible adapter (98+ providers)
+### OpenAI-compatible adapter (480+ providers)
 
-Every provider marked ✓ in the tables above uses the `openai-compatible` adapter, which speaks the OpenAI Chat Completions wire format (`/v1/chat/completions`, `/v1/embeddings`, `/v1/images/generations`, `/v1/audio/speech`, `/v1/audio/transcriptions`, `/v1/models`). Adding a new one is just an entry in `data/registry.json`.
+Every provider marked ✓ in the [PROVIDERS.md](PROVIDERS.md) directory uses the `openai-compatible` adapter, which speaks the OpenAI Chat Completions wire format (`/v1/chat/completions`, `/v1/embeddings`, `/v1/images/generations`, `/v1/audio/speech`, `/v1/audio/transcriptions`, `/v1/models`). Adding a new one is just an entry in `data/registry.json`.
 
 ### Lazy loading
 
@@ -657,8 +620,9 @@ src/
   server/               # OpenAI-compatible HTTP server
 
 data/
-  registry.json         # generated, versioned transport metadata (266 entries)
-  providers.json        # synced from foisalislambd/all-llm-provider-list
+  registry.json         # generated, versioned transport metadata (930+ routes)
+  registry.meta.json    # UI labels, popular models, categories, websites
+  providers.json        # canonical catalog of 490+ AI providers
 
 tests/                  # Node test runner regression tests
 scripts/                # smoke + e2e + build-registry scripts
@@ -669,6 +633,7 @@ scripts/                # smoke + e2e + build-registry scripts
 ```bash
 npm run typecheck   # tsc --noEmit, strict + exactOptionalPropertyTypes
 npm run smoke       # import smoke
+npm test            # 27 unit tests (transports, streamText, fallback, mock, introspection)
 npm run smoke:e2e   # boot the server, hit every endpoint, verify shapes
 ```
 
@@ -677,3 +642,24 @@ npm run smoke:e2e   # boot the server, hit every endpoint, verify shapes
 - Node.js ≥ 18.17 (native `fetch`, native `Web Streams`).
 - TypeScript ≥ 5.7 with `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`.
 - One runtime dependency: `yaml` (≈ 80 kB).
+
+## Sponsors & Support
+
+`aiplug` is open-source software built to eliminate vendor lock-in and keep LLM tooling lightweight, transparent, and blazingly fast.
+
+If you find `aiplug` useful for your projects or organization, please consider:
+- ⭐ **Starring the repository** on GitHub.
+- 💖 **Sponsoring the project** to support ongoing maintenance and new provider adapters.
+- 📢 **Sharing your experience** and letting us know what integrations you'd like to see.
+
+## Contributing
+
+Contributions are warmly welcomed!
+
+- **Adding a provider:** Follow the [Adding a new provider](#adding-a-new-provider) guide.
+- **Reporting issues & bugs:** Open an issue on GitHub with reproduction steps.
+- **Submitting pull requests:** Ensure `npm run typecheck` and `npm test` pass with 0 errors before opening a PR.
+
+## License
+
+MIT License

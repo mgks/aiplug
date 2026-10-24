@@ -39,6 +39,18 @@ export type ContentPart =
         cacheControl?: CacheControlHint;
     }
   | {
+        type: 'video_url';
+        videoUrl: { url: string };
+        cacheControl?: CacheControlHint;
+    }
+  | {
+        type: 'video_base64';
+        mediaType: string;
+        /** Base64-encoded video bytes. */
+        data: string;
+        cacheControl?: CacheControlHint;
+    }
+  | {
         type: 'document';
         mediaType: string;
         /** Base64-encoded document bytes. */
@@ -47,12 +59,35 @@ export type ContentPart =
         cacheControl?: CacheControlHint;
     }
   | {
+        type: 'file_url';
+        fileUrl: { url: string; name?: string; mimeType?: string };
+        cacheControl?: CacheControlHint;
+    }
+  | {
         type: 'audio';
         mediaType: string;
         /** Base64-encoded audio bytes. */
         data: string;
         cacheControl?: CacheControlHint;
+    }
+  | {
+        type: 'audio_url';
+        audioUrl: { url: string };
+        cacheControl?: CacheControlHint;
     };
+
+/** Execution context passed to each middleware. */
+export interface MiddlewareContext {
+  transportName: string;
+  model?: string;
+}
+
+/** Function signature for AIPlug client middleware. */
+export type AIPlugMiddleware = (
+  req: ChatRequest,
+  next: (req: ChatRequest) => Promise<ChatResponse>,
+  ctx: MiddlewareContext,
+) => Promise<ChatResponse>;
 
 /**
  * Provider-neutral cache-control marker. Maps to the equivalent native
@@ -312,7 +347,9 @@ export type Capability =
   | 'reasoning'
   | 'prompt-cache'
   | 'pdf-input'
-  | 'audio-input';
+  | 'audio-input'
+  | 'video-input'
+  | 'document-input';
 
 /** Static metadata a transport publishes about itself. */
 export interface TransportMetadata {

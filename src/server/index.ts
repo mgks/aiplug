@@ -26,6 +26,7 @@ import {
   configSchema,
   describeProvider,
   listProviders,
+  searchProviders,
 } from '../introspect.js';
 import type { AiplugConfig, ChatRequest, ImageRequest, AudioRequest, TranscriptionRequest, EmbeddingsRequest } from '../types.js';
 import type { Transport } from '../transport.js';
@@ -436,6 +437,51 @@ export async function startServer(opts: ServeOptions): Promise<import('node:http
           // (~1s per probe); safe to call from any UI surface.
           const { detect } = await import('../detect.js');
           sendJSON(res, 200, await detect());
+          return;
+        }
+        if (pathname === '/v1/providers/search' && req.method === 'GET') {
+          const q = url.searchParams.get('q') ?? '';
+          const searchOpts: import('../introspect.js').SearchProvidersOptions = {};
+          const cat = url.searchParams.get('category');
+          if (cat) searchOpts.category = cat;
+          const cap = url.searchParams.get('capability') as any;
+          if (cap) searchOpts.capability = cap;
+          const lim = url.searchParams.get('limit');
+          if (lim) searchOpts.limit = Number(lim);
+          sendJSON(res, 200, {
+            providers: searchProviders(q, searchOpts),
+          });
+          return;
+        }
+        if (pathname?.startsWith('/v1/providers/') && pathname.endsWith('/models') && req.method === 'GET') {
+          const slug = decodeURIComponent(pathname.slice('/v1/providers/'.length, -('/models'.length)));
+          try {
+            const authHeader = req.headers['authorization'];
+            let apiKey: string | undefined;
+            if (authHeader && authHeader.startsWith('Bearer ')) {
+              apiKey = authHeader.slice(7).trim();
+            }
+            const { AIPlug } = await import('../client.js');
+            const models = await AIPlug.getDynamicModels(slug, apiKey);
+            sendJSON(res, 200, {
+              object: 'list',
+              provider: slug,
+              data: models.map((m) => ({ id: m.id, object: 'model', owned_by: slug })),
+            });
+          } catch {
+            try {
+              const desc = describeProvider(slug);
+              sendJSON(res, 200, {
+                object: 'list',
+                provider: slug,
+                data: desc.popularModels.map((id) => ({ id, object: 'model', owned_by: slug })),
+                fallback: true,
+              });
+            } catch (err) {
+              const e = err as { code?: string; message?: string; status?: number };
+              sendError(res, e.status ?? 404, e.code ?? 'not_found', e.message ?? 'unknown provider');
+            }
+          }
           return;
         }
         if (pathname?.startsWith('/v1/providers/') && req.method === 'GET') {

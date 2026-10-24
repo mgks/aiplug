@@ -1,5 +1,47 @@
 # Changelog
 
+## 0.2.0 — 2026-10-25
+
+Major catalog expansion and core runtime enhancements:
+
+### Provider Catalog Expansion (490+ Providers)
+- Registry expanded from 116 to 490 providers, covering over 930 alias routes.
+- Added verified hosted inference engines, compute clusters, specialized gateways, and frontier labs (Crusoe, Hetzner, Vultr, Abacus, Amazon Nova, Krutrim, BetterToken, LinkAGI, WebWright, XHuoAPI, Jev Agent, ModelRush, and hundreds more).
+- Endpoint corrections and compatibility flag updates across existing providers (Xiaomi, Liquid, WandB, Vertex AI, AIMLAPI, 302.ai).
+- Alias collision resolution and addition of clean shorthand aliases (`ds`, `zai`, `pplx`, `cf`, `vag`, `zm`, `samba`, `mdl`, `scw`).
+- Standardized MiniMax and Bedrock configurations while maintaining full backward compatibility.
+
+### Multimodal & Rich Media Transport
+- Expanded `ChatMessage.content` and `ContentPart` to support video (`video_url`, `video_base64`), audio (`audio`, `audio_url`), documents/PDFs (`document`), and files (`file_url`).
+- Added automatic multimodal wire-format normalizer in `_shared.ts` for OpenAI-compatible, Anthropic, and Gemini transports.
+- Added `video-input` and `document-input` to `Capability` flags.
+
+### Live Streaming Ergonomics
+- New `client.streamText(req, opts)` async iterator yielding pure string text deltas directly (`for await (const delta of client.streamText(req))`), eliminating manual delta discrimination boilerplate.
+
+### Unified Model Specifier (`provider/model`)
+- New `AIPlug.fromModel('provider/model', options)` static factory method to instantiate clients cleanly from a single model specifier string (e.g. `'groq/llama-3.3-70b-versatile'` or `'anthropic/claude-3-7-sonnet'`).
+
+### Pluggable Middleware / Interceptors Pipeline
+- Added `AIPlugMiddleware` and `client.use(middleware)` pipeline support.
+- Enables non-intrusive request/response lifecycle interception for logging, latency tracing, OpenTelemetry integration, rate-limiting, and cost estimation.
+- Configurable via `AIPlugOptions.middlewares`.
+
+### Multi-Provider Fallback & Resilience Transport
+- New built-in `FallbackTransport` (`transport: 'fallback'`).
+- Automatically routes and fails over across an ordered chain of providers when encountering rate-limits (HTTP 429), timeouts, network errors, or provider outages.
+- Factory method `AIPlug.fallback(chain, options)` for one-line multi-provider resilience.
+
+### Zero-Network Mock Transport
+- New built-in `MockTransport` (`transport: 'mock'`) for deterministic offline unit testing, CI pipelines, and downstream integration verification.
+- Supports configurable responses, stream chunks, artificial latency, and simulated error conditions.
+
+### Dynamic Live Model Querying & In-Memory Provider Search
+- New `searchProviders(query, options)` function with smart exact/prefix relevance ranking, filtering by category and capability.
+- New `client.searchModels(query)` method for dynamically searching live model endpoints.
+- New `AIPlug.getDynamicModels(transportOrConfig, apiKey)` static helper.
+- New server endpoints: `GET /v1/providers/search` and `GET /v1/providers/:slug/models`.
+
 ## 0.1.0 — 2026-07-03
 
 First public release. Universal transport-pluggable AI client runtime:
@@ -35,14 +77,10 @@ First public release. Universal transport-pluggable AI client runtime:
 - `AIPlugError` carries a `provider` getter that returns the transport name.
 - `AIPlugErrorSnapshot.provider` added to the serialisable snapshot.
 
-### Memoryblock integration
-- `memoryblock/packages/adapters/src/index.ts` rewritten to drive auth resolution + base URL from aiplug's introspection. `createMemoryAdapter` is now a single generic factory; no per-provider branches remain.
-- `memoryblock/packages/memoryblock/src/commands/start.ts`: `resolveProviderCredentials` driven by `AIPlug.configSchema(slug)`; `selectModel` reads `popularModels` from aiplug.
-- `memoryblock/packages/memoryblock/src/constants.ts`: `PROVIDERS` and `PROVIDER_AUTH` lazy-loaded from aiplug; `getImportantProviders()` returns a curated 10-entry shortlist for the TUI; the TUI provider step shows the shortlist + a `More...` custom-slug option.
-- `memoryblock/packages/types/src/types.ts` adds `ProviderAuth` and `AuthConfig.providers: Record<string, ProviderAuth>`; legacy fields kept with `@deprecated` markers.
-- `memoryblock/packages/core/src/utils/config.ts` `loadAuth()` flattens the new generic `auth.providers[slug]` shape into the legacy top-level slots.
-- `memoryblock/packages/web/public/components/provider-schema.js` (new) pulls the full provider list from `/v1/providers` for the web UI.
-- `memoryblock/packages/web/public/components/setup.js` shows the full list in the web setup wizard, plus a `More...` option for typing any other aiplug slug.
+### Host agent & framework integration
+- Driver architecture updated to drive auth resolution + base URL from aiplug's introspection API. `createLLMAdapter` provided as a single generic factory without per-provider branches.
+- Provider credential discovery driven by `AIPlug.configSchema(slug)` with `popularModels` discovery.
+- Added `/v1/providers` endpoint for dynamic UI schema resolution.
 
 ### Bug fixes
 - `eventstream.ts` `headersEnd` was off by 12 (used `headersStart + (headersLength - 12)` instead of `headersStart + headersLength`).

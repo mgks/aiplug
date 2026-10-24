@@ -82,3 +82,78 @@ export function hasNonTextContent(content: ChatMessage['content']): boolean {
   if (typeof content === 'string') return false;
   return Array.isArray(content) && content.some((p) => p.type !== 'text');
 }
+
+/**
+ * Normalise a ChatMessage.content (string or ContentPart[]) into the
+ * wire format expected by the standard OpenAI Chat Completions API.
+ * Maps image_base64 to data URLs, camelCase imageUrl to image_url,
+ * audio to input_audio, and videos / documents to standard wire parts.
+ */
+export function normalizeContentForOpenAI(content: ChatMessage['content']): unknown {
+  if (typeof content === 'string') return content;
+  if (!Array.isArray(content)) return '';
+  return content.map((part) => {
+    switch (part.type) {
+      case 'text':
+        return { type: 'text', text: part.text };
+      case 'image_url':
+        return {
+          type: 'image_url',
+          image_url: {
+            url: part.imageUrl.url,
+            ...(part.imageUrl.detail ? { detail: part.imageUrl.detail } : {}),
+          },
+        };
+      case 'image_base64':
+        return {
+          type: 'image_url',
+          image_url: {
+            url: `data:${part.mediaType};base64,${part.data}`,
+          },
+        };
+      case 'video_url':
+        return {
+          type: 'video_url',
+          video_url: { url: part.videoUrl.url },
+        };
+      case 'video_base64':
+        return {
+          type: 'video_url',
+          video_url: { url: `data:${part.mediaType};base64,${part.data}` },
+        };
+      case 'audio':
+        return {
+          type: 'input_audio',
+          input_audio: {
+            data: part.data,
+            format: part.mediaType.includes('wav') ? 'wav' : 'mp3',
+          },
+        };
+      case 'audio_url':
+        return {
+          type: 'audio_url',
+          audio_url: { url: part.audioUrl.url },
+        };
+      case 'document':
+        return {
+          type: 'file',
+          file: {
+            name: part.name ?? 'document',
+            mime_type: part.mediaType,
+            data: part.data,
+          },
+        };
+      case 'file_url':
+        return {
+          type: 'file_url',
+          file_url: {
+            url: part.fileUrl.url,
+            ...(part.fileUrl.name ? { name: part.fileUrl.name } : {}),
+            ...(part.fileUrl.mimeType ? { mime_type: part.fileUrl.mimeType } : {}),
+          },
+        };
+      default:
+        return part;
+    }
+  });
+}

@@ -1,6 +1,6 @@
 /**
- * Provider introspection — the public surface memoryblock (and any other
- * host) uses to discover what aiplug supports without hardcoding slugs.
+ * Provider introspection — the public surface hosts and embedding applications
+ * use to discover what aiplug supports without hardcoding slugs.
  *
  * Three layers, each a pure function over the registry + meta:
  *   1. `listProviders()`           — slug list for picker UIs.
@@ -325,6 +325,60 @@ export function configSchema(slug: string): ProviderConfigSchema {
     fields,
     requiredKeys: fields.filter((f) => f.required).map((f) => f.key),
   };
+}
+
+export interface SearchProvidersOptions {
+  category?: string;
+  capability?: Capability;
+  includeAliases?: boolean;
+  limit?: number;
+}
+
+/**
+ * Search across registered providers by query string, category, or capability.
+ * Searches slug, displayName, apiHost, notes, and popularModels in-memory.
+ */
+export function searchProviders(query: string, options: SearchProvidersOptions = {}): ProviderDescriptor[] {
+  const q = query.trim().toLowerCase();
+  const listOpts: ListProvidersOptions = {};
+  if (options.category !== undefined) listOpts.category = options.category;
+  if (options.includeAliases === false) listOpts.excludeAliases = true;
+  const all = listProviders(listOpts);
+
+  const matches = all.filter((p) => {
+    if (options.capability && !p.capabilities.includes(options.capability)) {
+      return false;
+    }
+    if (!q) return true;
+    return (
+      p.slug.toLowerCase().includes(q) ||
+      p.displayName.toLowerCase().includes(q) ||
+      (p.apiHost && p.apiHost.toLowerCase().includes(q)) ||
+      (p.notes && p.notes.toLowerCase().includes(q)) ||
+      p.popularModels.some((m) => m.toLowerCase().includes(q))
+    );
+  });
+
+  if (q) {
+    matches.sort((a, b) => {
+      const aExact = a.slug.toLowerCase() === q || a.displayName.toLowerCase() === q;
+      const bExact = b.slug.toLowerCase() === q || b.displayName.toLowerCase() === q;
+      if (aExact && !bExact) return -1;
+      if (!aExact && bExact) return 1;
+
+      const aPrefix = a.slug.toLowerCase().startsWith(q) || a.displayName.toLowerCase().startsWith(q);
+      const bPrefix = b.slug.toLowerCase().startsWith(q) || b.displayName.toLowerCase().startsWith(q);
+      if (aPrefix && !bPrefix) return -1;
+      if (!aPrefix && bPrefix) return 1;
+
+      return 0;
+    });
+  }
+
+  if (options.limit && options.limit > 0) {
+    return matches.slice(0, options.limit);
+  }
+  return matches;
 }
 
 /** Test-only: clear cached meta + registry for unit tests that swap files. */

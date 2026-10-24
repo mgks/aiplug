@@ -10,7 +10,7 @@
 
 import { Transport, requireApiKey, requireModel } from '../../transport.js';
 import { makeError } from '../../errors.js';
-import { buildRequestInit, wrapFetchError, codeForStatus } from '../_shared.js';
+import { buildRequestInit, wrapFetchError, codeForStatus, normalizeContentForOpenAI } from '../_shared.js';
 import type {
   AudioRequest,
   AudioResponse,
@@ -162,7 +162,7 @@ export class OpenAITransport extends Transport {
 
   protected buildBody(req: ChatRequest): Record<string, unknown> {
     const messages = req.messages.map((m: ChatMessage) => {
-      const base: Record<string, unknown> = { role: m.role, content: m.content };
+      const base: Record<string, unknown> = { role: m.role, content: normalizeContentForOpenAI(m.content) };
       if (m.name !== undefined) base['name'] = m.name;
       if (m.toolCallId !== undefined) base['tool_call_id'] = m.toolCallId;
       if (m.toolCalls && m.toolCalls.length > 0) {

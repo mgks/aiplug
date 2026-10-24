@@ -1,7 +1,7 @@
 {
   "name": "aiplug",
-  "version": "0.1.2",
-  "description": "A lightweight runtime that unifies 110+ AI providers behind a single, OpenAI-compatible API.",
+  "version": "0.2.0",
+  "description": "A lightweight runtime that unifies 490+ AI providers behind a single, OpenAI-compatible API.",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,6 +21,7 @@
     "dist",
     "data",
     "README.md",
+    "PROVIDERS.md",
     "LICENSE"
   ],
   "scripts": {
@@ -29,6 +30,7 @@
     "lint": "tsc --noEmit",
     "test": "tsx --test src/__tests__/**/*.test.ts",
     "build:registry": "tsx scripts/build-registry.ts",
+    "docs:providers": "tsx scripts/generate-providers-doc.ts",
     "dev": "npm run build:registry && tsc -p tsconfig.json --watch",
     "smoke": "tsx scripts/smoke.ts",
     "smoke:e2e": "tsx scripts/smoke-e2e.ts"
@@ -49,14 +51,17 @@
     "fsevents": true
   },
   "keywords": [
-    "memoryblock",
-    "mblk",
+    "aiplug",
+    "llm",
+    "llm-providers",
+    "ai-providers",
     "ai-agent",
     "assistants",
     "agents",
     "automation",
     "multi-agent",
     "agentic-framework",
+    "universal-ai",
     "core",
     "cli",
     "framework",

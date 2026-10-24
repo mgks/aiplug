@@ -28,9 +28,9 @@ export class XiaomiTransport extends OpenAICompatibleTransport {
 
   override capabilities(): TransportMetadata {
     const m = super.capabilities();
-    return { ...m, name: 'xiaomi', defaultBaseURL: 'Custom endpoint' };
+    return { ...m, name: 'xiaomi', defaultBaseURL: 'https://api.xiaomimimo.com/v1' };
   }
 }
 
 /** Canonical default base URL for this provider. */
-export const DEFAULT_BASE_URL = 'Custom endpoint';
+export const DEFAULT_BASE_URL = 'https://api.xiaomimimo.com/v1';
