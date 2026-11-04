@@ -9,7 +9,7 @@ Every provider listed below can be plugged into the AIPlug SDK, the OpenAI-compa
 ## Table of Contents
 
 - [Frontier Labs & Flagship APIs (74)](#frontier-labs-flagship-apis)
-- [API Gateways & Unified Proxies (130)](#api-gateways-unified-proxies)
+- [API Gateways & Unified Proxies (131)](#api-gateways-unified-proxies)
 - [Aggregators & Multi-Provider Routers (20)](#aggregators-multi-provider-routers)
 - [IaaS, Bare-Metal & GPU Clouds (63)](#iaas-bare-metal-gpu-clouds)
 - [Enterprise Cloud & Sovereign Infrastructure (43)](#enterprise-cloud-sovereign-infrastructure)
@@ -106,8 +106,8 @@ Every provider listed below can be plugged into the AIPlug SDK, the OpenAI-compa
 | [Aleph Alpha](https://docs.aleph-alpha.com) | `aleph-alpha` | `Custom Pharia deployment` | `ALEPH_ALPHA_API_KEY` | ✓ OpenAI | Chat inference is on your own Pharia deployment, not one public base URL. |
 | [WebWright](https://webwright.ai) | `webwright` | `https://webwright.ai/v1` | `WEBWRIGHT_API_KEY` | ✓ OpenAI | Wren R1 chat, transcription and web search behind one OpenAI-compatible base URL. |
 
-<a id="api-gateways-unified-proxies"></a><a id="api-gateways--unified-proxies-130"></a>
-## API Gateways & Unified Proxies (130)
+<a id="api-gateways-unified-proxies"></a><a id="api-gateways--unified-proxies-131"></a>
+## API Gateways & Unified Proxies (131)
 
 | Provider | Slug | API Base URL | Default Env Var | Wire Protocol | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -241,6 +241,7 @@ Every provider listed below can be plugged into the AIPlug SDK, the OpenAI-compa
 | [XHuoAPI](https://xhuoapi.ai) | `xhuoapi` | `https://api.xhuoapi.ai/v1` | `XHUOAPI_API_KEY` | ✓ OpenAI | Chinese (DeepSeek, Qwen, GLM, Kimi, Doubao) and global models behind one key. Claude models also accept the Anthropic /v1/messages format. Email-only sign-up. |
 | [LinkAGI](https://api.linktoagi.com) | `linkagi` | `https://api.linktoagi.com/v1` | `LINKAGI_API_KEY` | ✓ OpenAI | AI API gateway with CNY usage billing, public model pricing and per-key usage logs. Docs: https://docs.linktoagi.com/. Model IDs are selected from its public catalog; model and account-group access may vary. |
 | [BetterToken](https://bettertoken.ai) | `bettertoken` | `https://bettertoken.ai/v1` | `BETTERTOKEN_API_KEY` | ✓ OpenAI | OpenAI- and Anthropic-compatible multi-model LLM gateway; pay-as-you-go; docs https://docs.bettertoken.ai |
+| [TheRouter](https://therouter.ai) | `therouter` | `https://api.therouter.ai/v1` | `THEROUTER_API_KEY` | ✓ OpenAI | Hosted multi-provider model API; OpenAI-compatible chat completions. |
 
 <a id="aggregators-multi-provider-routers"></a><a id="aggregators--multi-provider-routers-20"></a>
 ## Aggregators & Multi-Provider Routers (20)

@@ -171,6 +171,7 @@ const BUILTIN_IMPORTS: Record<string, () => Promise<any>> = {
   zhipu: () => import('./providers/zhipu/index.js'),
   'openai-compatible': () => import('./providers/openai-compatible/index.js'),
   openrouter: () => import('./providers/openrouter/index.js'),
+  therouter: () => import('./providers/therouter/index.js'),
   groq: () => import('./providers/groq/index.js'),
   mistral: () => import('./providers/mistral/index.js'),
   ollama: () => import('./providers/ollama/index.js'),

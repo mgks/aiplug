@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "totalProviders": 933,
+  "totalProviders": 934,
   "transports": {
     "302": {
       "module": "./302-ai/index.js",
@@ -16478,6 +16478,24 @@
       "module": "./bettertoken/index.js",
       "class": "BettertokenTransport",
       "defaultBaseURL": "https://bettertoken.ai/v1",
+      "auth": "bearer",
+      "authHeader": "Authorization",
+      "capabilities": [
+        "chat",
+        "streaming",
+        "tools",
+        "embeddings",
+        "images",
+        "audio-tts",
+        "audio-stt",
+        "json-mode",
+        "function-calling"
+      ]
+    },
+    "therouter": {
+      "module": "./therouter/index.js",
+      "class": "TherouterTransport",
+      "defaultBaseURL": "https://api.therouter.ai/v1",
       "auth": "bearer",
       "authHeader": "Authorization",
       "capabilities": [

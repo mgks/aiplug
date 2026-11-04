@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "totalProviders": 933,
+  "totalProviders": 934,
   "providers": {
     "302": {
       "displayName": "302.AI (alias: 302)",
@@ -10866,6 +10866,16 @@
       "notes": "OpenAI- and Anthropic-compatible multi-model LLM gateway; pay-as-you-go; docs https://docs.bettertoken.ai",
       "openaiCompatible": true,
       "isAlias": true
+    },
+    "therouter": {
+      "displayName": "TheRouter",
+      "category": "Gateway",
+      "popularModels": [
+        "openai/gpt-4o-mini"
+      ],
+      "envVar": "THEROUTER_API_KEY",
+      "notes": "Hosted multi-provider model API; OpenAI-compatible chat completions.",
+      "openaiCompatible": true
     },
     "bedrock-aws": {
       "displayName": "AWS Bedrock (native SigV4 Converse)",
