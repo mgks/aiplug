@@ -8615,5 +8615,20 @@
     "env_variable": "BETTERTOKEN_API_KEY",
     "openai_compatible": true,
     "notes": "OpenAI- and Anthropic-compatible multi-model LLM gateway; pay-as-you-go; docs https://docs.bettertoken.ai"
+  },
+  {
+    "id": 490,
+    "name": "TheRouter",
+    "slug": "therouter",
+    "aliases": [],
+    "category": "Gateway",
+    "website": "https://therouter.ai",
+    "api_base_url": "https://api.therouter.ai/v1",
+    "popular_models": [
+      "openai/gpt-4o-mini"
+    ],
+    "env_variable": "THEROUTER_API_KEY",
+    "openai_compatible": true,
+    "notes": "Hosted multi-provider model API; OpenAI-compatible chat completions."
   }
 ]
